@@ -2,7 +2,7 @@ const overlay = document.getElementById('overlay');
 document.addEventListener('DOMContentLoaded', function() {
     // Esconde a tela de carregamento e exibe o conteúdo principal após 2 segundos
     setTimeout(() => {
-        document.querySelector('.splash-screen').style.display = 'none';
+        document.querySelector('.splash-screen').style.display = 'block';
         document.querySelector('.main-content').style.display = 'block';
     }, 0000);
 
@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Alterna o menu de abas ao clicar no ícone de menu
     hamburgerMenu.addEventListener('click', function() {
         const isOpen = tabsContainer.style.transform === 'translateX(0%)';
+        
         tabsContainer.style.transform = isOpen ? 'translateX(-100%)' : 'translateX(0%)';
         hamburgerMenu.classList.toggle('open', !isOpen);
     });
@@ -56,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!tabsContainer.contains(event.target) && !hamburgerMenu.contains(event.target)) {
             tabsContainer.style.transform = 'translateX(-100%)';
             hamburgerMenu.classList.remove('open');
+            
         }
     });
 
@@ -140,26 +142,6 @@ for (var i = 0; i < acc.length; i++) {
         }
     });
 }
-
-document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', function() {
-                // Obtém o texto a ser copiado do atributo data-text do botão clicado
-                const textoParaCopiar = this.getAttribute('data-text');
-                
-                // Cria um elemento temporário para copiar o texto
-                const tempInput = document.createElement('input');
-                tempInput.value = textoParaCopiar;
-                document.body.appendChild(tempInput);
-
-                // Seleciona e copia o texto
-                tempInput.select();
-                tempInput.setSelectionRange(0, 99999); // Para dispositivos móveis
-                document.execCommand('copy');
-
-                // Remove o elemento temporário
-                document.body.removeChild(tempInput);
-            });
-        });
 
 
 

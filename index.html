@@ -25,7 +25,7 @@
           <p> Na Interface inteira foi adicionadas novas cores mais escuras, com
           um novo design moderno.</p>
          <h3><u> Nova Fonte </u></h3>
-         <p> Foi Acionada a fonte "lato", para uma indentidade visual superior a
+         <p> Foi Acionada a fonte "Circular", para uma indentidade visual superior a
          antiga.</p>
          <h3> <u> Balão com interações de conteúdos </u></h3>
          <p> Foram adicionados balões que conforme o conteúdo, muda a palavra de
@@ -73,8 +73,6 @@ possível visualizar em ordem e com 100% de precisão as principais matérias.</
 <li onclick="novoLink()">Compartilhar</li>
        <li onclick="toggleTransitions()">Desativar transições</li>
    
-
-
     </ul>        
             
   </div>
@@ -344,6 +342,8 @@ volte mais tarde.</p>
             <h5> - 1937 <br> Estado novo</h5>
             </div> 
               
+
+  
               
               
 
@@ -451,7 +451,41 @@ document.getElementById('alertButton').onclick = function() {
         function fecharNotificacao(elemento) {
             elemento.classList.add('hidden');
         }
+// Função para iniciar os timers com base no atributo data-timer
+    function iniciarTimer(elemento) {
+      const dataAlvo = new Date(elemento.getAttribute("data-timer")).getTime();
 
+      const atualizarTimer = setInterval(function() {
+        const agora = new Date().getTime();
+        const distancia = dataAlvo - agora;
+
+        const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+        let resultado = "";
+        if (dias > 0) resultado += `${dias}d `;
+        if (horas > 0 || dias > 0) resultado += `${horas}h `;
+        if (minutos > 0 || horas > 0 || dias > 0) resultado += `${minutos}m `;
+        resultado += `${segundos}s`;
+
+        elemento.innerHTML = resultado;
+
+        // Se o timer expirar, mostrar mensagem
+        if (distancia < 0) {
+          clearInterval(atualizarTimer);
+          elemento.innerHTML = "Tempo esgotado";
+        }
+      }, 1000);
+    }
+
+    // Selecionar todos os elementos com o atributo data-timer
+    const timers = document.querySelectorAll("[data-timer]");
+    timers.forEach(function(timer) {
+      iniciarTimer(timer); // Iniciar o timer para cada elemento
+    });
+    
 </script>
 
 </body>

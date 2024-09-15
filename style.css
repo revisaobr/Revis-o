@@ -319,30 +319,31 @@ font-family: 'CircularStd', sans-serif;
      /* ou outro valor conforme desejado */
 }
     .menu ul li:hover {
-      background-color: #1a1a1a;
+      border-radius:5px ;
+      background-color: #747474;
     }
   .no-transitions * {
       transition: none !important;
     }
   
   .image-container {
-    border: 1px solid rgba(0,0,0,0.244);
+    
     width: 100%;
     max-width: auto;
     height: 200px;
-    max-height: 500px;
+    max-height: 300px;
     border: none;
-    border-radius: 7px;
+    border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
 }
 
 .image-container img {
   
     width: 100%;
     height: 200px;
-    max-height: 500px;
-    display: block;
+    
+    
 }
   
         .contener-main {
@@ -389,11 +390,17 @@ font-family: 'CircularStd', sans-serif;
           display: inline-block;
   margin-right: 1px; /* Espaçamento entre os títulos */
         }
+        .contener-main h5:hover {
+          padding: 7px;
+          transition-duration: 0.2s;
+        }
 *:focus {
+  
   outline: none;
 }
 
 #notepad {
+  
   color: white;
   border-radius: 5px;
   background: rgb(31,31,31);
@@ -441,7 +448,7 @@ select:focus, input[type="number"]:focus {
     font-size: 16px;
   }
   section {
-        font-family: "Rubik", sans-serif;
+       
     padding: 20px;
     margin: 20px;
     background-color: none;
@@ -522,7 +529,7 @@ select:focus, input[type="number"]:focus {
             align-items: center;
           backdrop-filter: blur(10px);
             background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
+            z-index: 9998;
             display: none; /* Inicialmente oculto */
         }
         
@@ -547,8 +554,8 @@ select:focus, input[type="number"]:focus {
 
         .alert-content {
             background: #1d1b1b;
-            padding: 30px;
-            border-radius: 15px;
+            padding: 25px;
+            border-radius: 10px;
             text-align: flex;
             color: white;
             max-width: auto;
@@ -557,27 +564,23 @@ select:focus, input[type="number"]:focus {
         }
 
         .alert-content button {
-            background-color: #616161;
-            color: white;
-            border: none;
-            padding: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 15px;
+         
+
         }
 
         .alert-content button:hover {
-            background-color: #616161;
+          padding: 5px;
+            background-color: #a10b0b;
         }
 
         .close-btn {
             position: absolute;
-            top: -10px; /* Move o botÃ£o mais para cima */
-            right: 10px;
+            top: -20px; /* Move o botÃ£o mais para cima */
+            right: 15px;
             background-color: transparent;
             border: none;
             color: white;
-            font-size: 20px;
+            font-size: 40px;
             cursor: pointer;
         }
 
@@ -624,7 +627,7 @@ select:focus, input[type="number"]:focus {
   /* botÃ£o das anotaÃ§Ãµes ativado */
     button:hover {
       transition-duration: 0.6s;
-        background-color:  #353535;
+        background-color:  #5b5b5b;
         
     }
   
@@ -637,7 +640,7 @@ select:focus, input[type="number"]:focus {
             text-align: center;
             border: 1px solid #1d1d1d;
             outline: none;
-            transition: background-color 0.4s ease, color 0.4s ease; /* Adiciona transiÃ§Ã£o de cor */
+            transition: background-color 0.5s ease, color 0.5s ease; /* Adiciona transiÃ§Ã£o de cor */
             background-color:white /* Cor do Recolhivel */
             color: white;: /* Cor do texto */
             font-size: 16px;
@@ -651,16 +654,17 @@ select:focus, input[type="number"]:focus {
         }
 
         .accordion:hover, .accordion.active {
-          
-            background-color: #616161/* Cor de hover e ativo */
+
+            background-color:
+            #616161/* Cor de hover e ativo */
           color: white;
         }
 
 .accordion::after {
     content: '⌵'; /* Unicode character for down arrow */
-    font-size: 14px;
+    font-size: 16px;
     color: white; /* Cor do sÃ­mbolo */
-    transition: transform 0.4s ease; /* Adiciona transiÃ§Ã£o ao sÃ­mbolo */
+    transition: transform 0.3s ease; /* Adiciona transiÃ§Ã£o ao sÃ­mbolo */
     display: inline-block;
 }
 
@@ -672,10 +676,10 @@ select:focus, input[type="number"]:focus {
           
               text-align: center;
           width: 100%;
-          height: 100%;
+          height: 200px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.2s ease-out; /* TransiÃ§Ã£o suave ao abrir/fechar */
+            transition: max-height 0.3s ease-out; /* TransiÃ§Ã£o suave ao abrir/fechar */
             margin-bottom: 5px;
             margin-top: 2px;
             border-radius: 10px;
@@ -685,7 +689,7 @@ select:focus, input[type="number"]:focus {
         }
 
         .panel.show {
-            max-height: 700px; /* Altura mÃ¡xima para o conteÃºdo do painel */
+            max-height: 300px; /* Altura mÃ¡xima para o conteÃºdo do painel */
             padding: 0px; /* Adiciona padding ao abrir o painel */
         }
 
@@ -693,7 +697,7 @@ select:focus, input[type="number"]:focus {
             margin: 20px 0;
         }
        .panel h3 {
-         color: #599cfe;
+         color: #b3c0d5;
          margin-top: 20px;
        }
        .panel h5 {
