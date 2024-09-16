@@ -489,58 +489,7 @@ document.getElementById('alertButton').onclick = function() {
     timers.forEach(function(timer) {
       iniciarTimer(timer); // Iniciar o timer para cada elemento
     });
-        // Função para alterar a URL e remover o #
-        function updateURLWithoutHash() {
-            const hash = window.location.hash.substring(1);  // Remove o # do hash
-            
-            if (hash) {
-                const currentPath = window.location.pathname;
-                
-                // Se a URL já tiver o hash no formato /hash, não faça nada
-                if (!currentPath.includes(hash)) {
-                    history.replaceState(null, '', `/${hash}`);
-                    showContent(`/${hash}`);
-                }
-            }
-        }
 
-        // Função para mostrar o conteúdo correto com base na URL
-        function showContent(path) {
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            const sectionToShow = document.querySelector(path);
-            if (sectionToShow) {
-                sectionToShow.style.display = 'block';
-            }
-        }
-
-        // Adiciona um evento ao carregar a página
-        window.addEventListener('load', function () {
-            // Converte o hash inicial para a barra se existir
-            updateURLWithoutHash();
-        });
-
-        // Detecta cliques em links com #
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault(); // Previne o comportamento padrão do link
-                const targetHash = this.getAttribute('href').substring(1);
-                
-                // Atualiza a URL removendo o #
-                history.pushState(null, '', `/${targetHash}`);
-                showContent(`/${targetHash}`);
-            });
-        });
-
-        // Lida com o botão de voltar do navegador
-        window.addEventListener('popstate', function () {
-            showContent(window.location.pathname);
-        });
-
-        // Inicializa o conteúdo com base no caminho da URL
-        showContent(window.location.pathname);
 </script>
 
 </body>
