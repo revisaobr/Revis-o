@@ -489,15 +489,18 @@ document.getElementById('alertButton').onclick = function() {
     timers.forEach(function(timer) {
       iniciarTimer(timer); // Iniciar o timer para cada elemento
     });
-            // Função para alterar a URL sem o #
+        // Função para alterar a URL e remover o #
         function updateURLWithoutHash() {
-            // Pega o hash atual e remove o #
-            const hash = window.location.hash.substring(1);
+            const hash = window.location.hash.substring(1);  // Remove o # do hash
             
-            // Atualiza a URL com o pushState sem o #
             if (hash) {
-                history.pushState(null, '', `/${hash}`);
-                showContent(`/${hash}`);
+                const currentPath = window.location.pathname;
+                
+                // Se a URL já tiver o hash no formato /hash, não faça nada
+                if (!currentPath.includes(hash)) {
+                    history.replaceState(null, '', `/${hash}`);
+                    showContent(`/${hash}`);
+                }
             }
         }
 
@@ -525,7 +528,7 @@ document.getElementById('alertButton').onclick = function() {
                 e.preventDefault(); // Previne o comportamento padrão do link
                 const targetHash = this.getAttribute('href').substring(1);
                 
-                // Atualiza a URL sem o #
+                // Atualiza a URL removendo o #
                 history.pushState(null, '', `/${targetHash}`);
                 showContent(`/${targetHash}`);
             });
