@@ -175,12 +175,12 @@ font-family: 'CircularStd', sans-serif;
 }
         .navbar {
           
-          backdrop-filter: blur(50px) brightness(1.2);
+          backdrop-filter: blur(50px) brightness(0.7);
             display: flex;
             align-items: center;
             background: linear-gradient(to bottom, #1c1c1cc2 , #1c1c1c00);
           margin-bottom: 40px;
-            padding: 11px;
+            padding: 10px;
             position: fixed;
             width: 100%;
             z-index: 9998;
