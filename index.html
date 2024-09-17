@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#05788">
     <title>Revisão</title>
+        <meta name="version" content="3.4.0">
   <meta name="description" content="Aqui na Revisão você não perde o conteúdo, aqui mandamos todo o conteúdo das materias em primeira mão!"> <!-- Descrição do site -->
 <meta name="keywords" content="materias, 9°ano b, Porto Seguro, Rio Grande RS"> <!-- Palavras-chave -->
 <meta name="author" content=" Equipe Revisão"> <!-- Autor do site -->
@@ -16,39 +17,75 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+  
+<div id="overlay" class="overlay"></div>
+<div id="popup1" class="popup">
+  <button class="close-btn" onclick="closePopup('popup1')">X</button>
+<h1> Personalizar sua página <sup><small> Beta</small></sup></h1>
+<p> Você pode colocar da cor que quiser em seus containers de conteúdo!</p>
+<p>⚠️Futuramente vamos adicionar mais personalização, Ainda estamos fazendo
+testes</p>
+<p>Obs: Quando clicar no botão de <strong> Resetar</strong> Reinicie a página
+novamente.</p>
+<div>
+  <hr>
+  <h2> Contener principal de Início </h2>
+      <label for="main-bg-color">Cor de fundo:</label>
+      <input type="color" id="main-bg-color">
+    </div>
+<br>
+    <div>
+      <label for="main-heading-color">Cor dos títulos:</label>
+      <input type="color" id="main-heading-color">
+    </div>
+<br>
+    <div>
+      <label for="main-text-color">Cor dos parágrafos:</label>
+      <input type="color" id="main-text-color">
+    </div>
+    <br>
+<hr>
+<h2> Contener de Leitura dos conteúdos </h2>
+    <div>
+      <label for="square-bg-color">Cor de fundo:</label>
+      <input type="color" id="square-bg-color">
+    </div>
+<br>
+    <div>
+      <label for="square-heading-color">Cor dos títulos:</label>
+      <input type="color" id="square-heading-color">
+    </div>
+<br>
+    <div>
+      <label for="square-text-color">Cor dos parágrafos:</label>
+      <input type="color" id="square-text-color">
+    </div>
+<hr>
+    <button id="reset">Resetar para padrão</button>
+  </div>
+  
+</div>
 <div id="customAlert">
         <div class="alert-content">
             <button class="close-btn" onclick="closeAlert()">&times;</button>
             <h2><u>NOVIDADES DAS ATUALIZAÇÕES</u></h2>
-            <h3><u> Aplicativo Agora disponível offline </u></h3>
-            <p> Você pode acessar os conteúdos salvos do aplicativo agora
-            offline sem necessidade de internet <br> Obs: Para acessar a os
-            novos conteúdos você vai precisar estar conectado a uma conexão de internet.</p>
-          <h3><u> Alterações de Cores</u></h3>
-          <p> Na Interface inteira foi adicionadas novas cores mais escuras, com
-          um novo design moderno.</p>
-         <h3><u> Nova Fonte </u></h3>
-         <p> Foi Acionada a fonte "Circular", para uma indentidade visual superior a
-         antiga.</p>
-         <h3> <u> Balão com interações de conteúdos </u></h3>
-         <p> Foram adicionados balões que conforme o conteúdo, muda a palavra de
-         destaque.</p>
-<h3><u> A volta da Área das anotações</u> </h3>
-<p> A Função de Fazer suas próprias anotações e personalizar elas está de
-volta!<br> Obs: Se caso você tinha uma anotação salva antes de removermos a
-função, ela vai retornar completamente do jeito que você deixou, exeto se caso você
-tenha desinstalado o aplicativo ou redefinido os dados.</p>
+
 <h3> Novo Calendário de Provas </h3>
 <p> Agora com um Visual bem mais organizado e com cores melhores, vai ser
 possível visualizar em ordem e com 100% de precisão as principais matérias.</p>
+<h3> Nova Funcionalidade de Personalização </h3>
+<h5> FUNCIONALIDADE BETA</h5>
+<p> Agora você pode personalizar um pouco mais seus conteúdos, colocando a cor
+que você quiser.</p>
 
     <div>
       <hr>
        A ultima alteração de conteúdo foi há <b> <span class="timer"
-       data-update-time="2024-09-06T11:52:00"></span> </b>
+       data-update-time="2024-09-17T14:46:00"></span> </b>
     </div>
+        <p id="app-version"></p>
         </div>
+       
     </div>
     <div class="splash-screen">
        
@@ -76,7 +113,7 @@ possível visualizar em ordem e com 100% de precisão as principais matérias.</
       <li onclick="checkVersions()">Procurar Atualizações</li>
 <li onclick="novoLink()">Compartilhar</li>
        <li onclick="toggleTransitions()">Desativar transições</li>
-   
+<li onclick="openPopup('popup1')">Personalizar</li>
     </ul>        
             
   </div>
@@ -113,7 +150,23 @@ possível visualizar em ordem e com 100% de precisão as principais matérias.</
 <p> Tudo ja foi feito! Você não tem novas provas ou testes a fazer. Por favor,
 volte mais tarde.</p>
 </div>
-
+<div class="contener-main">
+                  <h5>Atualizações</h5>
+  <h2> Importante!</h2>
+  <p> Nova atualização do Aplicativo Revisão. Faça o Download  agora para
+  uma melhor compatibilidade e melhorias de interface.</p>
+    <p> Se você quer conferir as novas funções e mais detalhes de atualizações,
+  confira clicando no menu dos 3 pontinhos e clique em "Novidades de
+  Atualizações".</p>
+  <p> Atualização Disponível apenas para aparelhos Android.</p>
+  <p> Obs: Se você ja instalou a versão mais atual, apenas ignore este aviso.</p>
+  <h4> Veja as mudanças:</h4>
+  <p> 1 -  Erro de tela branca após sair do aplicativo corrigido.</p>
+ 
+  <h4> Link para a instalação:</h4>
+  <a href="https://www.mediafire.com/file/02wvyhdru1djs87/Revis%25C3%25A3o_%25283.4.0_-_%25C3%259Altima_vers%25C3%25A3o%2529_.apk/file">
+  Atualização 3.1</a>
+</div>
 <div class="contener-main">
   <h5> Em Alta</h5>
   <h2> Sugestões:</h2>
@@ -157,6 +210,7 @@ volte mais tarde.</p>
           <!--Começo da div de matematica-->
             <div id="matematica" class="tab-content hidden">
               <div class="square">
+                
                 <h1> Matemática</h1>
                 <h2>Essa prova já foi concluída. ✅</h2>
                                <button class="accordion">Informações</button>
@@ -489,7 +543,121 @@ document.getElementById('alertButton').onclick = function() {
     timers.forEach(function(timer) {
       iniciarTimer(timer); // Iniciar o timer para cada elemento
     });
+        // Verifica a versão do aplicativo no meta tag
+        const appVersion = document.querySelector('meta[name="version"]').getAttribute('content');
+        // Exibe a versão no elemento com id 'app-version'
+        window.onload = function() {
+            document.getElementById('app-version').textContent = `Versão do web
+            Atual: ${appVersion}`;
+        }
+        function openPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    const overlay = document.getElementById('overlay');
+    
+    popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
+    setTimeout(() => {
+      popup.classList.add('active');
+      overlay.classList.add('active');
+    }, 50);
+  }
 
+  function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    const overlay = document.getElementById('overlay');
+    
+    popup.classList.remove('active');
+    overlay.classList.remove('active');
+    setTimeout(() => {
+      popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
+    }, 300);
+  }
+  // Carregar as configurações salvas
+    window.onload = function() {
+      if(localStorage.getItem('mainBgColor')) {
+        document.querySelectorAll('.contener-main').forEach(el => el.style.backgroundColor = localStorage.getItem('mainBgColor'));
+      }
+
+      if(localStorage.getItem('mainHeadingColor')) {
+        let headings = document.querySelectorAll('.contener-main h1, .contener-main h2, .contener-main h3, .contener-main h4');
+        headings.forEach(h => h.style.color = localStorage.getItem('mainHeadingColor'));
+      }
+
+      if(localStorage.getItem('mainTextColor')) {
+        let paragraphs = document.querySelectorAll('.contener-main p');
+        paragraphs.forEach(p => p.style.color = localStorage.getItem('mainTextColor'));
+      }
+
+      if(localStorage.getItem('squareBgColor')) {
+        document.querySelectorAll('.square').forEach(el => el.style.backgroundColor = localStorage.getItem('squareBgColor'));
+      }
+
+      if(localStorage.getItem('squareHeadingColor')) {
+        let squareHeadings = document.querySelectorAll('.square h1, .square h2, .square h3, .square h4, .square h5');
+        squareHeadings.forEach(h => h.style.color = localStorage.getItem('squareHeadingColor'));
+      }
+
+      if(localStorage.getItem('squareTextColor')) {
+        let paragraphs = document.querySelectorAll('.square p');
+        paragraphs.forEach(p => p.style.color = localStorage.getItem('squareTextColor'));
+      }
+    };
+
+    // Alterar cor de todos os containers principais
+    document.getElementById('main-bg-color').addEventListener('input', function() {
+      let color = this.value;
+      document.querySelectorAll('.contener-main').forEach(el => el.style.backgroundColor = color);
+      localStorage.setItem('mainBgColor', color);
+    });
+
+    // Alterar cor dos títulos de todos os containers principais
+    document.getElementById('main-heading-color').addEventListener('input', function() {
+      let color = this.value;
+      let headings = document.querySelectorAll('.contener-main h1, .contener-main h2, .contener-main h3, .contener-main h4');
+      headings.forEach(h => h.style.color = color);
+      localStorage.setItem('mainHeadingColor', color);
+    });
+
+    // Alterar cor dos parágrafos de todos os containers principais
+    document.getElementById('main-text-color').addEventListener('input', function() {
+      let color = this.value;
+      let paragraphs = document.querySelectorAll('.contener-main p');
+      paragraphs.forEach(p => p.style.color = color);
+      localStorage.setItem('mainTextColor', color);
+    });
+
+    // Alterar cor de todos os containers de conteúdos
+    document.getElementById('square-bg-color').addEventListener('input', function() {
+      let color = this.value;
+      document.querySelectorAll('.square').forEach(el => el.style.backgroundColor = color);
+      localStorage.setItem('squareBgColor', color);
+    });
+
+    // Alterar cor dos títulos de todos os containers de conteúdos
+    document.getElementById('square-heading-color').addEventListener('input', function() {
+      let color = this.value;
+      let headings = document.querySelectorAll('.square h1, .square h2, .square h3, .square h4, .square h5');
+      headings.forEach(h => h.style.color = color);
+      localStorage.setItem('squareHeadingColor', color);
+    });
+
+    // Alterar cor dos parágrafos de todos os containers de conteúdos
+    document.getElementById('square-text-color').addEventListener('input', function() {
+      let color = this.value;
+      let paragraphs = document.querySelectorAll('.square p');
+      paragraphs.forEach(p => p.style.color = color);
+      localStorage.setItem('squareTextColor', color);
+    });
+
+    // Resetar para os padrões
+    document.getElementById('reset').addEventListener('click', function() {
+      localStorage.removeItem('mainBgColor');
+      localStorage.removeItem('mainHeadingColor');
+      localStorage.removeItem('mainTextColor');
+      localStorage.removeItem('squareBgColor');
+      localStorage.removeItem('squareHeadingColor');
+      localStorage.removeItem('squareTextColor');
+      window.location.reload(); // Recarregar a página para aplicar os valores padrão
+    });
 </script>
 
 </body>
