@@ -175,7 +175,7 @@ font-family: 'CircularStd', sans-serif;
 }
         .navbar {
           
-          backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px) brightness(2.2);
             display: flex;
             align-items: center;
             background: linear-gradient(to bottom, #1c1c1c , #1c1c1c00);
