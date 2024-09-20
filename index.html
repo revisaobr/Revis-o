@@ -181,6 +181,9 @@ volte mais tarde.</p>
     </div>
               
               <div class="contener-main">
+                <p>Clique no botão abaixo para selecionar um ou mais arquivos:</p>
+        <input type="file" id="fileInput" multiple>
+        <p id="fileList"></p>
                 <h5> Anotações </h5>
       <h2> Bloco de Notas </h2>
               <textarea id="notepad" placeholder="Escreva aqui..."></textarea><br>
@@ -658,6 +661,20 @@ document.getElementById('alertButton').onclick = function() {
       localStorage.removeItem('squareTextColor');
       window.location.reload(); // Recarregar a página para aplicar os valores padrão
     });
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+            const files = event.target.files;
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+
+            if (files.length > 0) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    fileList.innerHTML += `<p>Nome: ${file.name} - Tamanho: ${file.size} bytes</p>`;
+                }
+            } else {
+                fileList.innerHTML = '<p>Nenhum arquivo selecionado.</p>';
+            }
+        });
 </script>
 
 </body>
