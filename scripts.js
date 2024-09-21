@@ -6,13 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.main-content').style.display = 'block';
     }, 0000);
 
-    document.getElementById('alertButton').onclick = function() {
-            document.getElementById('customAlert').style.display = 'flex';
-        };
-
-        function closeAlert() {
-            document.getElementById('customAlert').style.display = 'none';
-        }
+    
     
              function updateTimer(timerElement) {
             const lastUpdate = new Date(timerElement.getAttribute('data-update-time'));
@@ -280,5 +274,27 @@ function checkVersions() {
     window.location.href = 'https://wa.me/?text=Instale%20o%20aplicativo%20Revisão%20para%20não%20perder%20a%20matéria:%20https%3A%2F%2Fwww.mediafire.com%2Ffolder%2Fqpuyyl1xwj56m%2FRevisao';
 }
 
+function openPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    const overlay = document.getElementById('overlay');
+    
+    document.body.classList.add('popup-active'); // Impede a rolagem do fundo
+    popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
+    setTimeout(() => {
+      popup.classList.add('active');
+      overlay.classList.add('active');
+    }, 50);
+}
 
+function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    const overlay = document.getElementById('overlay');
+    
+    popup.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.classList.remove('popup-active'); // Permite que o fundo role novamente
+    setTimeout(() => {
+      popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
+    }, 300);
+}
       

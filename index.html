@@ -21,72 +21,59 @@
 <div id="overlay" class="overlay"></div>
 <div id="popup1" class="popup">
   <button class="close-btn" onclick="closePopup('popup1')">X</button>
-<h1> Personalizar sua página <sup><small> Beta</small></sup></h1>
-<p> Você pode colocar da cor que quiser em seus containers de conteúdo!</p>
-<p>⚠️Futuramente vamos adicionar mais personalização, Ainda estamos fazendo
-testes</p>
-<p>Obs: Quando clicar no botão de <strong> Resetar</strong> Reinicie a página
-novamente.</p>
-<div>
-  <hr>
-  <h2> Contener principal de Início </h2>
-      <label for="main-bg-color">Cor de fundo:</label>
-      <input type="color" id="main-bg-color">
-    </div>
-<br>
-    <div>
-      <label for="main-heading-color">Cor dos títulos:</label>
-      <input type="color" id="main-heading-color">
-    </div>
-<br>
-    <div>
-      <label for="main-text-color">Cor dos parágrafos:</label>
-      <input type="color" id="main-text-color">
-    </div>
-    <br>
+<h1> Política de Privacidade</h1>
+<p> Aplicativo desenvolvimento por <strong> Revisão inc</strong> tem o intuito
+de revisar todas as matérias para a hora da prova, com informações baseadas no
+que é dado em aula pelos oficiais professores</p>
 <hr>
-<h2> Contener de Leitura dos conteúdos </h2>
-    <div>
-      <label for="square-bg-color">Cor de fundo:</label>
-      <input type="color" id="square-bg-color">
-    </div>
-<br>
-    <div>
-      <label for="square-heading-color">Cor dos títulos:</label>
-      <input type="color" id="square-heading-color">
-    </div>
-<br>
-    <div>
-      <label for="square-text-color">Cor dos parágrafos:</label>
-      <input type="color" id="square-text-color">
-    </div>
+<h3> Coleta de dados</h3>
+<p> Nossos serviços tanto o aplicativo como o próprio site coletam algumas
+informações suas para uma experiência personalizada. Nós protegemos ao máximo
+suas informações.</p>
 <hr>
-    <button id="reset">Resetar para padrão</button>
-  </div>
-  
+<h3> Aplicativo - Permissões e acessos</h3>
+<p> O nosso atual aplicativo precisa de algumas permissões para ser rodado no
+<b> Android</b> como:  <br> 1- Acesso ao armazenamento para acessarmos suas fotos
+para futuras personalizações no aplicativo, sendo assim somente você pode
+acessar suas fotos com toda a segurança  <br> 2- Para o aplicativo ser rodado no
+Android usamos a tecnologia nativa do Android chamada: <b> Android web wiew</b>
+que é um visualizador de web páginas nativa do Android que pode ser usada para
+acessar ao nosso site da Revisão direito de um aplicativo.</p>
+<hr> 
+<h3> Site - permissões e Acessos </h3>
+<p> Se você estiver acessando ao nosso serviço através de um navegador como
+Google chome, opera, FireFox, etc as permissões podem ser as mesmas citadas
+acima como: <br> 1- Acesso ao armazenamento para acessarmos suas fotos
+para futuras personalizações no aplicativo, sendo assim somente você pode
+acessar suas fotos com toda a segurança. </p>
+<hr>
+<h3> O Bloco de Notas</h3>
+<p> A área para anotações não exibe suas escritas publicamente ou associa a ela
+para alguém, ja que ela é totalmente feita para o usuário ver e acessá-la
+privadamente.</p>
+<hr> 
+<h3> Armazenamento e pra que usamos?</h3>
+<p> Algumas das informações que você faz ficam salvas no navegador local do seu
+aparelho a qual está usando. Usamos os Cookies que são essas coletas de dados
+que ficam salvas localmente no seu navegador. <br> <br> <b> Usamos no Bloco das
+anotações para que quando você sair do aplicativo ainda seja possível visualizar
+suas anotações que você deixou. <br> <br> Usamos também para salvar o conteúdo
+do site localmente no cache, Isso é que caso você esteja offline o aplicativo
+carrega o que salvou localmente antes da conexão de internet ser cortada.</b></p>
+<hr>
+<h3> Proteção contra hackers</h3>
+<p> O Site da Revisão está protegido e hospedado nos serviços do <strong>
+GitHub</strong> que é uma plataforma segura de hospedagem de arquivos ou sites.</p>
+<hr>
+<br> 
+<br>
+<br>
+<p> Copyright Revisão inc 2024 todos os direitos de conteúdos reservados</p>
+        <b><p id="app-version"></p></b>
+
+
 </div>
-<div id="customAlert">
-        <div class="alert-content">
-            <button class="close-btn" onclick="closeAlert()">&times;</button>
-            <h2><u>NOVIDADES DAS ATUALIZAÇÕES</u></h2>
 
-<h3> Novo Calendário de Provas </h3>
-<p> Agora com um Visual bem mais organizado e com cores melhores, vai ser
-possível visualizar em ordem e com 100% de precisão as principais matérias.</p>
-<h3> Nova Funcionalidade de Personalização </h3>
-<h5> FUNCIONALIDADE BETA</h5>
-<p> Agora você pode personalizar um pouco mais seus conteúdos, colocando a cor
-que você quiser.</p>
-
-    <div>
-      <hr>
-       A ultima alteração de conteúdo foi há <b> <span class="timer"
-       data-update-time="2024-09-17T14:46:00"></span> </b>
-    </div>
-        <p id="app-version"></p>
-        </div>
-       
-    </div>
     <div class="splash-screen">
        
     </div>
@@ -109,11 +96,10 @@ que você quiser.</p>
             
     <span>&vellip;</span>
     <ul id="menuItems">
-       <li id="alertButton">Novidades</li>
       <li onclick="checkVersions()">Procurar Atualizações</li>
 <li onclick="novoLink()">Compartilhar</li>
        <li onclick="toggleTransitions()">Desativar transições</li>
-<li onclick="openPopup('popup1')">Personalizar</li>
+<li onclick="openPopup('popup1')">Política de privacidade</li>
     </ul>        
             
   </div>
@@ -550,114 +536,7 @@ document.getElementById('alertButton').onclick = function() {
             document.getElementById('app-version').textContent = `Versão do web
             Atual: ${appVersion}`;
         }
-        function openPopup(popupId) {
-    const popup = document.getElementById(popupId);
-    const overlay = document.getElementById('overlay');
-    
-    popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
-    setTimeout(() => {
-      popup.classList.add('active');
-      overlay.classList.add('active');
-    }, 50);
-  }
-
-  function closePopup(popupId) {
-    const popup = document.getElementById(popupId);
-    const overlay = document.getElementById('overlay');
-    
-    popup.classList.remove('active');
-    overlay.classList.remove('active');
-    setTimeout(() => {
-      popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
-    }, 300);
-  }
-  // Carregar as configurações salvas
-    window.onload = function() {
-      if(localStorage.getItem('mainBgColor')) {
-        document.querySelectorAll('.contener-main').forEach(el => el.style.backgroundColor = localStorage.getItem('mainBgColor'));
-      }
-
-      if(localStorage.getItem('mainHeadingColor')) {
-        let headings = document.querySelectorAll('.contener-main h1, .contener-main h2, .contener-main h3, .contener-main h4');
-        headings.forEach(h => h.style.color = localStorage.getItem('mainHeadingColor'));
-      }
-
-      if(localStorage.getItem('mainTextColor')) {
-        let paragraphs = document.querySelectorAll('.contener-main p');
-        paragraphs.forEach(p => p.style.color = localStorage.getItem('mainTextColor'));
-      }
-
-      if(localStorage.getItem('squareBgColor')) {
-        document.querySelectorAll('.square').forEach(el => el.style.backgroundColor = localStorage.getItem('squareBgColor'));
-      }
-
-      if(localStorage.getItem('squareHeadingColor')) {
-        let squareHeadings = document.querySelectorAll('.square h1, .square h2, .square h3, .square h4, .square h5');
-        squareHeadings.forEach(h => h.style.color = localStorage.getItem('squareHeadingColor'));
-      }
-
-      if(localStorage.getItem('squareTextColor')) {
-        let paragraphs = document.querySelectorAll('.square p');
-        paragraphs.forEach(p => p.style.color = localStorage.getItem('squareTextColor'));
-      }
-    };
-
-    // Alterar cor de todos os containers principais
-    document.getElementById('main-bg-color').addEventListener('input', function() {
-      let color = this.value;
-      document.querySelectorAll('.contener-main').forEach(el => el.style.backgroundColor = color);
-      localStorage.setItem('mainBgColor', color);
-    });
-
-    // Alterar cor dos títulos de todos os containers principais
-    document.getElementById('main-heading-color').addEventListener('input', function() {
-      let color = this.value;
-      let headings = document.querySelectorAll('.contener-main h1, .contener-main h2, .contener-main h3, .contener-main h4');
-      headings.forEach(h => h.style.color = color);
-      localStorage.setItem('mainHeadingColor', color);
-    });
-
-    // Alterar cor dos parágrafos de todos os containers principais
-    document.getElementById('main-text-color').addEventListener('input', function() {
-      let color = this.value;
-      let paragraphs = document.querySelectorAll('.contener-main p');
-      paragraphs.forEach(p => p.style.color = color);
-      localStorage.setItem('mainTextColor', color);
-    });
-
-    // Alterar cor de todos os containers de conteúdos
-    document.getElementById('square-bg-color').addEventListener('input', function() {
-      let color = this.value;
-      document.querySelectorAll('.square').forEach(el => el.style.backgroundColor = color);
-      localStorage.setItem('squareBgColor', color);
-    });
-
-    // Alterar cor dos títulos de todos os containers de conteúdos
-    document.getElementById('square-heading-color').addEventListener('input', function() {
-      let color = this.value;
-      let headings = document.querySelectorAll('.square h1, .square h2, .square h3, .square h4, .square h5');
-      headings.forEach(h => h.style.color = color);
-      localStorage.setItem('squareHeadingColor', color);
-    });
-
-    // Alterar cor dos parágrafos de todos os containers de conteúdos
-    document.getElementById('square-text-color').addEventListener('input', function() {
-      let color = this.value;
-      let paragraphs = document.querySelectorAll('.square p');
-      paragraphs.forEach(p => p.style.color = color);
-      localStorage.setItem('squareTextColor', color);
-    });
-
-    // Resetar para os padrões
-    document.getElementById('reset').addEventListener('click', function() {
-      localStorage.removeItem('mainBgColor');
-      localStorage.removeItem('mainHeadingColor');
-      localStorage.removeItem('mainTextColor');
-      localStorage.removeItem('squareBgColor');
-      localStorage.removeItem('squareHeadingColor');
-      localStorage.removeItem('squareTextColor');
-      window.location.reload(); // Recarregar a página para aplicar os valores padrão
-    });
+        
 </script>
 
 </body>
