@@ -70,23 +70,19 @@ GitHub</strong> que é uma plataforma segura de hospedagem de arquivos ou sites.
 <br>
 <p> Copyright Revisão inc 2024 todos os direitos de conteúdos reservados</p>
         <b><p id="app-version"></p></b>
-
-
 </div>
 
+
     <div class="splash-screen">
-       
     </div>
-  
-    <div class="main-content">
-      
+ 
+ 
         <div class="navbar">
           
             <div class="hamburger-menu" id="hamburgerMenu">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
-              
             </div>
           
             <div class="navbar-title">Revisão</div>  
@@ -151,7 +147,7 @@ volte mais tarde.</p>
  
   <h4> Link para a instalação:</h4>
   <a href="https://www.mediafire.com/file/02wvyhdru1djs87/Revis%25C3%25A3o_%25283.4.0_-_%25C3%259Altima_vers%25C3%25A3o%2529_.apk/file">
-  Atualização 3.1</a>
+  Atualização 3.4.0</a>
 </div>
 <div class="contener-main">
   <h5> Em Alta</h5>
@@ -482,62 +478,6 @@ volte mais tarde.</p>
         </div>
     </div>
      <script src="scripts.js"></script>
-<script> 
-
-
-document.getElementById('alertButton').onclick = function() {
-            document.getElementById('customAlert').style.display = 'flex';
-        };
-
-        function closeAlert() {
-            document.getElementById('customAlert').style.display = 'none';
-        }
-        function fecharNotificacao(elemento) {
-            elemento.classList.add('hidden');
-        }
-// Função para iniciar os timers com base no atributo data-timer
-    function iniciarTimer(elemento) {
-      const dataAlvo = new Date(elemento.getAttribute("data-timer")).getTime();
-
-      const atualizarTimer = setInterval(function() {
-        const agora = new Date().getTime();
-        const distancia = dataAlvo - agora;
-
-        const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-        const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-        const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-        let resultado = "";
-        if (dias > 0) resultado += `${dias}d `;
-        if (horas > 0 || dias > 0) resultado += `${horas}h `;
-        if (minutos > 0 || horas > 0 || dias > 0) resultado += `${minutos}m `;
-        resultado += `${segundos}s`;
-
-        elemento.innerHTML = resultado;
-
-        // Se o timer expirar, mostrar mensagem
-        if (distancia < 0) {
-          clearInterval(atualizarTimer);
-          elemento.innerHTML = "Tempo esgotado";
-        }
-      }, 1000);
-    }
-
-    // Selecionar todos os elementos com o atributo data-timer
-    const timers = document.querySelectorAll("[data-timer]");
-    timers.forEach(function(timer) {
-      iniciarTimer(timer); // Iniciar o timer para cada elemento
-    });
-        // Verifica a versão do aplicativo no meta tag
-        const appVersion = document.querySelector('meta[name="version"]').getAttribute('content');
-        // Exibe a versão no elemento com id 'app-version'
-        window.onload = function() {
-            document.getElementById('app-version').textContent = `Versão do web
-            Atual: ${appVersion}`;
-        }
-        
-</script>
 
 </body>
 </html>

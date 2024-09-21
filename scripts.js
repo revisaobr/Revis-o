@@ -298,3 +298,18 @@ function closePopup(popupId) {
     }, 300);
 }
       
+
+
+    // Selecionar todos os elementos com o atributo data-timer
+    const timers = document.querySelectorAll("[data-timer]");
+    timers.forEach(function(timer) {
+      iniciarTimer(timer); // Iniciar o timer para cada elemento
+    });
+        // Verifica a versão do aplicativo no meta tag
+        const appVersion = document.querySelector('meta[name="version"]').getAttribute('content');
+        // Exibe a versão no elemento com id 'app-version'
+        window.onload = function() {
+            document.getElementById('app-version').textContent = `Versão do web
+            Atual: ${appVersion}`;
+        }
+        

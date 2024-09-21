@@ -27,20 +27,22 @@ body.popup-active {
     }
 
     .popup {
+     
+      border: 1px solid rgba(255,255,255,0.128);
      overflow-y: auto;
       max-height: 90vh;
-      font-size: 10px;
+      
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.7);
       width: 500px;
-                           backdrop-filter: blur(15px);
-  background-color: rgba(128,128,128,0.123);
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-      padding: 25px;
+                           backdrop-filter: blur(10px);
+  background-color: rgba(47,47,47,0.247);
+      box-shadow: 0 0 15px rgba(64,64,64,0.345);
+      border-radius: 10px;
+      padding: 35px;
       opacity: 0;
 
       z-index: 9998;
@@ -53,14 +55,14 @@ body.popup-active {
      
     }
     .popup h3 {
-      font-size: 20px;
+      font-size: 24px;
       text-align: center;
       margin-top:10px;
       margin-bottom: 1px;
     }
     .popup p {
       margin-top: 0px;
-      font-size: 18px;
+      font-size: 22px;
      
     }
     
@@ -96,20 +98,7 @@ popup label {
       background-color: #ff3333;
     }
     
-.notificacao {
-            background: linear-gradient(to bottom, #f81818, #cd0d0da7);
-            color: white;
-            padding: 2px;
-            margin: 1px;
-            margin-right: 3px;
-            border-radius: 7px;
-            display: inline-block;
-           
-            cursor: pointer;
-        }
-        .hidden {
-            display: none;
-        }
+
 
 
 
@@ -186,25 +175,12 @@ font-family: 'CircularStd', sans-serif;
             }
         }
 
-        .main-content {
-            display: none;
-        }
-
-
-      
-.square > #boasvindas {
-  text-align: center;
-  margin: 0px;
-}
-.square > #paragrafo-boasvindas {  
-  text-align: center;
-}
         .navbar {
           
-          backdrop-filter: blur(50px);
+          backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
-            background: linear-gradient(to bottom, #1c1c1c , #1c1c1c00);
+            background: linear-gradient(to bottom, #1c1c1c , #1c1c1c29);
           margin-bottom: 40px;
             padding: 10px;
             position: fixed;
@@ -256,8 +232,8 @@ font-family: 'CircularStd', sans-serif;
             top: 30px;
             width: 330px;
             height: 100%;
-                      background: rgba(10,10,10,0.772);
-                      backdrop-filter: blur(25px);
+                      background: rgb(10,10,10);
+                    
 
             padding-top: 45px;
             transform: translateX(-100%);
@@ -301,7 +277,7 @@ font-family: 'CircularStd', sans-serif;
     margin-top: 65px;
     display: flex;
     justify-content: center;
-    transition: transform 0.3s ease; /* Efeito de transição suave */
+    transition: transform 0.4s ease; /* Efeito de transição suave */
 }
 
 
@@ -362,9 +338,7 @@ font-family: 'CircularStd', sans-serif;
   color: #f5f5f5c5;
 }
 
-.square > .tooltip-container > #area-prova {
-  text-align: center;
-}
+
 
         .tab-content.active {
             display: block;
@@ -484,8 +458,9 @@ font-family: 'CircularStd', sans-serif;
   margin-right: 1px; /* Espaçamento entre os títulos */
         }
         .contener-main h5:hover {
-          padding: 7px;
-          transition-duration: 0.2s;
+          background: #3520c4;
+          padding: 6px;
+          transition-duration: 0.5s;
         }
 *:focus {
   
@@ -518,100 +493,7 @@ select:focus, input[type="number"]:focus {
 }
 
   }
-  header {
-        font-family: "Rubik", sans-serif;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: block;
-  }
-  nav {
-    background-color:none;
-    padding: 10px 0;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    color: white;
-  }
-  nav a {
-    text-decoration: none;
-    color: white;
-    margin: 0 10px;
-    font-size: 16px;
-  }
-  section {
-       
-    padding: 20px;
-    margin: 20px;
-    background-color: none;
-    border: 0px solid #ddd;
-  }
-
-.tooltip-container {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .tooltip-text {
-            visibility: hidden;
-            width: auto;
-            max-width: 250px; /* Largura mÃ¡xima para o balÃ£o */
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 8px;
-            padding: 15px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%; /* Posiciona o balÃ£o acima do texto */
-            left: 50%;
-            transform: translateX(-50%) scale(0.8);
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            white-space: normal; /* Quebra de linha automÃ¡tica */
-            word-wrap: break-word; /* Quebra de palavras longas */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
-        }
-
-        .tooltip-text::after {
-            content: " ";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #333 transparent transparent transparent;
-        }
-
-        .tooltip-container:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-            transform: translateX(-50%) scale(1);
-        }
-
-        .tooltip-text-container {
-            font-size: 18px;
-            color: #007BFF; /* Cor do texto */
-            cursor: pointer;
-        }
-
-        @media (max-width: 600px) {
-            .tooltip-text {
-                max-width: 200px; /* Ajuste para telas menores */
-                font-size: 14px;
-                padding: 12px;
-            }
-
-            .tooltip-text-container {
-                font-size: 16px;
-            }
-        }
-
-
-
+  
         
 .exam {
   
@@ -623,19 +505,9 @@ select:focus, input[type="number"]:focus {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .exam:hover {
-            transform: scale(1.01);
-            background-color: #424242;
-        }
 
 
-        .exam p {
-            font-weight: 300;
-          font-size: 14px;
-        }
-.exam h2 {
-  color: aliceblue
-}
+
 
 
   /* botÃ£o das anotaÃ§Ãµes */
