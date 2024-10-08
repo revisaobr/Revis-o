@@ -272,7 +272,7 @@ font-family: 'CircularStd', sans-serif;
         }
 
         .tabs a:active, .tabs a.active {
-            background-color: #767676c9;
+            background-color: #636363c9;
             transform: scale(1.04);
             
         }
@@ -372,27 +372,27 @@ font-family: 'CircularStd', sans-serif;
 
     .menu ul {
       
-      border: 2px solid #525252b2;
+      border: 2px solid #480e8c7a;
       border-radius: 10px;
       list-style-type: none;
       padding: 0;
       display: none;
       position: absolute;
       right: 0;
-      background-color: #272727;
+      background-color: #131317;
       transition-duration: 0.3s;
     }
 
     .menu ul li {
       
     padding: 15px;
-    border-bottom: 3px solid #525252ae;
+    border-bottom: 3px solid #480e8c7a;
     cursor: pointer;
      /* ou outro valor conforme desejado */
 }
     .menu ul li:hover {
       border-radius:5px ;
-      background-color: #747474;
+      background-color: #2b2b42;
     }
   .no-transitions * {
       transition: none !important;
