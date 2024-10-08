@@ -21,57 +21,10 @@
 <div id="overlay" class="overlay"></div>
 <div id="popup1" class="popup">
   <button class="close-btn" onclick="closePopup('popup1')">X</button>
-<h1> Política de Privacidade</h1>
-<p> Aplicativo desenvolvimento por <strong> Revisão inc</strong> tem o intuito
-de revisar todas as matérias para a hora da prova, com informações baseadas no
-que é dado em aula pelos oficiais professores</p>
-<hr>
-<h3> Coleta de dados</h3>
-<p> Nossos serviços tanto o aplicativo como o próprio site coletam algumas
-informações suas para uma experiência personalizada. Nós protegemos ao máximo
-suas informações.</p>
-<hr>
-<h3> Aplicativo - Permissões e acessos</h3>
-<p> O nosso atual aplicativo precisa de algumas permissões para ser rodado no
-<b> Android</b> como:  <br> 1- Acesso ao armazenamento para acessarmos suas fotos
-para futuras personalizações no aplicativo, sendo assim somente você pode
-acessar suas fotos com toda a segurança  <br> 2- Para o aplicativo ser rodado no
-Android usamos a tecnologia nativa do Android chamada: <b> Android web wiew</b>
-que é um visualizador de web páginas nativa do Android que pode ser usada para
-acessar ao nosso site da Revisão direito de um aplicativo.</p>
-<hr> 
-<h3> Site - permissões e Acessos </h3>
-<p> Se você estiver acessando ao nosso serviço através de um navegador como
-Google chome, opera, FireFox, etc as permissões podem ser as mesmas citadas
-acima como: <br> 1- Acesso ao armazenamento para acessarmos suas fotos
-para futuras personalizações no aplicativo, sendo assim somente você pode
-acessar suas fotos com toda a segurança. </p>
-<hr>
-<h3> O Bloco de Notas</h3>
-<p> A área para anotações não exibe suas escritas publicamente ou associa a ela
-para alguém, ja que ela é totalmente feita para o usuário ver e acessá-la
-privadamente.</p>
-<hr> 
-<h3> Armazenamento e pra que usamos?</h3>
-<p> Algumas das informações que você faz ficam salvas no navegador local do seu
-aparelho a qual está usando. Usamos os Cookies que são essas coletas de dados
-que ficam salvas localmente no seu navegador. <br> <br> <b> Usamos no Bloco das
-anotações para que quando você sair do aplicativo ainda seja possível visualizar
-suas anotações que você deixou. <br> <br> Usamos também para salvar o conteúdo
-do site localmente no cache, Isso é que caso você esteja offline o aplicativo
-carrega o que salvou localmente antes da conexão de internet ser cortada.</b></p>
-<hr>
-<h3> Proteção contra hackers</h3>
-<p> O Site da Revisão está protegido e hospedado nos serviços do <strong>
-GitHub</strong> que é uma plataforma segura de hospedagem de arquivos ou sites.</p>
-<hr>
-<br> 
-<br>
-<br>
-<p> Copyright Revisão inc 2024 todos os direitos de conteúdos reservados</p>
-        <b><p id="app-version"></p></b>
+  <h1>Sobre</h1>
+  <p> Aplicativo criado no final de maio de 2024 com o simples objetivo de ser
+  uma plataforma apropriada para matérias e conteúdos.</p>
 </div>
-
 
     <div class="splash-screen">
     </div>
@@ -95,7 +48,7 @@ GitHub</strong> que é uma plataforma segura de hospedagem de arquivos ou sites.
       <li onclick="checkVersions()">Procurar Atualizações</li>
 <li onclick="novoLink()">Compartilhar</li>
        <li onclick="toggleTransitions()">Desativar transições</li>
-<li onclick="openPopup('popup1')">Política de privacidade</li>
+<li onclick="openPopup('popup1')">Sobre</li>
     </ul>        
             
   </div>
@@ -129,8 +82,8 @@ GitHub</strong> que é uma plataforma segura de hospedagem de arquivos ou sites.
 <div class="contener-main">
   <h5> Principal Destaque</h5>
   <h2> Calendário de Provas</h2>
-<p> Tudo ja foi feito! Você não tem novas provas ou testes a fazer. Por favor,
-volte mais tarde.</p>
+<p>Acesse Logo abaixo as provas e testes marcados para o momento.</p>
+<a href="#provas" class="tab-link ">Vizualizar</a>
 </div>
 <div class="contener-main">
                   <h5>Atualizações</h5>
@@ -473,10 +426,21 @@ volte mais tarde.</p>
               </div>
           
             </div>
-          
-            <!-- Adicione mais conteúdos conforme necessário -->
+                    <div id="provas" class="tab-content hidden">
+                      <div class="contener-main">
+                        <h5> Principal Destaque </h5>
+                        <h2>Calendário das provas</h2>
+                        <p> Sem data para novas provas ou testes agora. Volte
+                        mais tarde!</p>
+                        
+                      </div>
+                     
+                      
+                      <!-- fim da div <!---> 
+</div>
         </div>
     </div>
+    
      <script src="scripts.js"></script>
 
 </body>

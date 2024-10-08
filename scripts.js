@@ -297,4 +297,27 @@ function closePopup(popupId) {
       popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
     }, 300);
 }
-      
+      // Função para apagar todos os cookies
+        function deleteAllCookies() {
+            const cookies = document.cookie.split(";");
+
+            cookies.forEach(cookie => {
+                const eqPos = cookie.indexOf("=");
+                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+            });
+        }
+
+        // Função para limpar localStorage e sessionStorage
+        function clearStorage() {
+            localStorage.clear();  // Limpa o localStorage
+            sessionStorage.clear(); // Limpa o sessionStorage
+        }
+
+        // Função para redefinir todos os dados salvos no navegador
+        function resetAllData() {
+            deleteAllCookies(); // Apagar todos os cookies
+            clearStorage();     // Limpar localStorage e sessionStorage
+            alert("Os dados foram redefinidos!");
+        }
+        
