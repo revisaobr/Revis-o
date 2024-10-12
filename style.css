@@ -750,3 +750,34 @@ button a.tab-link:hover {
   margin: 0px;
 }
 
+
+.social {
+  float: left;
+  display: block;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.social-text {
+  color: #ffffff;
+  display: inline-block;
+}
+
+.social-link {
+  display: block;
+  text-align: left;
+  background: transparent;
+}
+
+.videoh3 {
+  margin-top:40px ;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.contener-main video {
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 25px;
+}
