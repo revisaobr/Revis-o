@@ -539,6 +539,16 @@ icone"> Acesse o Instagram da Turma</a>
   function fecharNotificacao(element) {
     element.style.display = 'none'; // Oculta o elemento clicado
 }
+// Script para abrir todos os links em uma nova aba
+document.addEventListener("DOMContentLoaded", function() {
+    // Seleciona todos os links na página
+    const links = document.querySelectorAll('a');
+
+    // Percorre todos os links e define o target como _blank
+    links.forEach(function(link) {
+        link.setAttribute('target', '_blank');
+    });
+});
 </script>
 </body>
 </html>
