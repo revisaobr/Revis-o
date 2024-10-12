@@ -1,3 +1,8 @@
+.invisible {
+      height: 1px; /* Tamanho mínimo */
+
+    }
+
 @font-face {
   font-family: 'CircularStd';
   src: url('circular-std-medium-500.ttf') format('truetype');
@@ -181,8 +186,9 @@ font-family: 'CircularStd', sans-serif;
         }
 
         .navbar {
-          
-          backdrop-filter: blur(10px);
+
+  
+          backdrop-filter: blur(20px);
             display: flex;
             align-items: center;
             background: linear-gradient(to bottom, #1c1c1c , #1c1c1c29);
@@ -307,7 +313,7 @@ font-family: 'CircularStd', sans-serif;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 2px rgba(82,82,82,0.238);
     max-width: 1000px;
-      margin-bottom: 45px;
+      margin-bottom: 70px;
 }
 .square h1 {
   text-decoration: underline;
@@ -660,5 +666,84 @@ button a.tab-link:hover {
   background: #a073fb;
   transition-duration: 0.5s;
   color: black;
+}
+
+#main-caixa h4 {
+  margin-bottom: 0px;
+  color: #adadf0;
+}
+
+.timer {
+  text-align: center;
+}
+
+.timer-restante {
+  color: #adadf0;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.painel {
+                text-align: center;
+          padding: 8px;
+            
+            
+            margin-bottom: 25px;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            background-color: rgba(30,30,30,0.569); /* Cor de fundo do conteÃºdo */
+            color: white; /* Cor do texto do conteÃºdo */
+}
+
+.painel p {
+  margin: 20px 0;
+}
+
+.painel h3 {
+  color: #c588f3;
+         margin-top: 15px;
+}
+
+.painel h5 {
+  margin-top:8px ;
+  margin-bottom: 2px;
+  color: #95959f;
+}
+
+.square h4 {
+  color: #c588f3;
+  margin-bottom: 15px;
+}
+
+.square img {
+  width: 300px;
+  margin: auto;
+  display: block;
+  border-radius: 5px;
+  background-size: cover;
+  
+  max-height: 400px;
+}
+
+.creditos {
+  margin: 0px;
+  text-align: center;
+  font-size: 1px;
+}
+
+.square strong {
+  color: #ffffff;
+}
+
+
+.tabs-container h5 {
+  margin: 0px;
+  color: #5c11ce;
+}
+
+.tabs-container .timer  {
+  
+  margin: 0px;
 }
 

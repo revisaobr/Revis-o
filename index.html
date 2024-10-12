@@ -58,7 +58,15 @@
             <div class="tabs" id="tabs">
              
                 <a href="#inicio" class="tab-link">Inicio</a>
-                <a href="#matematica" class="tab-link"> Matematica</a>
+                <a href="#matematica" class="tab-link">      
+                Matematica
+                  <h5 class="notificacao"
+                onclick="fecharNotificacao(this)">+1 Novidade • Teorema de Tales
+                • Teste 25/10 
+                            <div class="timer"
+                            data-endtime="2024-10-25T12:00:00"></div>
+                </h5>
+                </a>
                 <a href="#portugues" class="tab-link">Português</a>
               <a href="#ciencias" class="tab-link">Ciências</a>
               <a href="#ingles" class="tab-link">Inglês</a>
@@ -83,6 +91,7 @@
   <h5> Principal Destaque</h5>
   <h2> Calendário de Provas</h2>
 <p>Acesse Logo abaixo as provas e testes marcados para o momento.</p>
+<h4>+1 Novidade em matemática</h4>
 <a href="#provas" class="tab-link ">Vizualizar</a>
 </div>
 <div class="contener-main">
@@ -143,8 +152,68 @@
           <!--Começo da div de matematica-->
             <div id="matematica" class="tab-content hidden">
               <div class="square">
-                
-                <h1> Matemática</h1>
+                                <h1> Matemática</h1>
+                                <h2> Teste de 25 de Outubro de 2024</h2>
+                                <div class="painel">
+  <h3> Detalhes</h3>
+                <h5> Data: 25 De Outubro - Sexta-Feira</h5>
+                <h5> Horario: 7h40 (Duas Aulas)</h5>
+                <h5> Valor: 30 Pontos</h5>
+                                     <h3 class="timer-restante">Tempo Restante</h3>
+            <div class="timer" data-endtime="2024-10-25T12:00:00"></div>
+</div>
+
+
+
+<h2>CONTEÚDOS</h2>
+              <p>⮕ Teorema de Tales </p>
+              <p>⮕ Teorema de Tales nos triângulos</p>
+              <br>
+              <h2>TEOREMA DE TALES</h2>
+              <h4>Sobre</h4>
+              <p>O Teorema de Tales, também chamado de Teorema de Tales de
+              Mileto, trata-se de um princípio básico da geometria que relaciona
+              a proporção entre segmentos de retas paralelas cortadas por duas
+              transversais. Ele afirma que, se duas retas paralelas são cortadas
+              por duas retas transversais, então os segmentos de uma das
+              transversais são proporcionais aos segmentos correspondentes da
+              outra transversal.</p>
+              <h4> Exemplo</h4>
+             <img src="teoremadetales.png">
+             <p class="creditos">Imagem retirada de<a
+             href="https://m.brasilescola.uol.com.br/amp/matematica/teorema-tales.htm">
+             Brasil escola Vol</a>
+             </p>
+             <p>Para Resolveremos precisamos pegar os elementos abaixo da linha
+             abaixo do <strong> 10</strong> temos o <strong> X</strong> e No
+             outro lado temos o <strong> 12</strong> acima de <strong> 7</strong> </p>
+             <img src="resultadoteoremadetales.png">
+             <p> Para Resolveremos começamos pela parte de baixo<strong>7
+             </strong> No <strong> 10</strong></p>
+             <p> 7.10 = X.12</p>
+             <p> 70 = 12X</p>
+             <p> Agora dividimos o 70÷12 que é igual a 5,83.</p>
+             <h4> Resultado: 5,83</h4>
+              <br>
+              <br>
+              <hr>
+                  <div>
+                    <b>  Editado pela Ultima vez:</b> há <span class="timer"
+                    data-update-time="2024-10-12T01:40:00"></span><br> <br><b>
+
+                    Por:</b> Equipe Revisão
+    </div>
+              </div>
+
+
+              
+              
+              
+              
+              
+              <div class="square">
+                <h2> Prova de 12 De Julho </h2>
+
                 <h2>Essa prova já foi concluída. ✅</h2>
                                <button class="accordion">Informações</button>
 <div class="panel">
@@ -425,11 +494,14 @@
           
             </div>
                     <div id="provas" class="tab-content hidden">
-                      <div class="contener-main">
-                        <h5> Principal Destaque </h5>
+                      <div id="main-caixa" class="contener-main">
+                        
                         <h2>Calendário das provas</h2>
-                        <p> Sem data para novas provas ou testes agora. Volte
-                        mais tarde!</p>
+<h4> Teste de Matemática </h4>
+<p>• 25 De Outubro • 30 Pontos • Sem Consulta</p>
+<p> Confira mais informações clicando abaixo.</p>
+
+<a href="#matematica" class="tab-link ">Teste de Matemática 25/10/2024</a>
                         
                       </div>
                      
@@ -440,6 +512,10 @@
     </div>
     
      <script src="scripts.js"></script>
-
+<script>
+  function fecharNotificacao(element) {
+    element.style.display = 'none'; // Oculta o elemento clicado
+}
+</script>
 </body>
 </html>
