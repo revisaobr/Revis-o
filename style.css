@@ -306,7 +306,7 @@ font-family: 'CircularStd', sans-serif;
   .square {
     width: auto;
     
-    background: #131317;
+    background: #2121217e;;
     
     padding: 15px;
     margin: auto;
@@ -378,27 +378,28 @@ font-family: 'CircularStd', sans-serif;
 
     .menu ul {
       
-      border: 2px solid #480e8c7a;
+      border: 2px solid #212121;
       border-radius: 10px;
       list-style-type: none;
       padding: 0;
       display: none;
       position: absolute;
       right: 0;
-      background-color: #131317;
+      background-color: #121212;
       transition-duration: 0.3s;
     }
 
     .menu ul li {
       
     padding: 15px;
-    border-bottom: 3px solid #480e8c7a;
+    border-bottom: 3px solid #1b1a1a;
     cursor: pointer;
      /* ou outro valor conforme desejado */
 }
     .menu ul li:hover {
+      transition-duration: 0.5s;
       border-radius:5px ;
-      background-color: #2b2b42;
+      background-color: #2f2e2e;
     }
   .no-transitions * {
       transition: none !important;
@@ -429,8 +430,8 @@ font-family: 'CircularStd', sans-serif;
           border-radius: 15px;
           padding: 18px;
           border: 1px solid rgba(6,0,15,0.18);
-    background: #131317;
-    box-shadow: 1px 1px 1px 4px rgba(71,12,105,0.1);
+    background: #2121217e;;
+    box-shadow: 1px 1px 1px 4px rgba(21,2,32,0.054);
     max-width: 700px;
           margin-bottom: 50px;
         }
@@ -459,21 +460,16 @@ font-family: 'CircularStd', sans-serif;
           line-height: 1.4em;
         }
         .contener-main h5 {
-        box-shadow: 2px 1px 4px 5px rgba(107,7,210,0.319);
+        box-shadow: 2px 1px 4px 5px rgba(10,7,210,0.319);
           margin: 0px;
           border-radius: 10px;
           margin-bottom: 25px;
           padding: 5px;
-          background: linear-gradient(to bottom, #834bde, #4d10b0);
+          background:linear-gradient(to bottom, #0b29dc, #501bda);
           display: inline-block;
   margin-right: 1px; /* Espaçamento entre os títulos */
         }
-        .contener-main h5:hover {
-          color: black;
-          background: #a073fb;
-          padding: 6px;
-          transition-duration: 0.5s;
-        }
+
 *:focus {
   
   outline: none;
@@ -524,9 +520,9 @@ select:focus, input[type="number"]:focus {
 
   /* botÃ£o das anotaÃ§Ãµes */
     button {
-        padding: 5px 5px;
+        padding: 10px 5px;
         font-size: 16px;
-        background-color:  #8144fb;
+        background-color:  #242424;
         color: white;
         border: none;
         border-radius: 5px;
@@ -539,8 +535,8 @@ select:focus, input[type="number"]:focus {
   /* botÃ£o das anotaÃ§Ãµes ativado */
     button:hover {
       transition-duration: 0.6s;
-        background-color:  #a073fb;
-        color: black;
+        background-color:  #2b2b2b;
+        color: white;
     }
   
     /* menu acolhivel */
@@ -658,23 +654,30 @@ button a.tab-link:hover {
   text-decoration: none;
   color: white;
   font-size: 15px;
-  background: #8144fb;
+  background:linear-gradient(to bottom, #0b29dc, #501bda);
   padding: 10px;
 }
 
 .contener-main a:hover {
-  background: #a073fb;
-  transition-duration: 0.5s;
-  color: black;
+  
+  border: 1px solid rgba(255,255,255,0.183);
+  transition-duration: 0.8s;
+  color: white;
 }
 
 #main-caixa h4 {
   margin-bottom: 0px;
-  color: #adadf0;
+  color: #4040fb;
+  text-align: center;
 }
 
 .timer {
   text-align: center;
+}
+
+.timer:hover {
+  scale: 1.1;
+  transition-duration: 0.4s;
 }
 
 .timer-restante {
@@ -701,7 +704,7 @@ button a.tab-link:hover {
 }
 
 .painel h3 {
-  color: #c588f3;
+  color: #3639f6;
          margin-top: 15px;
 }
 
@@ -712,7 +715,7 @@ button a.tab-link:hover {
 }
 
 .square h4 {
-  color: #c588f3;
+  color: #3639f6;
   margin-bottom: 15px;
 }
 
@@ -739,7 +742,7 @@ button a.tab-link:hover {
 
 .tabs-container h5 {
   margin: 0px;
-  color: #5c11ce;
+  color: #111ace;
 }
 
 .tabs-container .timer  {
