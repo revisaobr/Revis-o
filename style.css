@@ -243,7 +243,8 @@ font-family: 'CircularStd', sans-serif;
             top: 30px;
             width: 330px;
             height: 100%;
-                      background: rgb(10,10,10);
+                      background: rgba(10,10,10,0.658);
+                     backdrop-filter: blur(20px);
                     
 
             padding-top: 45px;
