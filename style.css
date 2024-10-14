@@ -432,7 +432,7 @@ font-family: 'CircularStd', sans-serif;
           border-radius: 15px;
           padding: 18px;
           border: 1px solid rgba(6,0,15,0.18);
-    background: #2121217e;;
+    background: #2121217e;
     box-shadow: 1px 1px 1px 4px rgba(21,2,32,0.054);
     max-width: 700px;
           margin-bottom: 50px;
@@ -790,3 +790,44 @@ button a.tab-link:hover {
   width: 100%;
   margin-bottom: 25px;
 }
+/* Tema escuro personalizado para SweetAlert2 */
+    .swal2-popup {
+  
+      padding: 10px !important; /* Reduzindo o padding */
+      width: 400px !important;  /* Ajustando a largura */
+      font-size: 14px;
+    
+      border: 1px solid rgba(46,46,46,0.165);
+     
+      backdrop-filter: blur(15px);
+      background-color: #21212138 !important;
+      color: #fff !important;
+      border-radius: 10px;
+      box-shadow: 3px 4px 5px 2px rgba(41,41,41,0.478);
+    }
+  .swal2-html-container {
+      color: #c2c2c2 !important; /* Cor personalizada para a descrição */
+      font-size: 10px;
+      text-align: left !important;}
+      
+    .swal2-title {
+      font-size: 23px;
+      margin: 0px;
+      color: #fff !important;
+    }
+
+    .swal2-icon {
+      font-size: 15px;
+      color: #0b29dc !important; /* Cor personalizada para ícones */
+    }
+
+    .swal2-confirm {
+      
+      background:linear-gradient(to bottom, #0b29dc, #501bda);
+      color: #fff !important;
+      border: none;
+    }
+
+    .swal2-confirm:hover {
+      background:linear-gradient(to bottom, #501bda, #0b29dc);
+    }
