@@ -342,6 +342,7 @@ font-family: 'CircularStd', sans-serif;
   margin:0px;
 }
 .square h5 {
+  
  color:#858585;
 }
 .square p {
@@ -461,6 +462,7 @@ font-family: 'CircularStd', sans-serif;
           line-height: 1.4em;
         }
         .contener-main h5 {
+          cursor: pointer;
         box-shadow: 2px 1px 4px 5px rgba(10,7,210,0.319);
           margin: 0px;
           border-radius: 10px;
@@ -469,6 +471,10 @@ font-family: 'CircularStd', sans-serif;
           background:linear-gradient(to bottom, #0b29dc, #501bda);
           display: inline-block;
   margin-right: 1px; /* Espaçamento entre os títulos */
+        }
+        
+        .contener-main h5:hover {
+background:linear-gradient(to bottom, #501bda, #0b29dc);
         }
 
 *:focus {

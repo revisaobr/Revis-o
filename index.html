@@ -81,14 +81,14 @@
         <div class="content" id="content">
             <div id="inicio" class="tab-content hidden">
 <div class="contener-main">
-  <h5>Bem vindo</h5>
+ <h5 data-alert="Seja bem vindo(a) a Revisão. Role para baixo e confira todas as novidades de conteúdos disponíveis!">Bem vindo</h5>
   <h2> Confira as novidades</h2>
   <p> Descubra o que tem de novo, e, receba as principais notificações
   importantes!</p>
 
 </div>
 <div class="contener-main">
-  <h5> Principal Destaque</h5>
+ <h5 data-alert="O Calendário De Provas e testes mostra a você as provas ou testes que esteja disponível através de um atalho.">Principal Destaque</h5>
   <h2> Calendário de Provas</h2>
 <h4>+1 Novidade em matemática</h4>
 <h4> Teste de Matemática </h4>
@@ -100,14 +100,14 @@
 </div>
 
 <div class="contener-main">
-  <h5> Social</h5>
+ <h5 data-alert="Visualize os vídeos feitos no  9°B e acesse as redes sociais da turma.">Social</h5>
   <h2> Vídeos do 9°Ano B</h2>
   <p> Acesse os vídeos feitos na turma clicando no botão abaixo </p>
   <a href="#videos9B" class="tab-link ">Vizualizar</a>
 </div>
 
 <div class="contener-main">
-                  <h5>Atualizações</h5>
+  <h5 data-alert="Campo das Atualizações mostra a você se tem uma novidade de atualização para ser instalada. ">Atualizações</h5>
   <h2> Importante!</h2>
   <p> Nova atualização do Aplicativo Revisão. Faça o Download  agora para
   uma melhor compatibilidade e melhorias de interface.</p>
@@ -135,7 +135,11 @@
     </div>
               
               <div class="contener-main">
-                <h5> Anotações </h5>
+ <h5 data-alert="Escreva o que estiver em sua mente com o bloco das anotações.
+ 
+Obs: As anotações ficaram salvas em seu aparelho. 
+
+E também as suas anotações são visíveis somente pra você.">Anotações</h5>
       <h2> Bloco de Notas </h2>
               <textarea id="notepad" placeholder="Escreva aqui..."></textarea><br>
 <button onclick="salvarAnotacoes()">Salvar</button>
@@ -548,6 +552,17 @@ document.addEventListener("DOMContentLoaded", function() {
     links.forEach(function(link) {
         link.setAttribute('target', '_blank');
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const h5Elements = document.querySelectorAll('.contener-main h5');
+
+  h5Elements.forEach(h5 => {
+    h5.addEventListener('click', () => {
+      const mensagem = h5.getAttribute('data-alert') || "Alerta padrão.";
+      alert(mensagem);
+    });
+  });
 });
 </script>
 </body>
