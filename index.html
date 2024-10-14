@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1c1c1c">
     <title>Revisão</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <meta name="version" content="3.4.0">
   <meta name="description" content="Aqui na Revisão você não perde o conteúdo, aqui mandamos todo o conteúdo das materias em primeira mão!"> <!-- Descrição do site -->
 <meta name="keywords" content="materias, 9°ano b, Porto Seguro, Rio Grande RS"> <!-- Palavras-chave -->
@@ -81,14 +82,20 @@
         <div class="content" id="content">
             <div id="inicio" class="tab-content hidden">
 <div class="contener-main">
- <h5 data-alert="Seja bem vindo(a) a Revisão. Role para baixo e confira todas as novidades de conteúdos disponíveis!">Bem vindo</h5>
+  <h5 data-title="Bem Vindo" 
+      data-text="Bem vindo ao Revisão. Aqui você tem acesso a os conteúdos
+      atualizado." 
+      data-icon="question">Bem Vindo</h5>
   <h2> Confira as novidades</h2>
   <p> Descubra o que tem de novo, e, receba as principais notificações
-  importantes!</p>
+ cqq  importantes!</p>
 
 </div>
 <div class="contener-main">
- <h5 data-alert="O Calendário De Provas e testes mostra a você as provas ou testes que esteja disponível através de um atalho.">Principal Destaque</h5>
+  <h5 data-title="Calendário das Provas" 
+      data-text="Se mantenha em dia com as datas dos principais novos conteúdos
+      atualizados." 
+      data-icon="question">Principal Destaque </h5>
   <h2> Calendário de Provas</h2>
 <h4>+1 Novidade em matemática</h4>
 <h4> Teste de Matemática </h4>
@@ -100,14 +107,20 @@
 </div>
 
 <div class="contener-main">
- <h5 data-alert="Visualize os vídeos feitos no  9°B e acesse as redes sociais da turma.">Social</h5>
+  <h5 data-title="Redes Sociais do 9°B" 
+      data-text="Acesse os vídeos feitos na turma e veja também as redes
+      sociais." 
+      data-icon="question">Social</h5>
   <h2> Vídeos do 9°Ano B</h2>
   <p> Acesse os vídeos feitos na turma clicando no botão abaixo </p>
   <a href="#videos9B" class="tab-link ">Vizualizar</a>
 </div>
 
 <div class="contener-main">
-  <h5 data-alert="Campo das Atualizações mostra a você se tem uma novidade de atualização para ser instalada. ">Atualizações</h5>
+    <h5 data-title="Atualizações" 
+      data-text="Campo das Atualizações mostra a você se tem uma novidade de
+      atualização para ser instalada." 
+      data-icon="question">Atualizações</h5>
   <h2> Importante!</h2>
   <p> Nova atualização do Aplicativo Revisão. Faça o Download  agora para
   uma melhor compatibilidade e melhorias de interface.</p>
@@ -123,11 +136,12 @@
 </div>
 <div class="contener-main">
 
- <h5 data-alert="Verifique os conteúdos que estão em alta.
- 
-Horários 9°B: Veja os Horários  
-Atualizado de uma forma rápida.">Em Alta</h5>
-  <h2> Sugestões:</h2>
+    <h5 data-title="Em Alta" 
+      data-text="Aqui você vê  uma sugestão de conteúdos que estão sendo
+      procurados em alta." 
+      data-icon="question">Em Alta</h5>
+      
+  <h2> Sugestões</h2>
                   <button class="accordion">Horários 9°Ano B</button>
 <div class="panel">
        <div class="image-container">
@@ -139,11 +153,13 @@ Atualizado de uma forma rápida.">Em Alta</h5>
     </div>
               
               <div class="contener-main">
- <h5 data-alert="Escreva o que estiver em sua mente com o bloco das anotações.
+  <h5 data-title="Anotações" 
+      data-text="Escreva o que estiver em sua mente com o bloco das anotações.
  
 Obs: As anotações ficaram salvas em seu aparelho. 
 
-E também as suas anotações são visíveis somente pra você.">Anotações</h5>
+E também as suas anotações são visíveis somente pra você." 
+      data-icon="question">Anotações</h5>
       <h2> Bloco de Notas </h2>
               <textarea id="notepad" placeholder="Escreva aqui..."></textarea><br>
 <button onclick="salvarAnotacoes()">Salvar</button>
@@ -559,15 +575,22 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const h5Elements = document.querySelectorAll('.contener-main h5');
+    const h5Elements = document.querySelectorAll('.contener-main h5');
 
-  h5Elements.forEach(h5 => {
-    h5.addEventListener('click', () => {
-      const mensagem = h5.getAttribute('data-alert') || "Alerta padrão.";
-      alert(mensagem);
+    h5Elements.forEach(h5 => {
+      h5.addEventListener('click', () => {
+        const title = h5.getAttribute('data-title') || 'Alerta';
+        const text = h5.getAttribute('data-text') || 'Texto padrão';
+        const icon = h5.getAttribute('data-icon') || 'info';
+
+        Swal.fire({
+          title: title,
+          text: text,
+          icon: icon
+        });
+      });
     });
   });
-});
 </script>
 </body>
 </html>
