@@ -474,6 +474,8 @@ font-family: 'CircularStd', sans-serif;
         }
         
         .contener-main h5:hover {
+          
+          transition-duration: 0.3s;
 background:linear-gradient(to bottom, #501bda, #0b29dc);
         }
 
