@@ -856,7 +856,7 @@ button a.tab-link:hover {
 
     .baloes:hover {
       background-color: #252525;
-      transform: scale(1.05); /* Leve aumento ao passar o mouse */
+      transform: scale(1.09); /* Leve aumento ao passar o mouse */
     }
     
     
@@ -872,7 +872,7 @@ button a.tab-link:hover {
     }
 .post a {
   text-decoration: none;
-  color: #20f1e9;
+  color: #1497c9;
 }
 
 .post a:hover {
