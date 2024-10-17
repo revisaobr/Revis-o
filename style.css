@@ -980,3 +980,42 @@ button a.tab-link:hover {
       line-height: 1.4;
       color: #ccc;
     }
+    
+        .welcome-container {
+      
+     margin: auto;
+     margin-bottom: 80px;
+      max-width: 400px;
+      padding: 20px;
+      background-color: #101010;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Botão de fechar */
+    #close-button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background:linear-gradient(to bottom, #501bda, #0b29dc);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #close-button:hover {
+      background-color: #3700b3;
+    }
+
+    /* Animação suave de entrada */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }

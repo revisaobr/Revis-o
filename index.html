@@ -81,6 +81,13 @@
       
         <div class="content" id="content">
             <div id="inicio" class="tab-content hidden">
+              <div id="welcome-div" class="welcome-container">
+    <h2>Olá!</h2>
+    <p>Bem vindo a plataforma, fique a vontade para verificar todos os
+    conteúdos!</p>
+    <button id="close-button">Entendi</button>
+  </div>
+  
 <div class="contener-main">
   <h5 data-title="Bem Vindo" 
       data-text="Bem vindo ao Revisão. Aqui você tem acesso a os conteúdos
@@ -667,6 +674,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
       }
     }
+        // Verifica se o usuário já clicou em "Entendi"
+    if (localStorage.getItem('welcomeDismissed') === 'true') {
+      document.getElementById('welcome-div').style.display = 'none';
+    }
+
+    // Função para fechar a div e salvar no localStorage
+    document.getElementById('close-button').addEventListener('click', function () {
+      document.getElementById('welcome-div').style.display = 'none';
+      localStorage.setItem('welcomeDismissed', 'true');
+    });
 </script>
 </body>
 </html>
