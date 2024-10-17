@@ -861,10 +861,11 @@ button a.tab-link:hover {
     
     
     .post {
+      
       background-color: #0f0f0fe6;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 400px;
+      max-width: 500px;
       overflow: hidden;
       color: #f1f1f1;
       position: relative;
@@ -872,7 +873,7 @@ button a.tab-link:hover {
     }
 .post a {
   text-decoration: none;
-  color: #1497c9;
+  color: #a5e9e7;
 }
 
 .post a:hover {
