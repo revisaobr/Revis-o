@@ -88,7 +88,7 @@
       data-icon="question">Bem Vindo</h5>
   <h2> Confira as novidades</h2>
   <p> Descubra o que tem de novo, e, receba as principais notificações
- cqq  importantes!</p>
+  importantes!</p>
 
 </div>
 <div class="contener-main">
@@ -97,8 +97,8 @@
       atualizados." 
       data-icon="question">Principal Destaque </h5>
   <h2> Calendário de Provas</h2>
-<h4>+1 Novidade em matemática</h4>
-<h4> Teste de Matemática </h4>
+
+<h4> Teste De Matemática </h4>
 <p>• 25 De Outubro • 30 Pontos • Sem Consulta</p>
 <p> Confira mais informações clicando abaixo.</p>
 
@@ -134,6 +134,7 @@
   <a href="https://www.mediafire.com/file/02wvyhdru1djs87/Revis%25C3%25A3o_%25283.4.0_-_%25C3%259Altima_vers%25C3%25A3o%2529_.apk/file">
   Atualização 3.4.0</a>
 </div>
+
 <div class="contener-main">
 
     <h5 data-title="Em Alta" 
@@ -530,24 +531,49 @@ E também as suas anotações são visíveis somente pra você."
           
             </div>
                     <div id="videos9B" class="tab-content hidden">
-                      <div id="main-caixa" class="contener-main">
-                        <h2> Rede Social do 9°Ano B</h2>
-<p> Acesse as mídias Sociais agora!</p>
+<div class="post">
+    <div class="post-header">
+      <img
+      src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/82923d92d03e81fa0a805e7eeddfdb76~c5_100x100.jpeg?lk3s=a5d48078&nonce=14858&refresh_token=76145d67e7b5004327ead11a485160fa&x-expires=1729306800&x-signature=PaGKovbpjQvhOX4v3Vrl4tPf8z4%3D&shp=a5d48078&shcp=81f88b70"
+      alt="Avatar">
+      <h3>9b_2k24_portinho</h3>
+    </div>
 
-<a class="social-link"href="https://www.tiktok.com/@nonob_portinho?_t=8qPDQXWNSIH&_r=1"> <img class="social"
-src="https://cdn-icons-png.flaticon.com/128/3046/3046121.png"
-alt="tiktok-icone">Acesse o
-Tiktok da Turma</a>
-<a href="https://www.instagram.com/9b_2k24_portinho?igsh=bmtreGJ5ZTd0Mm5r"><img class="social"
-src="https://cdn-icons-png.flaticon.com/128/2111/2111463.png" alt="instagram
-icone"> Acesse o Instagram da Turma</a>
+    <div class="post-video">
+      <video controls>
+        <source src="video2.mp4" type="video/mp4">
+        Seu navegador não suporta a reprodução de vídeo.
+      </video>
+    </div>
+    
+      <div class="post-description">
+Turma da resenha 🙅🏻‍♂️🤷🏻‍♂️<br>
+siga nas redes sociais oficiais da turma! 🤍<hr> <br>
+<a href="https://www.tiktok.com/@nonob_portinho?_t=8qPDQXWNSIH&_r=1">Tiktok
+oficial</a> <br>
+<a href="https://www.instagram.com/9b_2k24_portinho?igsh=bmtreGJ5ZTd0Mm5r">
+Instagram Oficial</a>
+    </div>
 
-<h3 class="videoh3">  Veja os vídeos</h3>
+    <div class="post-footer">
+      <div class="like-button" id="likeButton">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <div class="floating-hearts" id="floatingHearts"></div>
+      </div>
+    </div>
+    
+     <div class="baloes-container">
+    <p class="baloes">#turma</p>
+    <p class="baloes">#9B2024</p>
+    <p class="baloes">#portinho</p>
+    <p class="baloes">#resenha</p>
 
-<video  controls>
-  <source src="video2.mp4" type="video/mp4">
-  Seu navegador não suporta o elemento de vídeo.
-</video>
+  </div>
+  
+  </div>
+  
 
            
                       </div>
@@ -591,6 +617,56 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+  
+ const likeButton = document.getElementById('likeButton');
+    const floatingHearts = document.getElementById('floatingHearts');
+    let heartInterval;
+    const isLikedKey = 'isLiked';
+
+    // Verifica o estado da curtida no armazenamento local
+    if (localStorage.getItem(isLikedKey) === 'true') {
+      likeButton.classList.add('liked');
+    }
+
+    likeButton.addEventListener('click', () => {
+      const isLiked = likeButton.classList.toggle('liked');
+      // Salva o estado da curtida no armazenamento local
+      localStorage.setItem(isLikedKey, isLiked);
+      if (isLiked) {
+        spawnHearts(10); // Gera 10 corações ao curtir
+      }
+    });
+
+    likeButton.addEventListener('mousedown', () => {
+      heartInterval = setInterval(() => spawnHearts(1), 200);
+    });
+
+    likeButton.addEventListener('mouseup', () => {
+      clearInterval(heartInterval);
+    });
+
+    likeButton.addEventListener('mouseleave', () => {
+      clearInterval(heartInterval);
+    });
+
+    function spawnHearts(count) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = `${Math.random() * 100}%`; // Gera corações em posições aleatórias
+        heart.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        `;
+        floatingHearts.appendChild(heart);
+
+        // Remove o coração após 2 segundos
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
+    }
 </script>
 </body>
 </html>
