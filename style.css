@@ -830,7 +830,9 @@ button a.tab-link:hover {
     }
 
     .swal2-confirm:hover {
-      background:linear-gradient(to bottom, #501bda, #0b29dc);
+      background:linear-gradient(to bottom, #501bda, #0b29dc) !important;
+      border: 1px solid white;
+      transition-duration: 1s !important;
     }
     
     .baloes-container {
@@ -1040,7 +1042,9 @@ button a.tab-link:hover {
     }
 
     .fixed-button:hover {
-      background-color: #2980b9;
+      border: 1px solid rgba(255,255,255,0.183);
+  transition-duration: 0.8s;
+  color: white;
     }
         .hidden {
       opacity: 0;
