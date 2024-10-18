@@ -14,7 +14,8 @@
 <meta name="robots" content="index, follow"> <!-- Diretrizes para motores de busca -->
   <link rel="icon" href="favicon.ico.png" type="image/x-icon"> <!-- Favicon padrão -->
 <link rel="apple-touch-icon" href="favicon.ico.png"> <!-- Ícone para dispositivos Apple -->
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -78,15 +79,19 @@
                 <!-- Adicione mais abas conforme necessário -->
             </div>
         </div>
-      
+          <a href="#notepad" class="fixed-button hidden" id="scrollButton">
+    <i class="fas fa-pen"></i>
+  </a>
         <div class="content" id="content">
             <div id="inicio" class="tab-content hidden">
               <div id="welcome-div" class="welcome-container">
+                
     <h2>Olá!</h2>
     <p>Bem vindo a plataforma, fique a vontade para verificar todos os
     conteúdos!</p>
     <button id="close-button">Entendi</button>
   </div>
+
   
 <div class="contener-main">
   <h5 data-title="Bem Vindo" 
@@ -684,6 +689,28 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('welcome-div').style.display = 'none';
       localStorage.setItem('welcomeDismissed', 'true');
     });
+        const button = document.getElementById('scrollButton');
+    const inicioTab = document.getElementById('inicio');
+    const notepad = document.getElementById('notepad');
+
+    function toggleButtonVisibility() {
+      const notepadVisible = notepad.getBoundingClientRect().top < window.innerHeight &&
+                             notepad.getBoundingClientRect().bottom >= 0;
+      const inicioVisible = !inicioTab.classList.contains('hidden');
+      
+      // Exibe ou esconde o botão com base na visibilidade
+      if (inicioVisible && !notepadVisible) {
+        button.classList.remove('hidden');
+      } else {
+        button.classList.add('hidden');
+      }
+    }
+
+    // Monitorar a rolagem e alternar a visibilidade do botão
+    window.addEventListener('scroll', toggleButtonVisibility);
+
+    // Alternar a exibição do botão quando as abas mudarem (se necessário)
+    document.addEventListener('DOMContentLoaded', toggleButtonVisibility);
 </script>
 </body>
 </html>
