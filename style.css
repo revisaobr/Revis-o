@@ -665,7 +665,7 @@ button a.tab-link:hover {
       color: white;
       font-size: 15px;
       padding: 10px 20px;
-      background: linear-gradient(100deg, #0b29dc, #501bda, #933cf9);
+      background: linear-gradient(100deg, #0b29dc, #2448c4, #6e15ba, #820fc4);
       background-size: 200% 200%; /* Expande para a animação */
       animation: gradient-animation 3s infinite linear; /* Animação infinita */
       transition: transform 0.2s ease-in-out;
