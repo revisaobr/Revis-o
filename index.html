@@ -711,6 +711,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Alternar a exibição do botão quando as abas mudarem (se necessário)
     document.addEventListener('DOMContentLoaded', toggleButtonVisibility);
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // Verificar se é um dispositivo móvel ao carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!isMobileDevice()) {
+        button.style.display = 'none'; // Esconde o botão se não for móvel
+      } else {
+        toggleButtonVisibility(); // Exibe conforme a visibilidade da área
+        window.addEventListener('scroll', toggleButtonVisibility);
+      }
+    });
 </script>
 </body>
 </html>
