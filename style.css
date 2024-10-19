@@ -469,7 +469,10 @@ font-family: 'CircularStd', sans-serif;
           border-radius: 10px;
           margin-bottom: 25px;
           padding: 5px;
-          background:linear-gradient(to bottom, #0b29dc, #501bda);
+          background: linear-gradient(100deg, #0b29dc, #2448c4, #6e15ba, #820fc4);
+      background-size: 200% 200%; /* Expande para a animação */
+      animation: gradient-animation 5s infinite linear; /* Animação infinita */
+      transition: transform 0.2s ease-in-out;
           display: inline-block;
   margin-right: 1px; /* Espaçamento entre os títulos */
         }
@@ -665,10 +668,10 @@ button a.tab-link:hover {
       color: white;
       font-size: 15px;
       padding: 10px 20px;
-      background: linear-gradient(100deg, #0b29dc, #2448c4, #6e15ba, #820fc4);
+      background: linear-gradient(100deg, #0b29dc, #2624c4, #731adf, #8948ec);
       background-size: 200% 200%; /* Expande para a animação */
-      animation: gradient-animation 3s infinite linear; /* Animação infinita */
-      transition: transform 0.2s ease-in-out;
+      animation: gradient-animation 6s infinite linear; /* Animação infinita */
+      transition: transform 0.5s ease-in-out;
       cursor: pointer;
     }
     
