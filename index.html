@@ -92,7 +92,23 @@
     <button id="close-button">Entendi</button>
   </div>
 
+  <div class="contener-main">
+  <div id="foguinho-container">
+    <img id="foguinho" src="default.png" alt="Foguinho de Sequência">
+    <h1>Sua sequência: <span id="dias">1</span> dias</h1>
+  </div>
+  <p id="mensagem"></p>
+  <p id="reset-time"></p> <!-- Tempo para resetar -->
+  <h3> Como funciona?</h3>
   
+  
+  <p> Todos os dias as <strong> 00:00h</strong> são contados os dias que você
+  acessa a plataforma. Quanto mais dias consecutivos você fica, pode desbloquear fogos
+  novos. Mas caso essa sequência seja perdida seus fogo e seus dias vão ser 
+  resetados.</p>
+  <p> Fogos novos podem ser desbloqueados após uma sequência de: <br> <br> 1d
+  até 5d, 5d até 15d, 15d até 30d, 30d até 60d, Num máximo de 60d até o momento.</p>
+</div>
 <div class="contener-main">
   <h5 data-title="Bem Vindo" 
       data-text="Bem vindo ao Revisão. Aqui você tem acesso a os conteúdos
@@ -724,6 +740,92 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', toggleButtonVisibility);
       }
     });
+    const foguinho = document.getElementById('foguinho');
+    const diasSpan = document.getElementById('dias');
+    const mensagem = document.getElementById('mensagem');
+    const resetTime = document.getElementById('reset-time');
+
+    // Função para atualizar a imagem e a mensagem com base na sequência
+    function atualizarFoguinho(dias) {
+      let src = '';
+      let msg = '';
+
+      if (dias >= 60) {
+        src = 'fogo5.png';
+        msg = 'Épico';
+      } else if (dias >= 30) {
+        src = 'fogo4.png';
+        msg = 'Extremamente bom';
+      } else if (dias >= 15) {
+        src = 'fogo3.png';
+        msg = 'Muito bom';
+      } else if (dias >= 5) {
+        src = 'fogo2.png';
+        msg = 'Excelente';
+      } else {
+        src = 'fogo1.png';
+        msg = 'Legal';
+      }
+
+      foguinho.src = src;
+      mensagem.textContent = msg;
+    }
+
+    // Função para calcular o tempo restante até o reset (meia-noite)
+    function calcularTempoParaReset() {
+      const agora = new Date();
+      const proximaMeiaNoite = new Date(
+        agora.getFullYear(),
+        agora.getMonth(),
+        agora.getDate() + 1,
+        0, 0, 0
+      );
+
+      const diffMs = proximaMeiaNoite - agora;
+      const horas = Math.floor(diffMs / (1000 * 60 * 60));
+      const minutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+      resetTime.textContent = `Tempo para resetar: ${horas}h ${minutos}m ${segundos}s`;
+    }
+
+    // Função para salvar dados no localStorage
+    function salvarSequencia(dias) {
+      localStorage.setItem('diasSequencia', dias);
+      localStorage.setItem('ultimaVisita', new Date().toISOString());
+    }
+
+    // Função para carregar a sequência do localStorage
+    function carregarSequencia() {
+      const ultimaVisita = localStorage.getItem('ultimaVisita');
+      const diasSequencia = parseInt(localStorage.getItem('diasSequencia')) || 1;
+
+      if (ultimaVisita) {
+        const diff = Math.floor(
+          (new Date() - new Date(ultimaVisita)) / (1000 * 60 * 60 * 24)
+        );
+
+        if (diff === 1) {
+          // Incrementa sequência se visitou ontem
+          const novaSequencia = diasSequencia + 1;
+          salvarSequencia(novaSequencia);
+          return novaSequencia;
+        } else if (diff > 1) {
+          // Reseta sequência se passou mais de um dia
+          salvarSequencia(1);
+          return 1;
+        }
+      }
+
+      return diasSequencia;
+    }
+
+    // Inicialização da sequência e atualização do tempo restante
+    const dias = carregarSequencia();
+    atualizarFoguinho(dias);
+    diasSpan.textContent = dias;
+    calcularTempoParaReset();
+    setInterval(calcularTempoParaReset, 1000); // 
 </script>
 </body>
 </html>

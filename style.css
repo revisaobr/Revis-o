@@ -1064,4 +1064,40 @@ button a.tab-link:hover {
       opacity: 0;
       visibility: hidden;
     }
+        #foguinho-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    #foguinho {
+      width: 40px;
+      height: 40px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    #mensagem {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffa500;
+    }
+
+    #reset-time {
+      margin-top: 5px;
+      font-size: 16px;
+      color: #ccc;
+    }
     
+    .contener-main h3 {
+      margin-bottom: 0px;
+      margin-top:40px ;
+    }
+    
+    .contener-main strong {
+      color: #ffffff;
+    }

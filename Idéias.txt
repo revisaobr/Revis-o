@@ -1,0 +1,211 @@
+MODO CLARO: <li id="theme-toggle">Modo Claro</li>
+        // script.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+
+    // Função para aplicar o tema correto
+    const applyTheme = (theme) => {
+        if (theme === 'light') {
+            document.body.classList.add('light-mode');
+            document.body.classList.remove('dark-mode');
+            themeToggle.textContent = 'Modo Escuro';
+        } else {
+            document.body.classList.add('dark-mode');
+            document.body.classList.remove('light-mode');
+            themeToggle.textContent = 'Modo Claro';
+        }
+    };
+
+    // Verifica o tema salvo e aplica-o
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    } else {
+        // Se nenhum tema estiver salvo, definir o modo escuro como padrão
+        applyTheme('dark');
+        localStorage.setItem('theme', 'dark');
+    }
+
+    // Alterna o tema ao clicar no botão
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        applyTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+});
+- Futura função
+
+
+
+
+
+
+
+
+
+Link da próxima Atualização do Site oficial:
+https://revisaobr.github.io/Revis-o/
+
+
+
+       <h5 class="notificacao"
+                onclick="fecharNotificacao(this)">+1</h5>
+                
+                
+                
+                
+                  <h5>Atualizações</h5>
+  <h2> Importante!</h2>
+  <p> Nova atualização do Aplicativo Revisão. Faça o Download  agora para
+  uma melhor compatibilidade e melhorias de interface.</p>
+    <p> Se você quer conferir as novas funções e mais detalhes de atualizações,
+  confira clicando no menu dos 3 pontinhos e clique em "Novidades de
+  Atualizações".</p>
+  <p> Atualização Disponível apenas para aparelhos Android.</p>
+  <p> Obs: Se você ja instalou a versão mais atual, apenas ignore este aviso.</p>
+  <h4> Veja as mudanças:</h4>
+  <p> 1 - Mudança na cor da barra de status.
+  <p> 2 - Otimização melhorada.</p>
+  <h4> Link para a instalação:</h4>
+  <a href="https://www.mediafire.com/file/3eg7vfufbnj868o/Revis%25C3%25A3o_%2528%25C3%25BAltima_vers%25C3%25A3o_3.1%2529.apk/file">
+  Atualização 3.1</a>
+</div>
+
+
+
+
+FUNÇÃO DE TEMPO DE ESPERA:
+
+
+
+    <p data-timer="2024-09-17T15:37:25" id="timer1"></p>
+    <p data-timer="2024-09-20T12:00:00" id="timer2"></p>
+    <p data-timer="2024-10-01T10:30:00" id="timer3"></p>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ PERSONALIZAÇÃO:
+ 
+ function openPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    const overlay = document.getElementById('overlay');
+    
+    popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
+    setTimeout(() => {
+      popup.classList.add('active');
+      overlay.classList.add('active');
+    }, 50);
+  }
+
+  function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    const overlay = document.getElementById('overlay');
+    
+    popup.classList.remove('active');
+    overlay.classList.remove('active');
+    setTimeout(() => {
+      popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
+    }, 300);
+  }
+  // Carregar as configurações salvas
+    window.onload = function() {
+      if(localStorage.getItem('mainBgColor')) {
+        document.querySelectorAll('.contener-main').forEach(el => el.style.backgroundColor = localStorage.getItem('mainBgColor'));
+      }
+
+      if(localStorage.getItem('mainHeadingColor')) {
+        let headings = document.querySelectorAll('.contener-main h1, .contener-main h2, .contener-main h3, .contener-main h4');
+        headings.forEach(h => h.style.color = localStorage.getItem('mainHeadingColor'));
+      }
+
+      if(localStorage.getItem('mainTextColor')) {
+        let paragraphs = document.querySelectorAll('.contener-main p');
+        paragraphs.forEach(p => p.style.color = localStorage.getItem('mainTextColor'));
+      }
+
+      if(localStorage.getItem('squareBgColor')) {
+        document.querySelectorAll('.square').forEach(el => el.style.backgroundColor = localStorage.getItem('squareBgColor'));
+      }
+
+      if(localStorage.getItem('squareHeadingColor')) {
+        let squareHeadings = document.querySelectorAll('.square h1, .square h2, .square h3, .square h4, .square h5');
+        squareHeadings.forEach(h => h.style.color = localStorage.getItem('squareHeadingColor'));
+      }
+
+      if(localStorage.getItem('squareTextColor')) {
+        let paragraphs = document.querySelectorAll('.square p');
+        paragraphs.forEach(p => p.style.color = localStorage.getItem('squareTextColor'));
+      }
+    };
+
+    // Alterar cor de todos os containers principais
+    document.getElementById('main-bg-color').addEventListener('input', function() {
+      let color = this.value;
+      document.querySelectorAll('.contener-main').forEach(el => el.style.backgroundColor = color);
+      localStorage.setItem('mainBgColor', color);
+    });
+
+    // Alterar cor dos títulos de todos os containers principais
+    document.getElementById('main-heading-color').addEventListener('input', function() {
+      let color = this.value;
+      let headings = document.querySelectorAll('.contener-main h1, .contener-main h2, .contener-main h3, .contener-main h4');
+      headings.forEach(h => h.style.color = color);
+      localStorage.setItem('mainHeadingColor', color);
+    });
+
+    // Alterar cor dos parágrafos de todos os containers principais
+    document.getElementById('main-text-color').addEventListener('input', function() {
+      let color = this.value;
+      let paragraphs = document.querySelectorAll('.contener-main p');
+      paragraphs.forEach(p => p.style.color = color);
+      localStorage.setItem('mainTextColor', color);
+    });
+
+    // Alterar cor de todos os containers de conteúdos
+    document.getElementById('square-bg-color').addEventListener('input', function() {
+      let color = this.value;
+      document.querySelectorAll('.square').forEach(el => el.style.backgroundColor = color);
+      localStorage.setItem('squareBgColor', color);
+    });
+
+    // Alterar cor dos títulos de todos os containers de conteúdos
+    document.getElementById('square-heading-color').addEventListener('input', function() {
+      let color = this.value;
+      let headings = document.querySelectorAll('.square h1, .square h2, .square h3, .square h4, .square h5');
+      headings.forEach(h => h.style.color = color);
+      localStorage.setItem('squareHeadingColor', color);
+    });
+
+    // Alterar cor dos parágrafos de todos os containers de conteúdos
+    document.getElementById('square-text-color').addEventListener('input', function() {
+      let color = this.value;
+      let paragraphs = document.querySelectorAll('.square p');
+      paragraphs.forEach(p => p.style.color = color);
+      localStorage.setItem('squareTextColor', color);
+    });
+
+    // Resetar para os padrões
+    document.getElementById('reset').addEventListener('click', function() {
+      localStorage.removeItem('mainBgColor');
+      localStorage.removeItem('mainHeadingColor');
+      localStorage.removeItem('mainTextColor');
+      localStorage.removeItem('squareBgColor');
+      localStorage.removeItem('squareHeadingColor');
+      localStorage.removeItem('squareTextColor');
+      window.location.reload(); // Recarregar a página para aplicar os valores padrão
+    });
+    
+    
+    
+    
+    <li onclick="openPopup('popup1')">Sobre</li>
