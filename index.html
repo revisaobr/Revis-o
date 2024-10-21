@@ -745,7 +745,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mensagem = document.getElementById('mensagem');
     const resetTime = document.getElementById('reset-time');
 
-    // Função para atualizar a imagem e a mensagem com base na sequência
     function atualizarFoguinho(dias) {
       let src = '';
       let msg = '';
@@ -771,7 +770,6 @@ document.addEventListener('DOMContentLoaded', () => {
       mensagem.textContent = msg;
     }
 
-    // Função para calcular o tempo restante até o reset (meia-noite)
     function calcularTempoParaReset() {
       const agora = new Date();
       const proximaMeiaNoite = new Date(
@@ -789,13 +787,19 @@ document.addEventListener('DOMContentLoaded', () => {
       resetTime.textContent = `Tempo para resetar: ${horas}h ${minutos}m ${segundos}s`;
     }
 
-    // Função para salvar dados no localStorage
     function salvarSequencia(dias) {
       localStorage.setItem('diasSequencia', dias);
       localStorage.setItem('ultimaVisita', new Date().toISOString());
     }
 
-    // Função para carregar a sequência do localStorage
+    function resetarSequencia() {
+      localStorage.setItem('diasSequencia', 1);
+      atualizarFoguinho(1);
+      diasSpan.textContent = 1;
+      mensagem.textContent = 'Legal';
+      foguinho.src = 'foguinho_azul.png';
+    }
+
     function carregarSequencia() {
       const ultimaVisita = localStorage.getItem('ultimaVisita');
       const diasSequencia = parseInt(localStorage.getItem('diasSequencia')) || 1;
@@ -806,26 +810,25 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         if (diff === 1) {
-          // Incrementa sequência se visitou ontem
           const novaSequencia = diasSequencia + 1;
           salvarSequencia(novaSequencia);
           return novaSequencia;
         } else if (diff > 1) {
-          // Reseta sequência se passou mais de um dia
-          salvarSequencia(1);
+          resetarSequencia();
           return 1;
         }
+      } else {
+        salvarSequencia(1);
       }
 
       return diasSequencia;
     }
 
-    // Inicialização da sequência e atualização do tempo restante
     const dias = carregarSequencia();
     atualizarFoguinho(dias);
     diasSpan.textContent = dias;
     calcularTempoParaReset();
-    setInterval(calcularTempoParaReset, 1000); // 
+    setInterval(calcularTempoParaReset, 1000);
 </script>
 </body>
 </html>
