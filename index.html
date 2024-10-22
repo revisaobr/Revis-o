@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
   
@@ -93,6 +94,7 @@
   </div>
 
   <div class="contener-main">
+    
   <div id="foguinho-container">
     <img id="foguinho" src="default.png" alt="Foguinho de Sequência">
     <h1>Sua sequência: <span id="dias">1</span> dias</h1>
@@ -210,7 +212,8 @@ E também as suas anotações são visíveis somente pra você."
 <label for="tamanhoFonte">Tamanho do Texto</label>
 <input type="number" id="tamanhoFonte" min="10" max="24" value="14" onchange="mudarTamanhoFonte()">
               </div>
-    
+<div id="graphcomment"></div>
+
  
            </div>
                
@@ -832,6 +835,37 @@ const foguinho = document.getElementById('foguinho');
     diasSpan.textContent = dias;
     calcularTempoParaReset();
     setInterval(calcularTempoParaReset, 1000);
+</script>
+<script type="text/javascript">
+
+  /* - - - CONFIGURATION VARIABLES - - - */
+
+  var __semio__params = {
+    graphcommentId: "Revisao9b2024-portinho", // make sure the id is yours
+
+    behaviour: {
+      // HIGHLY RECOMMENDED
+      //  uid: "...", // uniq identifer for the comments thread on your page (ex: your page id)
+    },
+
+    // configure your variables here
+
+  }
+
+  /* - - - DON'T EDIT BELOW THIS LINE - - - */
+
+  function __semio__onload() {
+    __semio__gc_graphlogin(__semio__params)
+  }
+
+
+  (function() {
+    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+    gc.onload = __semio__onload; gc.defer = true; gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+  })();
+  
+
 </script>
 </body>
 </html>
