@@ -14,52 +14,39 @@ const fireworkData = [
     const fireworkMessage = document.getElementById("fireworkMessage");
     const resetTempo = document.getElementById("resetTempo");
 
-    function getDaysDifference(date1, date2) {
-        const timeDiff = Math.abs(date2 - date1);
-        return Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    function getTodayDateString() {
+        const today = new Date();
+        return today.toLocaleDateString();
     }
 
-    function getTimeUntilReset() {
-        const now = new Date();
-        const resetTime = new Date();
-        resetTime.setHours(24, 0, 0, 0); // Próximo reset é à meia-noite
-        if (now > resetTime) resetTime.setDate(resetTime.getDate() + 1);
+    function loadSequence() {
+        const lastVisit = localStorage.getItem("lastVisitDate");
+        const sequenceDays = parseInt(localStorage.getItem("sequenceDays")) || 1;
 
-        const timeLeft = resetTime - now;
-        const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
-        const seconds = Math.floor((timeLeft / 1000) % 60);
+        const today = getTodayDateString();
+        if (lastVisit && lastVisit !== today) {
+            const daysPassed = (new Date(today) - new Date(lastVisit)) / (1000 * 60 * 60 * 24);
+            if (daysPassed > 1) {
+                resetSequence();
+                return;
+            }
+            localStorage.setItem("sequenceDays", sequenceDays + 1);
+        } else if (!lastVisit) {
+            localStorage.setItem("sequenceDays", 1);
+        }
 
-        return { hours, minutes, seconds };
+        localStorage.setItem("lastVisitDate", today);
+        updateFireworkDisplay();
     }
 
     function resetSequence() {
         localStorage.setItem("sequenceDays", 1);
-        updateFireworkDisplay(1);
+        localStorage.setItem("lastVisitDate", getTodayDateString());
+        updateFireworkDisplay();
     }
 
-    function updateSequence() {
-        const lastVisit = new Date(localStorage.getItem("lastVisit"));
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        lastVisit.setHours(0, 0, 0, 0);
-
-        const daysSinceLastVisit = getDaysDifference(lastVisit, today);
-        let days = parseInt(localStorage.getItem("sequenceDays")) || 1;
-
-        if (daysSinceLastVisit === 1) {
-            days += 1;
-        } else if (daysSinceLastVisit > 1) {
-            resetSequence();
-            return;
-        }
-
-        localStorage.setItem("sequenceDays", days);
-        localStorage.setItem("lastVisit", today.toISOString());
-        updateFireworkDisplay(days);
-    }
-
-    function updateFireworkDisplay(days) {
+    function updateFireworkDisplay() {
+        const days = parseInt(localStorage.getItem("sequenceDays"));
         const plural = days > 1 ? "dias" : "dia";
         sequenceDaysElement.innerText = `Sua sequência: ${days} ${plural}`;
 
@@ -77,17 +64,22 @@ const fireworkData = [
     }
 
     function updateResetTempo() {
-        const { hours, minutes, seconds } = getTimeUntilReset();
+        const now = new Date();
+        const resetTime = new Date();
+        resetTime.setHours(24, 0, 0, 0);
+        if (now > resetTime) resetTime.setDate(resetTime.getDate() + 1);
+
+        const timeLeft = resetTime - now;
+        const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+        const seconds = Math.floor((timeLeft / 1000) % 60);
+
         resetTempo.innerText = `Tempo para resetar: ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    updateSequence();
+    loadSequence();
     updateResetTempo();
     setInterval(updateResetTempo, 1000); // Atualiza o tempo a cada segundo
-
-
-
-
 
 const overlay = document.getElementById('overlay');
 document.addEventListener('DOMContentLoaded', function() {

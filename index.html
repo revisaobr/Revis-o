@@ -10,7 +10,8 @@
         <meta name="version" content="3.4.0">
   <meta name="description" content="Aqui na Revisão você não perde o conteúdo, aqui mandamos todo o conteúdo das materias em primeira mão!"> <!-- Descrição do site -->
 <meta name="keywords" content="materias, 9°ano b, Porto Seguro, Rio Grande RS"> <!-- Palavras-chave -->
-<meta name="author" content=" Equipe Revisão"> <!-- Autor do site -->
+<meta name="author" content=" Equipe
+Revisão"> <!-- Autor do site -->
 <meta name="robots" content="index, follow"> <!-- Diretrizes para motores de busca -->
   <link rel="icon" href="favicon.ico.png" type="image/x-icon"> <!-- Favicon padrão -->
 <link rel="apple-touch-icon" href="favicon.ico.png"> <!-- Ícone para dispositivos Apple -->
@@ -619,8 +620,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     h5Elements.forEach(h5 => {
       h5.addEventListener('click', () => {
-        const title = h5.getAttribute('data-title') || 'Alerta';
-        const text = h5.getAttribute('data-text') || 'Texto padrão';
+        const title = h5.getAttribute('data-title') || 'Erro!';
+        const text = h5.getAttribute('data-text') || 'Isso pode ser um erro.';
         const icon = h5.getAttribute('data-icon') || 'info';
 
         Swal.fire({
