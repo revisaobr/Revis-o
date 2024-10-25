@@ -846,6 +846,7 @@ const foguinho = document.getElementById('foguinho');
       const proximoReset = new Date(sequencia.inicio);
       proximoReset.setHours(24, 0, 0, 0); // Configura próximo reset para meia-noite
 
+      // Verifica se já passou da meia-noite
       if (agora >= proximoReset) {
         const diasAtuais = sequencia.dias + 1;
         salvarSequencia(diasAtuais, agora);
