@@ -741,6 +741,10 @@ const foguinho = document.getElementById('foguinho');
     const mensagem = document.getElementById('mensagem');
     const resetTime = document.getElementById('reset-time');
 
+    // Configurações iniciais
+    const DIAS_INICIAIS = 1; // Dias iniciais
+    const SEGUNDOS_EM_UM_DIA = 86400; // 24 * 60 * 60
+
     function atualizarFoguinho(dias) {
       let src = '';
       let msg = '';
@@ -791,37 +795,38 @@ const foguinho = document.getElementById('foguinho');
 
     function resetarSequencia() {
       const agora = new Date();
-      salvarSequencia(1, agora);
-      atualizarFoguinho(1);
-      diasSpan.textContent = 1;
+      salvarSequencia(DIAS_INICIAIS, agora);
+      atualizarFoguinho(DIAS_INICIAIS);
+      diasSpan.textContent = DIAS_INICIAIS;
       mensagem.textContent = 'Legal';
       foguinho.src = 'fogo1.png';
     }
 
     function carregarSequencia() {
       const inicioSequencia = localStorage.getItem('inicioSequencia');
-      const diasSequencia = parseInt(localStorage.getItem('diasSequencia')) || 1;
+      let diasSequencia = parseInt(localStorage.getItem('diasSequencia')) || DIAS_INICIAIS;
 
       if (inicioSequencia) {
         const inicioData = new Date(inicioSequencia);
         const agora = new Date();
         const diff = Math.floor((agora - inicioData) / (1000 * 60 * 60 * 24));
 
+        // Se a diferença for maior que 1, resetar
+        if (diff >= 1) {
+          resetarSequencia();
+          return { dias: DIAS_INICIAIS, inicio: agora };
+        }
+
+        // Se ainda for no mesmo dia, mantém a contagem
         if (diff === 0) {
           return { dias: diasSequencia, inicio: inicioData };
-        } else if (diff === 1) {
-          const novaSequencia = diasSequencia + 1;
-          salvarSequencia(novaSequencia, inicioData);
-          return { dias: novaSequencia, inicio: inicioData };
-        } else {
-          resetarSequencia();
-          return { dias: 1, inicio: agora };
         }
-      } else {
-        const agora = new Date();
-        salvarSequencia(1, agora);
-        return { dias: 1, inicio: agora };
       }
+
+      // Se não houver dados, iniciar sequência
+      const agora = new Date();
+      salvarSequencia(DIAS_INICIAIS, agora);
+      return { dias: DIAS_INICIAIS, inicio: agora };
     }
 
     function atualizarContadorDias(dias) {
@@ -834,6 +839,21 @@ const foguinho = document.getElementById('foguinho');
     atualizarContadorDias(sequencia.dias);
     calcularTempoParaReset(sequencia.inicio);
     setInterval(() => calcularTempoParaReset(sequencia.inicio), 1000);
+
+    // Atualiza diariamente
+    setInterval(() => {
+      const agora = new Date();
+      const proximoReset = new Date(sequencia.inicio);
+      proximoReset.setHours(24, 0, 0, 0); // Configura próximo reset para meia-noite
+
+      if (agora >= proximoReset) {
+        const diasAtuais = sequencia.dias + 1;
+        salvarSequencia(diasAtuais, agora);
+        atualizarFoguinho(diasAtuais);
+        atualizarContadorDias(diasAtuais);
+        sequencia.dias = diasAtuais; // Atualiza a contagem local
+      }
+    }, 60000); // Checa a cada minuto
 </script>
 </body>
 </html>
