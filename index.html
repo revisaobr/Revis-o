@@ -98,6 +98,7 @@
   <div id="foguinho-container">
     <img id="foguinho" src="default.png" alt="Foguinho de Sequência">
     <h1>Sua sequência: <span id="dias">1</span> dias</h1>
+
   </div>
   <p id="mensagem"></p>
   <p id="reset-time"></p> <!-- Tempo para resetar -->
@@ -746,7 +747,7 @@ const foguinho = document.getElementById('foguinho');
 
       if (dias >= 60) {
         src = 'fogo5.png';
-        msg = 'Épica';
+        msg = 'Épico';
       } else if (dias >= 30) {
         src = 'fogo4.png';
         msg = 'Extremamente bom';
@@ -768,9 +769,14 @@ const foguinho = document.getElementById('foguinho');
     function calcularTempoParaReset(inicio) {
       const agora = new Date();
       const proximoReset = new Date(inicio);
-      proximoReset.setDate(proximoReset.getDate() + 1);
+      proximoReset.setHours(24, 0, 0, 0); // Próximo reset à meia-noite
 
       const diffMs = proximoReset - agora;
+      if (diffMs < 0) {
+        resetarSequencia(); // Reseta se o horário já passou
+        return;
+      }
+
       const horas = Math.floor(diffMs / (1000 * 60 * 60));
       const minutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((diffMs % (1000 * 60)) / 1000);
@@ -785,8 +791,7 @@ const foguinho = document.getElementById('foguinho');
 
     function resetarSequencia() {
       const agora = new Date();
-      localStorage.setItem('diasSequencia', 1);
-      localStorage.setItem('inicioSequencia', agora.toISOString());
+      salvarSequencia(1, agora);
       atualizarFoguinho(1);
       diasSpan.textContent = 1;
       mensagem.textContent = 'Legal';
@@ -819,9 +824,14 @@ const foguinho = document.getElementById('foguinho');
       }
     }
 
+    function atualizarContadorDias(dias) {
+      diasSpan.textContent = dias;
+      diasSpan.parentElement.textContent = dias === 1 ? 'Sua sequência: 1 Dia' : `Sua sequência: ${dias} Dias`;
+    }
+
     const sequencia = carregarSequencia();
     atualizarFoguinho(sequencia.dias);
-    diasSpan.textContent = sequencia.dias;
+    atualizarContadorDias(sequencia.dias);
     calcularTempoParaReset(sequencia.inicio);
     setInterval(() => calcularTempoParaReset(sequencia.inicio), 1000);
 </script>
