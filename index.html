@@ -818,9 +818,7 @@ const foguinho = document.getElementById('foguinho');
         }
 
         // Se ainda for no mesmo dia, mantém a contagem
-        if (diff === 0) {
-          return { dias: diasSequencia, inicio: inicioData };
-        }
+        return { dias: diasSequencia, inicio: inicioData };
       }
 
       // Se não houver dados, iniciar sequência
