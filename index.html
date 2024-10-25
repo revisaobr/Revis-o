@@ -101,15 +101,7 @@
   </div>
   <p id="mensagem"></p>
   <p id="reset-time"></p> <!-- Tempo para resetar -->
-  <h3> Como funciona?</h3>
-  
-  
-  <p> Todos os dias as <strong> 00:00h</strong> são contados os dias que você
-  acessa a plataforma. Quanto mais dias consecutivos você fica, pode desbloquear fogos
-  novos. Mas caso essa sequência seja perdida seus fogo e seus dias vão ser 
-  resetados.</p>
-  <p> Fogos novos podem ser desbloqueados após uma sequência de: <br> <br> 1d
-  até 5d, 5d até 15d, 15d até 30d, 30d até 60d, Num máximo de 60d até o momento.</p>
+
 </div>
 <div class="contener-main">
   <h5 data-title="Bem Vindo" 
@@ -754,7 +746,7 @@ const foguinho = document.getElementById('foguinho');
 
       if (dias >= 60) {
         src = 'fogo5.png';
-        msg = 'Épico';
+        msg = 'Épica';
       } else if (dias >= 30) {
         src = 'fogo4.png';
         msg = 'Extremamente bom';
@@ -763,7 +755,7 @@ const foguinho = document.getElementById('foguinho');
         msg = 'Muito bom';
       } else if (dias >= 5) {
         src = 'fogo2.png';
-        msg = 'Excelente';
+        msg = 'Bom';
       } else {
         src = 'fogo1.png';
         msg = 'Legal';
@@ -773,16 +765,12 @@ const foguinho = document.getElementById('foguinho');
       mensagem.textContent = msg;
     }
 
-    function calcularTempoParaReset() {
+    function calcularTempoParaReset(inicio) {
       const agora = new Date();
-      const proximaMeiaNoite = new Date(
-        agora.getFullYear(),
-        agora.getMonth(),
-        agora.getDate() + 1,
-        0, 0, 0
-      );
+      const proximoReset = new Date(inicio);
+      proximoReset.setDate(proximoReset.getDate() + 1);
 
-      const diffMs = proximaMeiaNoite - agora;
+      const diffMs = proximoReset - agora;
       const horas = Math.floor(diffMs / (1000 * 60 * 60));
       const minutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((diffMs % (1000 * 60)) / 1000);
@@ -790,82 +778,52 @@ const foguinho = document.getElementById('foguinho');
       resetTime.textContent = `Tempo para resetar: ${horas}h ${minutos}m ${segundos}s`;
     }
 
-    function salvarSequencia(dias) {
+    function salvarSequencia(dias, inicio) {
       localStorage.setItem('diasSequencia', dias);
-      localStorage.setItem('ultimaVisita', new Date().toISOString());
+      localStorage.setItem('inicioSequencia', inicio.toISOString());
     }
 
     function resetarSequencia() {
+      const agora = new Date();
       localStorage.setItem('diasSequencia', 1);
+      localStorage.setItem('inicioSequencia', agora.toISOString());
       atualizarFoguinho(1);
       diasSpan.textContent = 1;
       mensagem.textContent = 'Legal';
-      foguinho.src = 'foguinho_azul.png';
+      foguinho.src = 'fogo1.png';
     }
 
     function carregarSequencia() {
-      const ultimaVisita = localStorage.getItem('ultimaVisita');
+      const inicioSequencia = localStorage.getItem('inicioSequencia');
       const diasSequencia = parseInt(localStorage.getItem('diasSequencia')) || 1;
 
-      if (ultimaVisita) {
-        const ultimaVisitaData = new Date(ultimaVisita);
+      if (inicioSequencia) {
+        const inicioData = new Date(inicioSequencia);
         const agora = new Date();
+        const diff = Math.floor((agora - inicioData) / (1000 * 60 * 60 * 24));
 
-        const diff = Math.floor(
-          (agora - ultimaVisitaData) / (1000 * 60 * 60 * 24)
-        );
-
-        if (diff === 1) {
+        if (diff === 0) {
+          return { dias: diasSequencia, inicio: inicioData };
+        } else if (diff === 1) {
           const novaSequencia = diasSequencia + 1;
-          salvarSequencia(novaSequencia);
-          return novaSequencia;
-        } else if (diff > 1) {
+          salvarSequencia(novaSequencia, inicioData);
+          return { dias: novaSequencia, inicio: inicioData };
+        } else {
           resetarSequencia();
-          return 1;
+          return { dias: 1, inicio: agora };
         }
       } else {
-        salvarSequencia(1);
+        const agora = new Date();
+        salvarSequencia(1, agora);
+        return { dias: 1, inicio: agora };
       }
-
-      return diasSequencia;
     }
 
-    const dias = carregarSequencia();
-    atualizarFoguinho(dias);
-    diasSpan.textContent = dias;
-    calcularTempoParaReset();
-    setInterval(calcularTempoParaReset, 1000);
-</script>
-<script type="text/javascript">
-
-  /* - - - CONFIGURATION VARIABLES - - - */
-
-  var __semio__params = {
-    graphcommentId: "Revisao9b2024-portinho", // make sure the id is yours
-
-    behaviour: {
-      // HIGHLY RECOMMENDED
-      //  uid: "...", // uniq identifer for the comments thread on your page (ex: your page id)
-    },
-
-    // configure your variables here
-
-  }
-
-  /* - - - DON'T EDIT BELOW THIS LINE - - - */
-
-  function __semio__onload() {
-    __semio__gc_graphlogin(__semio__params)
-  }
-
-
-  (function() {
-    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
-    gc.onload = __semio__onload; gc.defer = true; gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
-  })();
-  
-
+    const sequencia = carregarSequencia();
+    atualizarFoguinho(sequencia.dias);
+    diasSpan.textContent = sequencia.dias;
+    calcularTempoParaReset(sequencia.inicio);
+    setInterval(() => calcularTempoParaReset(sequencia.inicio), 1000);
 </script>
 </body>
 </html>
