@@ -89,17 +89,16 @@
   </div>
 
   <div class="contener-main">
-    
-  <div id="foguinho-container">
-    <img id="foguinho" src="default.png" alt="Foguinho de Sequência">
-    <h1>Sua sequência: <span id="dias">1</span> dias</h1>
+    <div class="container">
+    <div class="fireworks">
+        <img id="fireworkImage" src="fogo1.png" alt="Imagem do Fogo">
+        <div id="sequenceDays" class="sequence-info">Sua sequência: 1 dia</div>
+    </div>
 
+    <div id="fireworkMessage" class="message blue-dark">Legal</div>
+    <div id="resetTempo" class="tempo">Tempo para resetar: 24h 00m 00s</div>
+</div>
 
-  </div>
-  <p id="mensagem"></p>
-  <p id="reset-time"></p> <!-- Tempo para resetar -->
-    <p>⚠️ estamos numa análise essa funcionalidade está em teste. Pode conter
-    erros, em breve vamos corrigir. (pode conter alterações na sua sequência.)</p>
 </div>
 <div class="contener-main">
   <h5 data-title="Bem Vindo" 
@@ -727,123 +726,89 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', toggleButtonVisibility);
       }
     });
-const foguinho = document.getElementById('foguinho');
-    const diasSpan = document.getElementById('dias');
-    const mensagem = document.getElementById('mensagem');
-    const resetTime = document.getElementById('reset-time');
+const fireworkData = [
+        { range: [1, 5], message: "Legal", colorClass: "blue-dark", image: "fogo1.png" },
+        { range: [5, 15], message: "Bom", colorClass: "blue-light", image: "fogo2.png" },
+        { range: [15, 30], message: "Excelente", colorClass: "orange", image: "fogo3.png" },
+        { range: [30, 60], message: "Extremamente Bom", colorClass: "purple", image: "fogo4.png" },
+        { range: [60, Infinity], message: "Épico", colorClass: "epic", image: "fogo5.png" }
+    ];
 
-    // Configurações iniciais
-    const DIAS_INICIAIS = 1; // Dias iniciais
-    const SEGUNDOS_EM_UM_DIA = 86400; // 24 * 60 * 60
+    const sequenceDaysElement = document.getElementById("sequenceDays");
+    const fireworkImage = document.getElementById("fireworkImage");
+    const fireworkMessage = document.getElementById("fireworkMessage");
+    const resetTempo = document.getElementById("resetTempo");
 
-    function atualizarFoguinho(dias) {
-      let src = '';
-      let msg = '';
-
-      if (dias >= 60) {
-        src = 'fogo5.png';
-        msg = 'Épico';
-      } else if (dias >= 30) {
-        src = 'fogo4.png';
-        msg = 'Extremamente bom';
-      } else if (dias >= 15) {
-        src = 'fogo3.png';
-        msg = 'Muito bom';
-      } else if (dias >= 5) {
-        src = 'fogo2.png';
-        msg = 'Bom';
-      } else {
-        src = 'fogo1.png';
-        msg = 'Legal';
-      }
-
-      foguinho.src = src;
-      mensagem.textContent = msg;
+    function getDaysDifference(date1, date2) {
+        const timeDiff = Math.abs(date2 - date1);
+        return Math.floor(timeDiff / (1000 * 60 * 60 * 24));
     }
 
-    function calcularTempoParaReset(inicio) {
-      const agora = new Date();
-      const proximoReset = new Date(inicio);
-      proximoReset.setHours(24, 0, 0, 0); // Próximo reset à meia-noite
+    function getTimeUntilReset() {
+        const now = new Date();
+        const resetTime = new Date();
+        resetTime.setHours(24, 0, 0, 0); // Próximo reset é à meia-noite
+        if (now > resetTime) resetTime.setDate(resetTime.getDate() + 1);
 
-      const diffMs = proximoReset - agora;
-      if (diffMs < 0) {
-        resetarSequencia(); // Reseta se o horário já passou
-        return;
-      }
+        const timeLeft = resetTime - now;
+        const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+        const seconds = Math.floor((timeLeft / 1000) % 60);
 
-      const horas = Math.floor(diffMs / (1000 * 60 * 60));
-      const minutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-      const segundos = Math.floor((diffMs % (1000 * 60)) / 1000);
-
-      resetTime.textContent = `Tempo para resetar: ${horas}h ${minutos}m ${segundos}s`;
+        return { hours, minutes, seconds };
     }
 
-    function salvarSequencia(dias, inicio) {
-      localStorage.setItem('diasSequencia', dias);
-      localStorage.setItem('inicioSequencia', inicio.toISOString());
+    function resetSequence() {
+        localStorage.setItem("sequenceDays", 1);
+        updateFireworkDisplay(1);
     }
 
-    function resetarSequencia() {
-      const agora = new Date();
-      salvarSequencia(DIAS_INICIAIS, agora);
-      atualizarFoguinho(DIAS_INICIAIS);
-      diasSpan.textContent = DIAS_INICIAIS;
-      mensagem.textContent = 'Legal';
-      foguinho.src = 'fogo1.png';
-    }
+    function updateSequence() {
+        const lastVisit = new Date(localStorage.getItem("lastVisit"));
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        lastVisit.setHours(0, 0, 0, 0);
 
-    function carregarSequencia() {
-      const inicioSequencia = localStorage.getItem('inicioSequencia');
-      let diasSequencia = parseInt(localStorage.getItem('diasSequencia')) || DIAS_INICIAIS;
+        const daysSinceLastVisit = getDaysDifference(lastVisit, today);
+        let days = parseInt(localStorage.getItem("sequenceDays")) || 1;
 
-      if (inicioSequencia) {
-        const inicioData = new Date(inicioSequencia);
-        const agora = new Date();
-        const diff = Math.floor((agora - inicioData) / (1000 * 60 * 60 * 24));
-
-        // Se a diferença for maior que 1, resetar
-        if (diff >= 1) {
-          resetarSequencia();
-          return { dias: DIAS_INICIAIS, inicio: agora };
+        if (daysSinceLastVisit === 1) {
+            days += 1;
+        } else if (daysSinceLastVisit > 1) {
+            resetSequence();
+            return;
         }
 
-        // Se ainda for no mesmo dia, mantém a contagem
-        return { dias: diasSequencia, inicio: inicioData };
-      }
-
-      // Se não houver dados, iniciar sequência
-      const agora = new Date();
-      salvarSequencia(DIAS_INICIAIS, agora);
-      return { dias: DIAS_INICIAIS, inicio: agora };
+        localStorage.setItem("sequenceDays", days);
+        localStorage.setItem("lastVisit", today.toISOString());
+        updateFireworkDisplay(days);
     }
 
-    function atualizarContadorDias(dias) {
-      diasSpan.textContent = dias;
-      diasSpan.parentElement.textContent = dias === 1 ? 'Sua sequência: 1 Dia' : `Sua sequência: ${dias} Dias`;
+    function updateFireworkDisplay(days) {
+        const plural = days > 1 ? "dias" : "dia";
+        sequenceDaysElement.innerText = `Sua sequência: ${days} ${plural}`;
+
+        let firework = fireworkData[0];
+        for (let data of fireworkData) {
+            if (days >= data.range[0] && days < data.range[1]) {
+                firework = data;
+                break;
+            }
+        }
+
+        fireworkImage.src = firework.image;
+        fireworkMessage.innerText = firework.message;
+        fireworkMessage.className = `message ${firework.colorClass}`;
     }
 
-    const sequencia = carregarSequencia();
-    atualizarFoguinho(sequencia.dias);
-    atualizarContadorDias(sequencia.dias);
-    calcularTempoParaReset(sequencia.inicio);
-    setInterval(() => calcularTempoParaReset(sequencia.inicio), 1000);
+    function updateResetTempo() {
+        const { hours, minutes, seconds } = getTimeUntilReset();
+        resetTempo.innerText = `Tempo para resetar: ${hours}h ${minutes}m ${seconds}s`;
+    }
 
-    // Atualiza diariamente
-    setInterval(() => {
-      const agora = new Date();
-      const proximoReset = new Date(sequencia.inicio);
-      proximoReset.setHours(24, 0, 0, 0); // Configura próximo reset para meia-noite
-
-      // Verifica se já passou da meia-noite
-      if (agora >= proximoReset) {
-        const diasAtuais = sequencia.dias + 1;
-        salvarSequencia(diasAtuais, agora);
-        atualizarFoguinho(diasAtuais);
-        atualizarContadorDias(diasAtuais);
-        sequencia.dias = diasAtuais; // Atualiza a contagem local
-      }
-    }, 60000); // Checa a cada minuto
+    updateSequence();
+    updateResetTempo();
+    setInterval(updateResetTempo, 1000); // Atualiza o tempo a cada segundo
 </script>
 </body>
 </html>

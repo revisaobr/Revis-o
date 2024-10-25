@@ -1064,35 +1064,47 @@ button a.tab-link:hover {
       opacity: 0;
       visibility: hidden;
     }
-        #foguinho-container {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
+       .container {
+            display: flex;
+            flex-direction: column;
+            
+            margin-top: 20px;
+        }
 
-    #foguinho {
-      width: 40px;
-      height: 40px;
-    }
+        .fireworks {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+        }
 
-    h1 {
-      font-size: 24px;
-    }
+        .fireworks img {
+            width: 50px;
+            margin-right: 15px;
+        }
 
-    #mensagem {
-      margin-top: 10px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #ffa500;
-    }
+        .sequence-info {
+            font-size: 1.5em;
+        }
 
-    #reset-time {
-      margin-top: 5px;
-      font-size: 16px;
-      color: #ccc;
-    }
-    
+        .message {
+          
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom:10px;
+            border-radius: 5px;
+        }
+
+        .timer {
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        .blue-dark { color: #1065f7; }
+        .blue-light { color: #21F1F1; }
+        .orange { color: #F6491F; }
+        .purple { color: #5D1FF0; }
+        .epic { color: #F32161; }
     .contener-main h3 {
       margin-bottom: 0px;
       margin-top:40px ;
