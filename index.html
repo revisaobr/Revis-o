@@ -43,7 +43,23 @@ Revisão"> <!-- Autor do site -->
             </div>
           
             <div class="navbar-title">Revisão</div>  
-         
+<div class="search-container">
+        <input type="text" id="search-bar" placeholder="Pesquisar..." 
+               onfocus="showPopup()" onblur="hidePopup()" oninput="filterResults()">
+        <div id="search-popup" class="search-popup">
+            <div class="suggestions-wrapper" id="initial-suggestions">
+              <a href="#matematica" class="tab-link ">Teorema de Tales</a>
+              <a href="#historia" class="tab-link ">República dos Cafeicultores</a>
+              <a href="#artes" class="tab-link ">Arte Conceitual</a>
+                <!-- Adicione mais sugestões aqui -->
+            </div>
+            <ul id="suggestions-list">
+
+                         <a href="#inicio" class="tab-link ">Anotações</a>
+              <a href="#videos9B" class="tab-link ">Videos 9B</a>
+            </ul>
+        </div>
+    </div>
           
           <div class="menu" onclick="toggleMenu()">
             
@@ -89,18 +105,7 @@ Revisão"> <!-- Autor do site -->
     <button id="close-button">Entendi</button>
   </div>
 
-  <div class="contener-main">
-    <div class="container">
-    <div class="fireworks">
-        <img id="fireworkImage" src="fogo1.png" alt="Imagem do Fogo">
-        <div id="sequenceDays" class="sequence-info">Sua sequência: 1 dia</div>
-    </div>
 
-    <div id="fireworkMessage" class="message blue-dark">Legal</div>
-    <div id="resetTempo" class="tempo">Tempo para resetar: 24h 00m 00s</div>
-</div>
-
-</div>
 <div class="contener-main">
   <h5 data-title="Bem Vindo" 
       data-text="Bem vindo ao Revisão. Aqui você tem acesso a os conteúdos
@@ -727,6 +732,111 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', toggleButtonVisibility);
       }
     });
+    
+    
+    
+    // Função para salvar as informações de acesso
+function salvarAcesso() {
+    // Pega a data atual
+    const hoje = new Date().toISOString().split('T')[0]; // Apenas a data (YYYY-MM-DD)
+    
+    // Recupera os dados do localStorage ou inicia com valor padrão
+    let acessos = JSON.parse(localStorage.getItem('acessos')) || { datas: [], tempoTotal: 0, numAcessos: 0 };
+
+    // Adiciona a data se for um dia novo
+    if (!acessos.datas.includes(hoje)) {
+        acessos.datas.push(hoje);
+    }
+
+    // Incrementa o número de acessos
+    acessos.numAcessos++;
+
+    // Salva de volta no localStorage
+    localStorage.setItem('acessos', JSON.stringify(acessos));
+}
+
+// Função para iniciar o cálculo do tempo na plataforma
+let inicioSessao;
+function iniciarSessao() {
+    inicioSessao = Date.now();
+}
+
+// Função para finalizar o cálculo do tempo e atualizar o tempo médio
+function finalizarSessao() {
+    const tempoSessao = Date.now() - inicioSessao; // Tempo em milissegundos
+    
+    // Recupera os dados do localStorage
+    let acessos = JSON.parse(localStorage.getItem('acessos')) || { datas: [], tempoTotal: 0, numAcessos: 0 };
+    
+    // Atualiza o tempo total e salva
+    acessos.tempoTotal += tempoSessao;
+    localStorage.setItem('acessos', JSON.stringify(acessos));
+}
+
+// Função para calcular e mostrar o tempo médio na plataforma
+function calcularTempoMedio() {
+    let acessos = JSON.parse(localStorage.getItem('acessos'));
+    
+    if (acessos && acessos.numAcessos > 0) {
+        let tempoMedio = acessos.tempoTotal / acessos.numAcessos; // em ms
+        let segundos = Math.floor(tempoMedio / 1000) % 60;
+        let minutos = Math.floor(tempoMedio / 1000 / 60);
+
+        console.log(`Tempo médio na plataforma: ${minutos} minutos e ${segundos} segundos.`);
+    } else {
+        console.log("Nenhum acesso registrado.");
+    }
+}
+
+// Executa o registro de acesso e inicia a sessão ao carregar a página
+window.addEventListener('load', () => {
+    salvarAcesso();
+    iniciarSessao();
+});
+
+// Finaliza a sessão ao sair da página
+window.addEventListener('beforeunload', () => {
+    finalizarSessao();
+    calcularTempoMedio();
+});
+const searchInput = document.getElementById("search-bar");
+        const searchPopup = document.getElementById("search-popup");
+        const suggestionsList = document.getElementById("suggestions-list");
+
+        function showPopup() {
+            searchPopup.classList.add("visible");
+        }
+
+        function hidePopup() {
+            setTimeout(() => {
+                searchPopup.classList.remove("visible");
+            }, 200);
+        }
+
+        function filterResults() {
+            const query = searchInput.value.toLowerCase().trim();
+            const allSuggestions = suggestionsList.querySelectorAll("li");
+            document.getElementById("initial-suggestions").style.display = query ? "none" : "flex";
+            
+            allSuggestions.forEach(suggestion => {
+                if (suggestion.textContent.toLowerCase().includes(query)) {
+                    suggestion.style.display = "block";
+                } else {
+                    suggestion.style.display = "none";
+                }
+            });
+        }
+
+        function goToLink(link) {
+            window.location.href = link;
+        }
+
+        suggestionsList.addEventListener("click", (event) => {
+            if (event.target.tagName === "LI") {
+                const link = event.target.getAttribute("data-link");
+                goToLink(link);
+            }
+        });
     </script>
 
 

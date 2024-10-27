@@ -1064,52 +1064,131 @@ button a.tab-link:hover {
       opacity: 0;
       visibility: hidden;
     }
-       .container {
-            display: flex;
-            flex-direction: column;
-            
-            margin-top: 20px;
-        }
 
-        .fireworks {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            width: 100%;
-        }
-
-        .fireworks img {
-            width: 50px;
-            margin-right: 15px;
-        }
-
-        .sequence-info {
-            font-size: 1.5em;
-        }
-
-        .message {
-          
-            font-size: 1.4em;
-            margin-top: 20px;
-            margin-bottom:10px;
-            border-radius: 5px;
-        }
-
-        .timer {
-            font-size: 1em;
-            margin-top: 10px;
-        }
-
-        .blue-dark { color: #1065f7; }
-        .blue-light { color: #21F1F1; }
-        .orange { color: #F6491F; }
-        .purple { color: #5D1FF0; }
-        .epic { color: #F32161; }
-    .contener-main h3 {
-      margin-bottom: 0px;
-      margin-top:40px ;
-    }
-    
     .contener-main strong {
       color: #ffffff;
     }
+    
+            .search-container {
+            position: relative;
+            width: 100%;
+            
+            
+            
+            margin-top: 0px;
+        }
+
+        /* Barra de pesquisa */
+       
+        #search-bar {
+          display: block;
+          margin: auto;
+            width: 250px;
+            max-width: 600px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            background-color: #333333a1;
+            color: #fff;
+            transition: all 0.2s ease;
+        }
+
+        #search-bar:focus {
+            background-color: #444;
+            outline: none;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Popup de sugestões */
+        .search-popup {
+          margin: 5px;
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            max-height: 200px;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95);
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+        .suggestions-wrapper a {
+          font-size: 12px;
+          padding: 10px;
+          text-decoration: none;
+          color: white;
+          background-color:#5c5c5c;
+          border-radius: 10px;
+        }
+        
+        #suggestions-list a {
+          display: block;
+          padding: 10px;
+          color: white;
+          
+          text-decoration: none;
+        }
+        
+        #suggestions-list a:hover {
+          background: #2b2b2b;
+        }
+
+        .search-popup.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        /* Bolinhas de sugestões */
+        .suggestions-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 10px;
+        }
+
+        .suggestion-button {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 15px;
+            background-color: #555;
+            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+            transition: background-color 0.2s;
+        }
+
+        .suggestion-button:hover {
+            background-color: #666;
+        }
+
+        /* Lista de resultados dinâmicos */
+        .search-popup ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .search-popup li {
+            padding: 10px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .search-popup li:hover {
+            background-color: #333;
+        }
+
+        /* Media queries para dispositivos móveis */
+
+
+            .suggestion-button {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
