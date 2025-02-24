@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1c1c1c">
-    <title>Revisão</title>
+    <title>Revisão - Pagina principal </title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <meta name="version" content="3.4.0">
-  <meta name="description" content="Aqui na Revisão você não perde o conteúdo, aqui mandamos todo o conteúdo das materias em primeira mão!"> <!-- Descrição do site -->
-<meta name="keywords" content="materias, 9°ano b, Porto Seguro, Rio Grande RS"> <!-- Palavras-chave -->
+  <meta name="description" content="Plataforma principal de matérias, aqui você
+  tem acesso a os melhores conteúdos com qualidade."> <!-- Descrição do site -->
+<meta name="keywords" content="materias, Rio Grande RS"> <!-- Palavras-chave -->
 <meta name="author" content=" Equipe
 Revisão"> <!-- Autor do site -->
 <meta name="robots" content="index, follow"> <!-- Diretrizes para motores de busca -->
@@ -56,7 +57,7 @@ Revisão"> <!-- Autor do site -->
             <ul id="suggestions-list">
 
                          <a href="#inicio" class="tab-link ">Anotações</a>
-              <a href="#videos9B" class="tab-link ">Videos 9B</a>
+              <a href="#videos9B" class="tab-link ">Videos</a>
             </ul>
         </div>
     </div>
@@ -100,37 +101,52 @@ Revisão"> <!-- Autor do site -->
               <div id="welcome-div" class="welcome-container">
                 
     <h2>Olá!</h2>
-    <p>Bem vindo a plataforma, fique a vontade para verificar todos os
-    conteúdos!</p>
+    <p> Seja Bem vindo, preparamos um conteúdo especial para você abaixo! </p>
     <button id="close-button">Entendi</button>
   </div>
-
+<div class="contener-main">
+      <div class="carousel-container">
+        <div class="carousel">
+            <div class="slide"><img src="revisao.png" alt="Revisão
+            imagem"><p>Estamos de Volta em breve!</p></div>
+            <div class="slide"><img src="revisaoapp.png" alt="Imagem 2"><p>O
+            aplicativo pode passar por algumas mudanças na interface e de
+            conteúdos.</p></div>
+            <div class="slide"><img src="manutencao.jpeg" alt="Imagem
+            3"><p>Vamos ficar inativos por um tempo, até o procedimento ficar
+            finalizado dessa nova versão. </p></div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+</div>
 
 <div class="contener-main">
   <h5 data-title="Bem Vindo" 
-      data-text="Bem vindo ao Revisão. Aqui você tem acesso a os conteúdos
-      atualizado." 
+      data-text="Aqui nessa plataforma você tem acesso a conteúdos, retirados
+      exatamente da escola que você estuda. Conteúdos confiáveis em primeira
+      mão." 
       data-icon="question">Bem Vindo</h5>
   <h2> Confira as novidades</h2>
-  <p> Descubra o que tem de novo, e, receba as principais notificações
-  importantes!</p>
+  <p>Confira se você tem um conteúdo novo a fazer, se mantenha atualizado!</p>
+
 
 </div>
 <div class="contener-main">
-  <h5 data-title="Calendário das Provas" 
+  <h5 data-title="Calendário dos conteúdos" 
       data-text="Se mantenha em dia com as datas dos principais novos conteúdos
       atualizados." 
-      data-icon="question">Principal Destaque </h5>
+      data-icon="question">Destaques do momento</h5>
   <h2> Calendário de Provas</h2>
-<p>Sem novidades.</p>
+<p>Sem conteúdo no momento, volte mais tarde e verifique novamente.</p>
 </div>
 
 <div class="contener-main">
-  <h5 data-title="Redes Sociais do 9°B" 
-      data-text="Acesse os vídeos feitos na turma e veja também as redes
-      sociais." 
+  <h5 data-title="Redes Sociais" 
+      data-text="Acesse os vídeos e também confira as redes oficiais do momento." 
       data-icon="question">Social</h5>
-  <h2> Vídeos do 9°Ano B</h2>
+  <h2> Vídeos da turma</h2>
   <p> Acesse os vídeos feitos na turma clicando no botão abaixo </p>
   <a href="#videos9B" class="tab-link ">Vizualizar</a>
 </div>
@@ -183,25 +199,10 @@ E também as suas anotações são visíveis somente pra você."
       <h2> Bloco de Notas </h2>
               <textarea id="notepad" placeholder="Escreva aqui..."></textarea><br>
 <button onclick="salvarAnotacoes()">Salvar</button>
-<button onclick="limparAnotacoes()">Restaurar</button>
+<button onclick="limparAnotacoes()">Excluir</button>
                 <button><label for="corTexto">Cor do texto</label>  </button>
 <input type="color" id="corTexto" onchange="mudarCorTexto()"> <br> <br>
-<label for="fonte"> Fonte do texto</label> 
-<select id="fonte" onchange="mudarFonte()"> 
-    <option value="Arial">Arial</option>
-<option value="Times New Roman">Times New Roman</option>
-<option value="Georgia">Georgia</option>
-<option value="Courier New">Courier New</option>
-<option value="'Merienda', cursive">Merienda</option>
-<option value="'Bitter', serif">Bitter</option>
-<option value="'Bebas Neue', cursive">Bebas Neue</option>
-<option value="'Playfair Display', serif">Playfair Display</option>
-</select>
-                <br> <br>
-<label for="tamanhoFonte">Tamanho do Texto</label>
-<input type="number" id="tamanhoFonte" min="10" max="24" value="14" onchange="mudarTamanhoFonte()">
-              </div>
-<div id="graphcomment"></div>
+</div>
 
  
            </div>
@@ -551,28 +552,26 @@ E também as suas anotações são visíveis somente pra você."
           
             </div>
                     <div id="videos9B" class="tab-content hidden">
+                      <h3> Essa página está em manutenção sem tempo determinado,
+                      por favor solicite novamente mais tarde.</h3>
 <div class="post">
     <div class="post-header">
       <img
       src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/82923d92d03e81fa0a805e7eeddfdb76~c5_100x100.jpeg?lk3s=a5d48078&nonce=14858&refresh_token=76145d67e7b5004327ead11a485160fa&x-expires=1729306800&x-signature=PaGKovbpjQvhOX4v3Vrl4tPf8z4%3D&shp=a5d48078&shcp=81f88b70"
       alt="Avatar">
-      <h3>9b_2k24_portinho</h3>
+      <h3>Sem nome de usuário</h3>
     </div>
 
     <div class="post-video">
       <video controls>
-        <source src="video2.mp4" type="video/mp4">
+        <source src="null" type="video/mp4">
         Seu navegador não suporta a reprodução de vídeo.
       </video>
     </div>
     
       <div class="post-description">
-Turma da resenha 🙅🏻‍♂️🤷🏻‍♂️<br>
-siga nas redes sociais oficiais da turma! 🤍 <br><br>
-<a href="https://www.tiktok.com/@nonob_portinho?_t=8qPDQXWNSIH&_r=1">TikTok
-Oficial</a> <br>
-<a href="https://www.instagram.com/9b_2k24_portinho?igsh=bmtreGJ5ZTd0Mm5r">
-Instagram Oficial</a>
+Sem descrição.
+
     </div>
 
     <div class="post-footer">
@@ -585,10 +584,8 @@ Instagram Oficial</a>
     </div>
     
      <div class="baloes-container">
-    <p class="baloes">#turma</p>
-    <p class="baloes">#9B2024</p>
-    <p class="baloes">#portinho</p>
-    <p class="baloes">#resenha</p>
+    <p class="baloes">Null</p>
+    
   </div>
   
   

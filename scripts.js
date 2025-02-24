@@ -1,6 +1,57 @@
 
 
+           const carousel = document.querySelector('.carousel');
+        const progressBar = document.querySelector('.progress');
+        let index = 0;
+        let startX;
+        let isDragging = false;
+        const slideInterval = 3000;function nextSlide() {
+        index = (index + 1) % document.querySelectorAll('.slide').length;
+        updateCarousel();
+        resetProgressBar();
+    }
     
+    function updateCarousel() {
+        carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function resetProgressBar() {
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0%';
+        setTimeout(() => {
+            progressBar.style.transition = `width ${slideInterval / 1000}s linear`;
+            progressBar.style.width = '100%';
+        }, 50);
+    }
+
+    let autoSlide = setInterval(nextSlide, slideInterval);
+    resetProgressBar();
+
+    carousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        clearInterval(autoSlide);
+    });
+
+    carousel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        let moveX = e.touches[0].clientX - startX;
+        if (moveX > 50) {
+            index = index > 0 ? index - 1 : document.querySelectorAll('.slide').length - 1;
+            isDragging = false;
+        } else if (moveX < -50) {
+            index = (index + 1) % document.querySelectorAll('.slide').length;
+            isDragging = false;
+        }
+        updateCarousel();
+        resetProgressBar();
+    });
+
+    carousel.addEventListener('touchend', () => {
+        isDragging = false;
+        autoSlide = setInterval(nextSlide, slideInterval);
+        resetProgressBar();
+    }); 
 
 
 const overlay = document.getElementById('overlay');
