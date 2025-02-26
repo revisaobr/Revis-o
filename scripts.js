@@ -1,4 +1,247 @@
+   document.addEventListener("DOMContentLoaded", function () {
+            var hash = window.location.hash; // Obtém o ID da URL, ex: #sobre
 
+            if (hash) { 
+                var elemento = document.querySelector(hash); // Tenta encontrar o elemento
+                if (!elemento) { // Se não encontrar, redireciona para #erro
+                    window.location.hash = "#erro";
+                }
+            }
+        });
+
+  
+  
+  function fecharNotificacao(element) {
+    element.style.display = 'none'; // Oculta o elemento clicado
+}
+// Script para abrir todos os links em uma nova aba
+document.addEventListener("DOMContentLoaded", function() {
+    // Seleciona todos os links na página
+    const links = document.querySelectorAll('a');
+
+    // Percorre todos os links e define o target como _blank
+    links.forEach(function(link) {
+        link.setAttribute('target', '_blank');
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const h5Elements = document.querySelectorAll('.contener-main h5');
+
+    h5Elements.forEach(h5 => {
+      h5.addEventListener('click', () => {
+        const title = h5.getAttribute('data-title') || 'Erro!';
+        const text = h5.getAttribute('data-text') || 'Isso pode ser um erro.';
+        const icon = h5.getAttribute('data-icon') || 'info';
+
+        Swal.fire({
+          title: title,
+          text: text,
+          icon: icon
+        });
+      });
+    });
+  });
+  
+ const likeButton = document.getElementById('likeButton');
+    const floatingHearts = document.getElementById('floatingHearts');
+    let heartInterval;
+    const isLikedKey = 'isLiked';
+
+    // Verifica o estado da curtida no armazenamento local
+    if (localStorage.getItem(isLikedKey) === 'true') {
+      likeButton.classList.add('liked');
+    }
+
+    likeButton.addEventListener('click', () => {
+      const isLiked = likeButton.classList.toggle('liked');
+      // Salva o estado da curtida no armazenamento local
+      localStorage.setItem(isLikedKey, isLiked);
+      if (isLiked) {
+        spawnHearts(10); // Gera 10 corações ao curtir
+      }
+    });
+
+    likeButton.addEventListener('mousedown', () => {
+      heartInterval = setInterval(() => spawnHearts(1), 200);
+    });
+
+    likeButton.addEventListener('mouseup', () => {
+      clearInterval(heartInterval);
+    });
+
+    likeButton.addEventListener('mouseleave', () => {
+      clearInterval(heartInterval);
+    });
+
+    function spawnHearts(count) {
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = `${Math.random() * 100}%`; // Gera corações em posições aleatórias
+        heart.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        `;
+        floatingHearts.appendChild(heart);
+
+        // Remove o coração após 2 segundos
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
+    }
+        // Verifica se o usuário já clicou em "Entendi"
+    if (localStorage.getItem('welcomeDismissed') === 'true') {
+      document.getElementById('welcome-div').style.display = 'none';
+    }
+
+    // Função para fechar a div e salvar no localStorage
+    document.getElementById('close-button').addEventListener('click', function () {
+      document.getElementById('welcome-div').style.display = 'none';
+      localStorage.setItem('welcomeDismissed', 'true');
+    });
+        const button = document.getElementById('scrollButton');
+    const inicioTab = document.getElementById('inicio');
+    const notepad = document.getElementById('notepad');
+
+    function toggleButtonVisibility() {
+      const notepadVisible = notepad.getBoundingClientRect().top < window.innerHeight &&
+                             notepad.getBoundingClientRect().bottom >= 0;
+      const inicioVisible = !inicioTab.classList.contains('hidden');
+      
+      // Exibe ou esconde o botão com base na visibilidade
+      if (inicioVisible && !notepadVisible) {
+        button.classList.remove('hidden');
+      } else {
+        button.classList.add('hidden');
+      }
+    }
+
+    // Monitorar a rolagem e alternar a visibilidade do botão
+    window.addEventListener('scroll', toggleButtonVisibility);
+
+    // Alternar a exibição do botão quando as abas mudarem (se necessário)
+    document.addEventListener('DOMContentLoaded', toggleButtonVisibility);
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // Verificar se é um dispositivo móvel ao carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!isMobileDevice()) {
+        button.style.display = 'none'; // Esconde o botão se não for móvel
+      } else {
+        toggleButtonVisibility(); // Exibe conforme a visibilidade da área
+        window.addEventListener('scroll', toggleButtonVisibility);
+      }
+    });
+    
+    
+    
+    // Função para salvar as informações de acesso
+function salvarAcesso() {
+    // Pega a data atual
+    const hoje = new Date().toISOString().split('T')[0]; // Apenas a data (YYYY-MM-DD)
+    
+    // Recupera os dados do localStorage ou inicia com valor padrão
+    let acessos = JSON.parse(localStorage.getItem('acessos')) || { datas: [], tempoTotal: 0, numAcessos: 0 };
+
+    // Adiciona a data se for um dia novo
+    if (!acessos.datas.includes(hoje)) {
+        acessos.datas.push(hoje);
+    }
+
+    // Incrementa o número de acessos
+    acessos.numAcessos++;
+
+    // Salva de volta no localStorage
+    localStorage.setItem('acessos', JSON.stringify(acessos));
+}
+
+// Função para iniciar o cálculo do tempo na plataforma
+let inicioSessao;
+function iniciarSessao() {
+    inicioSessao = Date.now();
+}
+
+// Função para finalizar o cálculo do tempo e atualizar o tempo médio
+function finalizarSessao() {
+    const tempoSessao = Date.now() - inicioSessao; // Tempo em milissegundos
+    
+    // Recupera os dados do localStorage
+    let acessos = JSON.parse(localStorage.getItem('acessos')) || { datas: [], tempoTotal: 0, numAcessos: 0 };
+    
+    // Atualiza o tempo total e salva
+    acessos.tempoTotal += tempoSessao;
+    localStorage.setItem('acessos', JSON.stringify(acessos));
+}
+
+// Função para calcular e mostrar o tempo médio na plataforma
+function calcularTempoMedio() {
+    let acessos = JSON.parse(localStorage.getItem('acessos'));
+    
+    if (acessos && acessos.numAcessos > 0) {
+        let tempoMedio = acessos.tempoTotal / acessos.numAcessos; // em ms
+        let segundos = Math.floor(tempoMedio / 1000) % 60;
+        let minutos = Math.floor(tempoMedio / 1000 / 60);
+
+        console.log(`Tempo médio na plataforma: ${minutos} minutos e ${segundos} segundos.`);
+    } else {
+        console.log("Nenhum acesso registrado.");
+    }
+}
+
+// Executa o registro de acesso e inicia a sessão ao carregar a página
+window.addEventListener('load', () => {
+    salvarAcesso();
+    iniciarSessao();
+});
+
+// Finaliza a sessão ao sair da página
+window.addEventListener('beforeunload', () => {
+    finalizarSessao();
+    calcularTempoMedio();
+});
+const searchInput = document.getElementById("search-bar");
+        const searchPopup = document.getElementById("search-popup");
+        const suggestionsList = document.getElementById("suggestions-list");
+
+        function showPopup() {
+            searchPopup.classList.add("visible");
+        }
+
+        function hidePopup() {
+            setTimeout(() => {
+                searchPopup.classList.remove("visible");
+            }, 200);
+        }
+
+        function filterResults() {
+            const query = searchInput.value.toLowerCase().trim();
+            const allSuggestions = suggestionsList.querySelectorAll("li");
+            document.getElementById("initial-suggestions").style.display = query ? "none" : "flex";
+            
+            allSuggestions.forEach(suggestion => {
+                if (suggestion.textContent.toLowerCase().includes(query)) {
+                    suggestion.style.display = "block";
+                } else {
+                    suggestion.style.display = "none";
+                }
+            });
+        }
+
+        function goToLink(link) {
+            window.location.href = link;
+        }
+
+        suggestionsList.addEventListener("click", (event) => {
+            if (event.target.tagName === "LI") {
+                const link = event.target.getAttribute("data-link");
+                goToLink(link);
+            }
+        });
 
            const carousel = document.querySelector('.carousel');
         const progressBar = document.querySelector('.progress');
