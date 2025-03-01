@@ -312,8 +312,19 @@ E também as suas anotações são visíveis somente pra você."
             </div>
                       <div id="lembretes" class="tab-content hidden">
             <div class="square">
+                  <div id="protecao">
+        <div class="senha-box">
+            <h2>Digite a Senha</h2>
+            <input type="password" id="senhaInput" placeholder="Digite sua senha">
+            <button onclick="verificarSenha()">Entrar</button>
+                  <button class="options-btn" onclick="removerSenha()">Remover
+                  Senha</button>
+
+        </div>
+    </div>
                 <h1>Lembretes</h1>
-                <h3>Organize sua agenda e faça uma anotação!</h3>
+                <h3>Em breve trabalharemos nisso, por favor aguarde será rápido.</h3>
+                
     
             </div>
             </div>
@@ -338,8 +349,9 @@ E também as suas anotações são visíveis somente pra você."
         </select>
         <br>
         <br>
-        <h4> Preferências e desempenho</h4>
+        <h4> Preferências e Privacidade</h4>
         <li id="toggleAnimations">Desativar Animações</li>
+       <li onclick="gerenciarSenha()">Gerenciar senha dos Lembretes</li>
             </div>
             </div>
           <div class="footer">

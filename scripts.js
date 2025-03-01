@@ -1,4 +1,81 @@
-  
+  function senhaSalva() {
+            return localStorage.getItem("senha") !== null;
+        }
+
+        function gerenciarSenha() {
+            let senhaAtual = localStorage.getItem("senha");
+            
+            if (senhaAtual) {
+                let antiga = prompt("Digite a senha atual para redefinir:");
+                if (antiga === senhaAtual) {
+                    let novaSenha = prompt("Digite a nova senha:");
+                    if (novaSenha) {
+                        localStorage.setItem("senha", novaSenha);
+                        alert("Senha redefinida com sucesso!");
+                    }
+                } else {
+                    alert("Senha incorreta!");
+                }
+            } else {
+                let novaSenha = prompt("Crie uma senha:");
+                if (novaSenha) {
+                    localStorage.setItem("senha", novaSenha);
+                    alert("Senha criada com sucesso! Reinicie o aplicativo.");
+                }
+            }
+        }
+
+        function verificarSenha() {
+            let senhaDigitada = document.getElementById("senhaInput").value;
+            let senhaCorreta = localStorage.getItem("senha");
+
+            if (senhaDigitada === senhaCorreta) {
+                document.getElementById("protecao").style.display = "none";
+                document.documentElement.style.overflow = ""; // Libera scroll ao desbloquear
+            } else {
+                alert("Senha incorreta!");
+            }
+        }
+
+        function removerSenha() {
+            let senhaAtual = localStorage.getItem("senha");
+            let senhaAntiga = prompt("Digite a senha atual para remover:");
+
+            if (senhaAntiga === senhaAtual) {
+                let confirmacao = confirm("Tem certeza que deseja remover a senha?");
+                if (confirmacao) {
+                    localStorage.removeItem("senha");
+                    alert("Senha removida com sucesso!");
+                    document.getElementById("protecao").style.display = "none";
+                    document.documentElement.style.overflow = ""; // Libera scroll
+                }
+            } else {
+                alert("Senha antiga incorreta!");
+            }
+        }
+
+        function esqueciASenha() {
+            let confirmacao = confirm("Você tem certeza de que deseja resetar tudo? Isso removerá a senha salva.");
+            if (confirmacao) {
+                // Remove o item de senha do localStorage
+                localStorage.removeItem("senha");
+
+                // Após remover, exibe mensagem de sucesso
+                alert("Todos os dados de senha foram removidos.");
+
+                // Fazendo desaparecer a tela de proteção
+                document.getElementById("protecao").style.display = "none";
+                document.documentElement.style.overflow = ""; // Libera scroll
+            }
+        }
+
+        // Se houver senha salva, ativa a tela de proteção
+        if (senhaSalva()) {
+            document.getElementById("protecao").style.display = "flex";
+            document.documentElement.style.overflow = "hidden"; // Evita movimento da tela
+        } else {
+            document.getElementById("protecao").style.display = "none";
+        }
 
 const toggleButton = document.getElementById('toggleAnimations');
 let animationsDisabled = localStorage.getItem('animationsDisabled') === 'true'; // Carrega o estado
