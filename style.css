@@ -1,5 +1,55 @@
 
+.square li {
+  background: blue;
+  padding: 5px;
+  text-align: center;
+  border-radius: 8px;
+}
 
+/* Classe que desativa animações e transições */
+.no-animations * {
+    animation: none !important;
+    transition: none !important;
+}
+       /* Rodapé fixo (apenas em dispositivos móveis) */
+        .footer {
+          backdrop-filter: blur(15px);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+                        background: linear-gradient(to bottom, #1c1c1c ,
+                        #1c1c1c29);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            display: none; /* Oculta o rodapé por padrão */
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 5px;
+            transition: 0.3s;
+        }
+
+        .footer a:hover {
+            color: blue;
+        }
+
+        .footer i {
+            font-size: 24px;
+        }
+
+        /* Exibe o rodapé apenas em dispositivos móveis */
+        @media screen and (max-width: 768px) {
+            .footer {
+                display: flex;
+            }
+        }
         .carousel-container {
             width: auto;
             overflow: hidden;

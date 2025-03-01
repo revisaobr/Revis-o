@@ -99,9 +99,7 @@ Revisão"> <!-- Autor do site -->
                 <!-- Adicione mais abas conforme necessário -->
             </div>
         </div>
-          <a href="#notepad" class="fixed-button hidden" id="scrollButton">
-    <i class="fas fa-pen"></i>
-  </a>
+
         <div class="content" id="content">
             <div id="inicio" class="tab-content hidden">
               <div id="welcome-div" class="welcome-container">
@@ -312,7 +310,49 @@ E também as suas anotações são visíveis somente pra você."
           <h1> Erro!</h1>
           <h2> parece que a página a qual você acessou não existe.</h2>
             </div>
-      
+                      <div id="lembretes" class="tab-content hidden">
+            <div class="square">
+                <h1>Lembretes</h1>
+                <h3>Organize sua agenda e faça uma anotação!</h3>
+    
+            </div>
+            </div>
+                                  <div id="configuracoes" class="tab-content hidden">
+            <div class="square">
+                <h1>Configurações e Preferências</h1>
+                <h3> Gerencie suas configurações do jeito que quer e deixe com
+                sua cara!</h3>
+                <br>
+                <br>
+                <h4>Status e Informações </h4>
+                 <p id="stats">Carregando...</p>
+          <br>
+          <br>
+          <h4> Configurações de Interface</h4>
+        <label for="fontSizeSelect">Escolha o tamanho da fonte:</label>
+        <select id="fontSizeSelect">
+            <option value="small">Pequena</option>
+            <option value="medium" selected>Média</option>
+            <option value="large">Grande</option>
+            <option value="xlarge">Extra Grande</option>
+        </select>
+        <br>
+        <br>
+        <h4> Preferências e desempenho</h4>
+        <li id="toggleAnimations">Desativar Animações</li>
+            </div>
+            </div>
+          <div class="footer">
+        <a href="#inicio" class="tab-link" title="Início">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="#lembretes" class="tab-link" title="Matérias">
+            <i class="fas fa-book"></i>
+        </a>
+        <a href="#configuracoes" class="tab-link" title="Outra Coisa">
+            <i class="fas fa-ellipsis-h"></i>
+        </a>
+    </div>
 
   
       <div class="like-button" id="likeButton">

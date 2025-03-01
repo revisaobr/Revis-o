@@ -1,3 +1,105 @@
+  
+
+const toggleButton = document.getElementById('toggleAnimations');
+let animationsDisabled = localStorage.getItem('animationsDisabled') === 'true'; // Carrega o estado
+
+// Aplica a classe se as animações estiverem desativadas
+if (animationsDisabled) {
+    document.body.classList.add('no-animations');
+    toggleButton.innerText = 'Ativar Animações';
+}
+
+toggleButton.addEventListener('click', () => {
+    animationsDisabled = !animationsDisabled;
+    localStorage.setItem('animationsDisabled', animationsDisabled); // Salva o estado
+
+    if (animationsDisabled) {
+        document.body.classList.add('no-animations');
+        toggleButton.innerText = 'Ativar Animações';
+    } else {
+        document.body.classList.remove('no-animations');
+        toggleButton.innerText = 'Desativar Animações';
+    }
+});
+
+  const fontSizeSelect = document.getElementById('fontSizeSelect');
+        
+        // Função para alterar o tamanho da fonte
+        function changeFontSize(size) {
+            switch(size) {
+                case 'small':
+                    document.body.style.fontSize = '12px';  // Fonte pequena
+                    break;
+                case 'medium':
+                    document.body.style.fontSize = '16px';  // Fonte média
+                    break;
+                case 'large':
+                    document.body.style.fontSize = '20px';  // Fonte grande
+                    break;
+                case 'xlarge':
+                    document.body.style.fontSize = '24px';  // Fonte extra grande
+                    break;
+            }
+
+            // Salvar a preferência no localStorage para persistir entre as sessões
+            localStorage.setItem('fontSize', size);
+        }
+
+        // Carregar a configuração salva de tamanho de fonte, se houver
+        const savedFontSize = localStorage.getItem('fontSize');
+        if (savedFontSize) {
+            fontSizeSelect.value = savedFontSize;
+            changeFontSize(savedFontSize);
+        }
+
+        // Atualizar o tamanho da fonte ao selecionar uma nova opção
+        fontSizeSelect.addEventListener('change', (event) => {
+            changeFontSize(event.target.value);
+        });
+  
+   // Obtém os dados do localStorage
+        let totalTime = parseInt(localStorage.getItem("totalTime")) || 0;
+        let visitCount = parseInt(localStorage.getItem("visitCount")) || 0;
+
+        // Incrementa o número de visitas
+        visitCount++;
+        localStorage.setItem("visitCount", visitCount);
+
+        // Tempo de entrada no site
+        let startTime = Date.now();
+
+        // Atualiza o tempo total a cada segundo
+        setInterval(() => {
+            let elapsedTime = Math.floor((Date.now() - startTime) / 1000); // Tempo decorrido em segundos
+            let currentTotal = totalTime + elapsedTime; // Tempo total atualizado
+            document.getElementById("stats").innerText = `Você tem ${formatTime(currentTotal)} total na plataforma e entrou ${visitCount} vezes!`;
+        }, 1000);
+
+        // Função para formatar o tempo corretamente
+        function formatTime(seconds) {
+            let days = Math.floor(seconds / 86400);
+            let hours = Math.floor((seconds % 86400) / 3600);
+            let minutes = Math.floor((seconds % 3600) / 60);
+            let secs = seconds % 60;
+
+            let timeStr = "";
+            if (days > 0) timeStr += `${days}d `;
+            if (hours > 0) timeStr += `${hours}h `;
+            if (minutes > 0) timeStr += `${minutes}m `;
+            timeStr += `${secs}s`;
+
+            return timeStr;
+        }
+
+        // Atualiza o tempo total quando o usuário sair
+        window.addEventListener("beforeunload", function () {
+            let elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+            localStorage.setItem("totalTime", totalTime + elapsedTime);
+        });
+        
+   
+   
+   
    document.addEventListener("DOMContentLoaded", function () {
             var hash = window.location.hash; // Obtém o ID da URL, ex: #sobre
 
