@@ -1,3 +1,103 @@
+        const editor = document.getElementById("editor");
+        const message = document.getElementById("message");
+        const lastModification = document.getElementById("last-modification");
+        const currentDate = document.getElementById("current-date");
+        const charCount = document.getElementById("char-count");
+        const autoSaveButton = document.getElementById("autoSaveButton");
+
+        let previousContent = ""; // Variável para armazenar o conteúdo anterior
+        let lastSavedTime = ""; // Variável para armazenar a data e hora do último salvamento
+        let autoSaveInterval = null; // Variável para armazenar o intervalo do salvamento automático
+        let autoSaveEnabled = localStorage.getItem('autoSaveEnabled') === 'true'; // Carrega o estado do salvamento automático
+
+        // Atualiza o número de caracteres enquanto o usuário digita
+        function updateCharCount() {
+            const textLength = editor.value.length;
+            charCount.innerText = `Caracteres: ${textLength}`;
+        }
+
+        // Salvar conteúdo no localStorage
+        function saveContent() {
+            const currentTime = new Date();
+            const formattedTime = currentTime.toLocaleString('pt-BR', { hour12: false });
+
+            // Salva o conteúdo e a data/hora no localStorage
+            localStorage.setItem('noteContent', editor.value);
+            localStorage.setItem('lastSavedTime', formattedTime);
+
+            previousContent = editor.value; // Armazenar o conteúdo ao salvar
+            lastSavedTime = formattedTime; // Armazenar a hora do último salvamento
+
+            if (!autoSaveEnabled) {
+                message.style.display = 'block';
+                setTimeout(() => message.style.display = 'none', 2000);
+            }
+
+            // Atualiza a exibição da data/hora da última modificação
+            lastModification.innerText = `Última modificação foi feita em: ${lastSavedTime}`;
+        }
+
+        // Restaurar conteúdo do localStorage
+        function restoreContent() {
+            const savedContent = localStorage.getItem('noteContent');
+            if (savedContent) {
+                editor.value = savedContent;
+                previousContent = savedContent; // Armazenando o conteúdo inicial
+            } else {
+                alert('Nenhuma anotação salva!');
+            }
+        }
+
+        // Apagar conteúdo
+        function clearContent() {
+            editor.value = '';
+            previousContent = ''; // Resetando o conteúdo anterior ao apagar
+        }
+
+        // Ativar/Desativar o salvamento automático
+        function toggleAutoSave() {
+            autoSaveEnabled = !autoSaveEnabled;
+            localStorage.setItem('autoSaveEnabled', autoSaveEnabled.toString());
+
+            if (autoSaveEnabled) {
+                autoSaveInterval = setInterval(saveContent, 5000); // Salva a cada 5 segundos
+                autoSaveButton.innerHTML = '<i class="fas fa-sync-alt"></i> Desativar Salvamento Automático'; // Muda o texto do botão
+            } else {
+                clearInterval(autoSaveInterval);
+                autoSaveInterval = null;
+                autoSaveButton.innerHTML = '<i class="fas fa-sync-alt"></i> Ativar Salvamento Automático'; // Muda o texto do botão
+            }
+        }
+
+        // Ao carregar a página, verifica se há conteúdo salvo e exibe
+        window.onload = function() {
+            const savedContent = localStorage.getItem('noteContent');
+            const savedTime = localStorage.getItem('lastSavedTime');
+
+            // Atualiza a data atual
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            currentDate.innerText = `Hoje: ${formattedDate}`;
+
+            if (savedContent) {
+                editor.value = savedContent;
+                previousContent = savedContent; // Armazenando o conteúdo inicial
+            }
+
+            if (savedTime) {
+                lastSavedTime = savedTime; // Armazenando a última hora salva
+                lastModification.innerText = `Última modificação foi feita em: ${lastSavedTime}`;
+            }
+
+            // Configura o estado do salvamento automático com base no localStorage
+            if (autoSaveEnabled) {
+                autoSaveInterval = setInterval(saveContent, 5000);
+                autoSaveButton.innerHTML = '<i class="fas fa-sync-alt"></i> Desativar Salvamento Automático';
+            } else {
+                autoSaveButton.innerHTML = '<i class="fas fa-sync-alt"></i> Ativar Salvamento Automático';
+            }
+        };
+
 function senhaSalva() {
             return localStorage.getItem("senha") !== null;
         }

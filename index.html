@@ -174,22 +174,7 @@ Revisão"> <!-- Autor do site -->
     </div>
     </div>
               
-              <div class="contener-main">
-        <p>⚠️ Em breve indisponível.</p>
-  <h5 data-title="Anotações" 
-      data-text="Escreva o que estiver em sua mente com o bloco das anotações.
- 
-Obs: As anotações ficaram salvas em seu aparelho. 
 
-E também as suas anotações são visíveis somente pra você." 
-      data-icon="question">Anotações</h5>
-      <h2> Bloco de Notas </h2>
-              <textarea id="notepad" placeholder="Escreva aqui..."></textarea><br>
-<button onclick="salvarAnotacoes()">Salvar</button>
-<button onclick="limparAnotacoes()">Excluir</button>
-                <button><label for="corTexto">Cor do texto</label>  </button>
-<input type="color" id="corTexto" onchange="mudarCorTexto()"> <br> <br>
-</div>
 
  
            </div>
@@ -312,7 +297,6 @@ E também as suas anotações são visíveis somente pra você."
           <h2> parece que a página a qual você acessou não existe.</h2>
             </div>
                       <div id="lembretes" class="tab-content hidden">
-            <div class="square">
                   <div id="protecao">
         <div class="senha-box">
             <h2>Digite a Senha</h2>
@@ -323,11 +307,26 @@ E também as suas anotações são visíveis somente pra você."
 
         </div>
     </div>
-                <h1>Lembretes</h1>
-                <h3>Em breve trabalharemos nisso, por favor aguarde será rápido.</h3>
-                
+    <div class="anotacoes">
+        <h1>Campo de Anotações</h1>
+        <div class="top-bar">
+            <div class="current-date" id="current-date"></div>
+            <div class="char-count" id="char-count">Caracteres: 0</div>
+        </div>
+        <div class="message" id="message">Conteúdo Salvo.</div>
+        <textarea class="editor" id="editor" placeholder="Comece a escrever..." oninput="updateCharCount()"></textarea>
+        <div class="controls">
+            <button onclick="clearContent()">
+                <i class="fas fa-eraser"></i> Apagar Tudo
+            </button>
+            <button onclick="saveContent()">
+                <i class="fas fa-save"></i> Salvar
+            </button>
+
+        </div>
+        <div class="last-modification" id="last-modification">Última modificação foi feita em: Não há modificações ainda</div>
+    </div>
     
-            </div>
             </div>
                                   <div id="configuracoes" class="tab-content hidden">
             <div class="square">
@@ -352,7 +351,11 @@ E também as suas anotações são visíveis somente pra você."
         <br>
         <h4> Preferências e Privacidade</h4>
         <li id="toggleAnimations">Desativar Animações</li>
-       <li onclick="gerenciarSenha()">Gerenciar senha dos Lembretes</li>
+       <li onclick="gerenciarSenha()">Gerenciar senha das anotações</li>
+                   <li id="autoSaveButton" onclick="toggleAutoSave()">
+                <i class="fas fa-sync-alt"></i> Ativar Salvamento Automático das
+                anotações.
+            </li>
             </div>
             </div>
           <div class="footer">
