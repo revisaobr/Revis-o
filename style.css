@@ -1,4 +1,36 @@
-         .top-bar {
+      .temp-div {
+margin: auto;
+     margin-bottom: 80px;
+      max-width: 400px;
+      padding: 20px;
+      background-color: #101010;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .temp-div.hide {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+
+        .confirm-btn {
+            margin-top: 15px;
+      padding: 10px 20px;
+      background:linear-gradient(to bottom, #501bda, #0b29dc);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+        }
+
+        .confirm-btn:hover {
+            background-color: #4e18e8;
+        }
+        .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;

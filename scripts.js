@@ -1,3 +1,19 @@
+
+document.addEventListener("DOMContentLoaded", function () {
+            if (localStorage.getItem("divOculta")) {
+                document.getElementById("tempDiv").style.display = "none";
+            }
+        });
+
+        function confirmar() {
+            const tempDiv = document.getElementById("tempDiv");
+            tempDiv.classList.add("hide");
+            setTimeout(() => {
+                tempDiv.style.display = "none";
+                localStorage.setItem("divOculta", "true");
+            }, 500);
+        }
+
         const editor = document.getElementById("editor");
         const message = document.getElementById("message");
         const lastModification = document.getElementById("last-modification");
