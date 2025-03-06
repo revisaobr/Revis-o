@@ -1,3 +1,49 @@
+            #output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #272727;
+            color: white;
+            border-radius: 8px;
+            min-height: 50px;
+            word-wrap: break-word;
+        }
+
+        #output a {
+            color: #90caf9;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px; /* Adiciona o espaço entre os links */
+        }
+
+        #output a:hover {
+            text-decoration: underline;
+        }
+
+        #links-section {
+            margin-top: 20px;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 8px;
+            display: none; /* Inicialmente escondido */
+        }
+
+        #links-section h3 {
+            color: #90caf9;
+            font-size: 16px;
+        }
+
+        #links-section ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #links-section ul li {
+            margin-bottom: 10px;
+        }
+        
+    
+  
       .temp-div {
 margin: auto;
      margin-bottom: 80px;
@@ -216,8 +262,9 @@ margin: auto;
         }
         
 .square li {
+   list-style: none;
   margin-bottom:8px ;
-  background: blue;
+  background: #212121;
   padding: 5px;
   text-align: center;
   border-radius: 8px;
@@ -267,58 +314,6 @@ margin: auto;
                 display: flex;
             }
         }
-        .carousel-container {
-            width: auto;
-            overflow: hidden;
-            position: relative;
-        }
-        .carousel {
-            display: flex;
-            transition: transform 0.4s ease-in-out;
-        }
-        .slide {
-            min-width: 100%;
-            text-align: center;
-        }
-        .slide img {
-          border-radius: 10px;
-            width: 100%;
-            height: 250px;
-            object-fit: fill;
-        }
-        .slide p {
-      
-            color: #ffffff;
-            padding: 5px;
-        }
-        .progress-bar {
-            width: 100%;
-            height: 5px;
-            background: #212121;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            overflow: hidden;
-        }
-.progress {
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    transition: transform 0.2s ease-in-out, opacity 0.5s ease-in-out;
-    background: linear-gradient(50deg, #0b29dc, purple,#9c23fb);
-    background-size: 200% 200%;
-    animation: gradientMove 3s infinite alternate;
-}
-
-@keyframes gradientMove {
-    0% {
-        background-position: left;
-    }
-    100% {
-        background-position: right;
-    }
-}
-
 
 .invisible {
       height: 1px; /* Tamanho mínimo */
@@ -604,9 +599,9 @@ backdrop-filter: blur(10px);
       margin-bottom: 50px;
 }
 .square h1 {
-  text-decoration: underline;
+
   margin-top: 0px;
-  text-shadow: 0px 0px 5px rgba(255,255,255,0.675); 
+  text-shadow: 0px 0px 5px rgba(255,255,255,0.911); 
   background:
   padding: 3px;
   border-radius: 5px;
@@ -1025,8 +1020,9 @@ button a.tab-link:hover {
 }
 
 .square h4 {
-  color: #3639f6;
+  color: #6744c2;
   margin-bottom: 15px;
+
 }
 
 .square img {
