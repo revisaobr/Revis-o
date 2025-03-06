@@ -21,7 +21,7 @@
 
         #links-section {
             margin-top: 20px;
-            background-color: #333;
+            background-color: #181818;
             padding: 10px;
             border-radius: 8px;
             display: none; /* Inicialmente escondido */
@@ -287,7 +287,7 @@ margin: auto;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 10px 0;
+            padding: 5px 0;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
             display: none; /* Oculta o rodapé por padrão */
         }
@@ -295,7 +295,7 @@ margin: auto;
         .footer a {
             color: white;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 15px;
             padding: 5px;
             transition: 0.3s;
         }
@@ -474,7 +474,7 @@ font-family: 'CircularStd', sans-serif;
             align-items: center;
             background: linear-gradient(to bottom, #1c1c1c , #1c1c1c29);
           margin-bottom: 40px;
-            padding: 10px;
+            padding: 8px;
             position: fixed;
             width: 100%;
             z-index: 1000;
@@ -485,8 +485,8 @@ font-family: 'CircularStd', sans-serif;
 
         .hamburger-menu {
     cursor: pointer;
-    margin-left: 3px;
-    margin-right: 10px;
+    margin-left: 7px;
+    margin-right: 5px;
     transition: transform 0.3s;
           z-index:999;
 }
@@ -511,7 +511,7 @@ font-family: 'CircularStd', sans-serif;
     transform: rotate(50deg) translate(-6px, -5px);
 }
         .navbar-title {
-            font-size: 1.5em;
+            font-size: 1.6em;
             color: white;
           
           
