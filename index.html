@@ -36,7 +36,7 @@ Revisão"> <!-- Autor do site -->
  
  
         <div class="navbar">
-          
+
             <div class="hamburger-menu" id="hamburgerMenu">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -60,17 +60,7 @@ Revisão"> <!-- Autor do site -->
         </div>
     </div>
           
-          <div class="menu" onclick="toggleMenu()">
-            
-    <span>&vellip;</span>
-    <ul id="menuItems">
-      <li onclick="checkVersions()">Procurar Atualizações</li>
-<li onclick="novoLink()">Compartilhar</li>
-       <li onclick="toggleTransitions()">Desativar transições</li>
 
-    </ul>        
-            
-  </div>
           
         </div>
         <div class="tabs-container" id="tabsContainer">
@@ -126,8 +116,10 @@ Revisão"> <!-- Autor do site -->
       atualizados." 
       data-icon="question">Destaques do momento</h5>
       
-  <h2> Conteúdos Pendentes</h2>
-<p> Atualmente você não tem nenhum conteúdo novo.</p>
+  <h2>Matérias</h2>
+  <p> Conteúdos de aula aqui.</p>
+<a href="#Fisica" class="tab-link">Conteúdo de Física (07/02/2025)</a>
+<a href="#historia" class="tab-link"> Conteúdo de História (07/02/2025)</a>
 </div>
 
 <div class="contener-main">
@@ -185,9 +177,11 @@ Revisão"> <!-- Autor do site -->
             </div>
           <div id="historia" class="tab-content hidden">
             <div class="square">
-                <h1>História</h1>
-                <h2>No momento essa página não possuí conteúdos ou foram
-                removidos.</h2>
+                <h1>História 07/02/2025</h1>
+              <h2> Período colonial (1500-1530)</h2>
+            <p>⮕  Portugal não gera fichação e nem   habitação  do  seu povo em terras brasileiras.</p>
+            <p>⮕ nos primeiros tempos Veloso passa as terras eram consideradas como de um (paraíso), justifique assim, não houve escravização indígena.</p>
+            <p>⮕ publicamente, a comunicação com o os índios foi aprimorando-se, e os portugueses cristãos catequizando e convencia os indígenas pela beleza terrestre, de como toda testa era obra de Deus </p>
             </div>
             </div>
           <div id="artes" class="tab-content hidden">
@@ -216,9 +210,17 @@ Revisão"> <!-- Autor do site -->
             <div id="Fisica" class="tab-content hidden">
                 
               <div class="square">
-                <h1>Física</h1>
-                <h2>No momento essa página não possuí conteúdos ou foram
-                removidos.</h2>
+                <h1>Física 07/02/2025</h1>
+                <h2> Continuação da aula passada</h2>
+                <h3>9) 15KM = 15.000M</h3>
+                <h3> 10) 2,5h = <u>8000</u>s</h3>
+                <h3> 11) 108KM/h = <u> 30</u>m/s</h3>
+                <h3> 12) 1.200g = <u>12</u>Kg</h3>
+                <h3>13) 4.000M = <u>4</u>KM</h3>
+                <h3> 14) 7.200s = <u>2</u>h</h3>
+                <h3> 15) 10m/s = <u>3.6</u>KM/h</h3>
+                <h3> 16) 3kg = <u>3.000</u>g</h3>
+                <h3></h3>
               </div>
             </div>
             <div id="educacaofinanceira" class="tab-content hidden">
@@ -335,6 +337,10 @@ Revisão"> <!-- Autor do site -->
 
             </div>
             </div>
+
+            
+            
+            
           <div class="footer">
         <a href="#inicio" class="tab-link" title="Início">
             <i class="fas fa-home"></i>
@@ -348,118 +354,14 @@ Revisão"> <!-- Autor do site -->
             <i class="fa-solid fa-gear"></i>
             Configurações
         </a>
+
     </div>
 
   
       <div class="like-button" id="likeButton">
 
   </div>
-    <script>
-            document.addEventListener("DOMContentLoaded", function () {
-            const editor = document.getElementById("editor");
-            const charCount = document.getElementById("char-count");
-            const lastModification = document.getElementById("last-modification");
-            const message = document.getElementById("message");
-            const currentDate = document.getElementById("current-date");
-            const output = document.getElementById("output");
-            const linksSection = document.getElementById("links-section");
-            const linksList = document.getElementById("links-list");
-
-            // Lista de dias da semana em português
-            const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
-
-            // Atualiza a data atual com o dia da semana
-            function updateCurrentDate() {
-                const now = new Date();
-                const diaSemana = diasSemana[now.getDay()];
-                const dataFormatada = now.toLocaleDateString("pt-BR");
-
-                currentDate.textContent = `Hoje é ${diaSemana}, ${dataFormatada}`;
-            }
-
-            updateCurrentDate(); // Chama ao carregar a página
-
-            // Carrega o conteúdo salvo e a última modificação
-            function loadContent() {
-                const savedContent = localStorage.getItem("anotacao");
-                const lastModified = localStorage.getItem("ultimaModificacao");
-
-                if (savedContent) {
-                    editor.value = savedContent;
-                    updateCharCount();
-                    detectLinks(savedContent);  // Detecta links ao carregar conteúdo salvo
-                }
-                if (lastModified) {
-                    lastModification.textContent = `Última modificação foi feita em: ${lastModified}`;
-                }
-            }
-
-            loadContent(); // Carrega os dados ao iniciar
-
-            // Salvar conteúdo e registrar última modificação
-            function saveContent() {
-                const content = editor.value;
-                localStorage.setItem("anotacao", content);
-
-                const now = new Date();
-                const diaSemana = diasSemana[now.getDay()];
-                const dataFormatada = now.toLocaleString("pt-BR");
-
-                localStorage.setItem("ultimaModificacao", `${diaSemana}, ${dataFormatada}`);
-                lastModification.textContent = `Última modificação foi feita em: ${diaSemana}, ${dataFormatada}`;
-
-                // Exibir mensagem temporária de "Salvo"
-                message.style.display = "block";
-                setTimeout(() => {
-                    message.style.display = "none";
-                }, 2000);
-
-                detectLinks(content);  // Detecta links ao salvar o conteúdo
-            }
-
-            // Atualiza a contagem de caracteres
-            function updateCharCount() {
-                charCount.textContent = `Caracteres: ${editor.value.length}`;
-            }
-
-            // Limpa o conteúdo da área de anotações
-            function clearContent() {
-                if (confirm("Tem certeza que deseja apagar tudo?")) {
-                    editor.value = "";
-                    updateCharCount();
-                    saveContent(); // Salva o estado vazio
-                }
-            }
-
-            // Detecta e exibe links no conteúdo
-            function detectLinks(text) {
-                const linkPattern = /(https?:\/\/[^\s]+)/g;
-                const links = text.match(linkPattern);
-
-                if (links) {
-                    linksSection.style.display = "block"; // Exibe a barrinha de links
-                    linksList.innerHTML = ''; // Limpa a lista de links
-
-                    links.forEach(link => {
-                        const listItem = document.createElement("li");
-                        listItem.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
-                        linksList.appendChild(listItem);
-                    });
-                } else {
-                    linksSection.style.display = "none"; // Oculta a barrinha se não houver links
-                }
-            }
-
-            // Adiciona eventos aos botões
-            window.saveContent = saveContent;
-            window.clearContent = clearContent;
-            editor.addEventListener("input", function () {
-                updateCharCount();
-                detectLinks(editor.value);  // Detecta links enquanto o usuário digita
-            });
-        });
-    </script>
-
+    
   
 
   

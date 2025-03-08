@@ -1,3 +1,5 @@
+
+          
             #output {
             margin-top: 20px;
             padding: 10px;
@@ -715,7 +717,7 @@ backdrop-filter: blur(10px);
           padding: 18px;
           border: 1px solid rgba(6,0,15,0.18);
     background: #111111;
-    box-shadow: 1px 1px 1px 4px rgb(15,15,15);
+    box-shadow: 1px 1px 1px 4px rgba(15,15,15,0.521);
     max-width: 800px;
           margin-bottom: 50px;
         }
@@ -949,10 +951,10 @@ button a.tab-link:hover {
       color: white;
       font-size: 15px;
       padding: 10px 20px;
-      background: linear-gradient(100deg, #0b29dc, #2624c4, #731adf, #8948ec);
+      background: linear-gradient(500deg, #061c9b, #2624c4, #4e1298, #4d179f);
       background-size: 200% 200%; /* Expande para a animação */
-      animation: gradient-animation 6s infinite linear; /* Animação infinita */
-      transition: transform 0.5s ease-in-out;
+      animation: gradient-animation 3s infinite linear; /* Animação infinita */
+      transition: transform 0.4s ease-in-out;
       cursor: pointer;
     }
     
@@ -964,10 +966,7 @@ button a.tab-link:hover {
     }
 
 .contener-main a:hover {
-  
-  border: 1px solid rgba(255,255,255,0.183);
-  transition-duration: 0.8s;
-  color: white;
+
 }
 
 #main-caixa h4 {

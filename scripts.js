@@ -1,4 +1,75 @@
 
+// Função para carregar as informações salvas do navegador
+function loadProfile() {
+    const profileName = localStorage.getItem('name');
+    const profileAge = localStorage.getItem('age');
+    const profilePicture = localStorage.getItem('picture');
+
+    if (profileName) {
+        document.getElementById('navbar-name').textContent = profileName;
+        document.getElementById('full-name').value = profileName;
+    }
+
+    if (profileAge) {
+        document.getElementById('age').value = profileAge;
+    }
+
+    if (profilePicture) {
+        document.getElementById('navbar-profile-picture').src = profilePicture;
+        document.getElementById('profile-picture-preview').src = profilePicture;
+    }
+}
+
+// Função para salvar o perfil no localStorage
+function saveProfile() {
+    const name = document.getElementById('full-name').value.trim();
+    const age = document.getElementById('age').value.trim();
+    const picture = document.getElementById('profile-picture-preview').src;
+
+    if (name && age) {
+        localStorage.setItem('name', name);
+        localStorage.setItem('age', age);
+        if (picture && picture.startsWith('data:image')) { // Evita salvar placeholder
+            localStorage.setItem('picture', picture);
+        }
+
+        document.getElementById('navbar-name').textContent = name;
+        document.getElementById('navbar-profile-picture').src = picture;
+
+        alert('Perfil salvo com sucesso!');
+    } else {
+        alert('Por favor, preencha todos os campos.');
+    }
+}
+
+// Função para exibir a foto de perfil ao selecionar um arquivo
+function displayProfilePicture(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const image = e.target.result;
+        document.getElementById('navbar-profile-picture').src = image;
+        document.getElementById('profile-picture-preview').src = image;
+    };
+
+    reader.readAsDataURL(file);
+}
+
+// Carregar as informações ao carregar a página
+window.onload = loadProfile;
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
             if (localStorage.getItem("divOculta")) {
                 document.getElementById("tempDiv").style.display = "none";
