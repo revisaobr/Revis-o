@@ -1,875 +1,161 @@
+   // --- 1. LÓGICA DE TEMPO REAL (Simulada) ---
 
-// Função para carregar as informações salvas do navegador
-function loadProfile() {
-    const profileName = localStorage.getItem('name');
-    const profileAge = localStorage.getItem('age');
-    const profilePicture = localStorage.getItem('picture');
+function formatDateBR(date) {
+  const d = new Date(date);
 
-    if (profileName) {
-        document.getElementById('navbar-name').textContent = profileName;
-        document.getElementById('full-name').value = profileName;
-    }
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  const hour = String(d.getHours()).padStart(2, '0');
+  const minute = String(d.getMinutes()).padStart(2, '0');
 
-    if (profileAge) {
-        document.getElementById('age').value = profileAge;
-    }
-
-    if (profilePicture) {
-        document.getElementById('navbar-profile-picture').src = profilePicture;
-        document.getElementById('profile-picture-preview').src = profilePicture;
-    }
+  return `${day}/${month}/${year} às ${hour}:${minute}`;
 }
 
-// Função para salvar o perfil no localStorage
-function saveProfile() {
-    const name = document.getElementById('full-name').value.trim();
-    const age = document.getElementById('age').value.trim();
-    const picture = document.getElementById('profile-picture-preview').src;
+function timeAgo(date) {
+  const now = new Date();
+  const past = new Date(date);
+  const seconds = Math.floor((now - past) / 1000);
 
-    if (name && age) {
-        localStorage.setItem('name', name);
-        localStorage.setItem('age', age);
-        if (picture && picture.startsWith('data:image')) { // Evita salvar placeholder
-            localStorage.setItem('picture', picture);
-        }
+  if (seconds < 10) return 'agora mesmo';
+  if (seconds < 60) return `há ${seconds} segundos`;
 
-        document.getElementById('navbar-name').textContent = name;
-        document.getElementById('navbar-profile-picture').src = picture;
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `há ${minutes} minuto${minutes !== 1 ? 's' : ''}`;
 
-        alert('Perfil salvo com sucesso!');
-    } else {
-        alert('Por favor, preencha todos os campos.');
-    }
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `há ${hours} hora${hours !== 1 ? 's' : ''}`;
+
+  const days = Math.floor(hours / 24);
+  if (days < 30) return `há ${days} dia${days !== 1 ? 's' : ''}`;
+
+  const months = Math.floor(days / 30);
+  if (months < 12) return `há ${months} mês${months !== 1 ? 'es' : ''}`;
+
+  const years = Math.floor(months / 12);
+  return `há ${years} ano${years !== 1 ? 's' : ''}`;
 }
 
-// Função para exibir a foto de perfil ao selecionar um arquivo
-function displayProfilePicture(event) {
-    const file = event.target.files[0];
-    if (!file) return;
+function updateTimes() {
+  document.querySelectorAll('.time-ago').forEach(el => {
+    const date = el.getAttribute('data-time');
 
-    const reader = new FileReader();
-    reader.onload = function (e) {
-        const image = e.target.result;
-        document.getElementById('navbar-profile-picture').src = image;
-        document.getElementById('profile-picture-preview').src = image;
-    };
+    const fixedDate = formatDateBR(date);
+    const relativeTime = timeAgo(date);
 
-    reader.readAsDataURL(file);
-}
-
-// Carregar as informações ao carregar a página
-window.onload = loadProfile;
-
-
-
-
-
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-            if (localStorage.getItem("divOculta")) {
-                document.getElementById("tempDiv").style.display = "none";
-            }
-        });
-
-        function confirmar() {
-            const tempDiv = document.getElementById("tempDiv");
-            tempDiv.classList.add("hide");
-            setTimeout(() => {
-                tempDiv.style.display = "none";
-                localStorage.setItem("divOculta", "true");
-            }, 500);
-        }
-function senhaSalva() {
-            return localStorage.getItem("senha") !== null;
-        }
-
-        function bloquearRolagem() {
-            document.getElementById("protecao").classList.add("ativo");
-        }
-
-        function liberarRolagem() {
-            document.getElementById("protecao").classList.remove("ativo");
-        }
-
-        function mostrarProtecao() {
-            bloquearRolagem();
-        }
-
-        function esconderProtecao() {
-            liberarRolagem();
-        }
-
-        function gerenciarSenha() {
-            let senhaAtual = localStorage.getItem("senha");
-
-            if (senhaAtual) {
-                let antiga = prompt("Digite a senha atual para redefinir:");
-                if (antiga === senhaAtual) {
-                    let novaSenha = prompt("Digite a nova senha:");
-                    if (novaSenha) {
-                        localStorage.setItem("senha", novaSenha);
-                        alert("Senha redefinida com sucesso!");
-                    }
-                } else {
-                    alert("Senha incorreta!");
-                }
-            } else {
-                let novaSenha = prompt("Crie uma senha:");
-                if (novaSenha) {
-                    localStorage.setItem("senha", novaSenha);
-                    alert("Senha criada com sucesso! Reinicie o aplicativo.");
-                }
-            }
-        }
-
-        function verificarSenha() {
-            let senhaDigitada = document.getElementById("senhaInput").value;
-            let senhaCorreta = localStorage.getItem("senha");
-
-            if (senhaDigitada === senhaCorreta) {
-                esconderProtecao();
-            } else {
-                alert("Senha incorreta!");
-            }
-        }
-
-        function removerSenha() {
-            let senhaAtual = localStorage.getItem("senha");
-            let senhaAntiga = prompt("Digite a senha atual para remover:");
-
-            if (senhaAntiga === senhaAtual) {
-                let confirmacao = confirm("Tem certeza que deseja remover a senha?");
-                if (confirmacao) {
-                    localStorage.removeItem("senha");
-                    alert("Senha removida com sucesso!");
-                    esconderProtecao();
-                }
-            } else {
-                alert("Senha incorreta!");
-            }
-        }
-
-        function esqueciASenha() {
-            let confirmacao = confirm("Você tem certeza de que deseja resetar tudo? Isso removerá a senha salva.");
-            if (confirmacao) {
-                localStorage.removeItem("senha");
-                alert("Todos os dados de senha foram removidos.");
-                esconderProtecao();
-            }
-        }
-
-        // Se houver senha salva, ativa a tela de proteção
-        if (senhaSalva()) {
-            mostrarProtecao();
-        } else {
-            esconderProtecao();
-        }
-
-const toggleButton = document.getElementById('toggleAnimations');
-let animationsDisabled = localStorage.getItem('animationsDisabled') === 'true'; // Carrega o estado
-
-// Aplica a classe se as animações estiverem desativadas
-if (animationsDisabled) {
-    document.body.classList.add('no-animations');
-    toggleButton.innerText = 'Ativar Animações';
-}
-
-toggleButton.addEventListener('click', () => {
-    animationsDisabled = !animationsDisabled;
-    localStorage.setItem('animationsDisabled', animationsDisabled); // Salva o estado
-
-    if (animationsDisabled) {
-        document.body.classList.add('no-animations');
-        toggleButton.innerText = 'Ativar Animações';
-    } else {
-        document.body.classList.remove('no-animations');
-        toggleButton.innerText = 'Desativar Animações';
-    }
-});
-
-  const fontSizeSelect = document.getElementById('fontSizeSelect');
-        
-        // Função para alterar o tamanho da fonte
-        function changeFontSize(size) {
-            switch(size) {
-                case 'small':
-                    document.body.style.fontSize = '12px';  // Fonte pequena
-                    break;
-                case 'medium':
-                    document.body.style.fontSize = '16px';  // Fonte média
-                    break;
-                case 'large':
-                    document.body.style.fontSize = '20px';  // Fonte grande
-                    break;
-                case 'xlarge':
-                    document.body.style.fontSize = '24px';  // Fonte extra grande
-                    break;
-            }
-
-            // Salvar a preferência no localStorage para persistir entre as sessões
-            localStorage.setItem('fontSize', size);
-        }
-
-        // Carregar a configuração salva de tamanho de fonte, se houver
-        const savedFontSize = localStorage.getItem('fontSize');
-        if (savedFontSize) {
-            fontSizeSelect.value = savedFontSize;
-            changeFontSize(savedFontSize);
-        }
-
-        // Atualizar o tamanho da fonte ao selecionar uma nova opção
-        fontSizeSelect.addEventListener('change', (event) => {
-            changeFontSize(event.target.value);
-        });
-  
-   // Obtém os dados do localStorage
-        let totalTime = parseInt(localStorage.getItem("totalTime")) || 0;
-        let visitCount = parseInt(localStorage.getItem("visitCount")) || 0;
-
-        // Incrementa o número de visitas
-        visitCount++;
-        localStorage.setItem("visitCount", visitCount);
-
-        // Tempo de entrada no site
-        let startTime = Date.now();
-
-        // Atualiza o tempo total a cada segundo
-        setInterval(() => {
-            let elapsedTime = Math.floor((Date.now() - startTime) / 1000); // Tempo decorrido em segundos
-            let currentTotal = totalTime + elapsedTime; // Tempo total atualizado
-            document.getElementById("stats").innerText = `Você tem ${formatTime(currentTotal)} total na plataforma e entrou ${visitCount} vezes!`;
-        }, 1000);
-
-        // Função para formatar o tempo corretamente
-        function formatTime(seconds) {
-            let days = Math.floor(seconds / 86400);
-            let hours = Math.floor((seconds % 86400) / 3600);
-            let minutes = Math.floor((seconds % 3600) / 60);
-            let secs = seconds % 60;
-
-            let timeStr = "";
-            if (days > 0) timeStr += `${days}d `;
-            if (hours > 0) timeStr += `${hours}h `;
-            if (minutes > 0) timeStr += `${minutes}m `;
-            timeStr += `${secs}s`;
-
-            return timeStr;
-        }
-
-        // Atualiza o tempo total quando o usuário sair
-        window.addEventListener("beforeunload", function () {
-            let elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-            localStorage.setItem("totalTime", totalTime + elapsedTime);
-        });
-        
-   
-   
-   
-   document.addEventListener("DOMContentLoaded", function () {
-            var hash = window.location.hash; // Obtém o ID da URL, ex: #sobre
-
-            if (hash) { 
-                var elemento = document.querySelector(hash); // Tenta encontrar o elemento
-                if (!elemento) { // Se não encontrar, redireciona para #erro
-                    window.location.hash = "#erro";
-                }
-            }
-        });
-
-  
-  
-  function fecharNotificacao(element) {
-    element.style.display = 'none'; // Oculta o elemento clicado
-}
-// Script para abrir todos os links em uma nova aba
-document.addEventListener("DOMContentLoaded", function() {
-    // Seleciona todos os links na página
-    const links = document.querySelectorAll('a');
-
-    // Percorre todos os links e define o target como _blank
-    links.forEach(function(link) {
-        link.setAttribute('target', '_blank');
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const h5Elements = document.querySelectorAll('.contener-main h5');
-
-    h5Elements.forEach(h5 => {
-      h5.addEventListener('click', () => {
-        const title = h5.getAttribute('data-title') || 'Erro!';
-        const text = h5.getAttribute('data-text') || 'Isso pode ser um erro.';
-        const icon = h5.getAttribute('data-icon') || 'info';
-
-        Swal.fire({
-          title: title,
-          text: text,
-          icon: icon
-        });
-      });
-    });
+    el.querySelector('.time-text').textContent =
+      `${fixedDate} • ${relativeTime}`;
   });
-  
- const likeButton = document.getElementById('likeButton');
-    const floatingHearts = document.getElementById('floatingHearts');
-    let heartInterval;
-    const isLikedKey = 'isLiked';
-
-    // Verifica o estado da curtida no armazenamento local
-    if (localStorage.getItem(isLikedKey) === 'true') {
-      likeButton.classList.add('liked');
-    }
-
-    likeButton.addEventListener('click', () => {
-      const isLiked = likeButton.classList.toggle('liked');
-      // Salva o estado da curtida no armazenamento local
-      localStorage.setItem(isLikedKey, isLiked);
-      if (isLiked) {
-        spawnHearts(10); // Gera 10 corações ao curtir
-      }
-    });
-
-    likeButton.addEventListener('mousedown', () => {
-      heartInterval = setInterval(() => spawnHearts(1), 200);
-    });
-
-    likeButton.addEventListener('mouseup', () => {
-      clearInterval(heartInterval);
-    });
-
-    likeButton.addEventListener('mouseleave', () => {
-      clearInterval(heartInterval);
-    });
-
-    function spawnHearts(count) {
-      for (let i = 0; i < count; i++) {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = `${Math.random() * 100}%`; // Gera corações em posições aleatórias
-        heart.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        `;
-        floatingHearts.appendChild(heart);
-
-        // Remove o coração após 2 segundos
-        setTimeout(() => {
-          heart.remove();
-        }, 2000);
-      }
-    }
-        // Verifica se o usuário já clicou em "Entendi"
-    if (localStorage.getItem('welcomeDismissed') === 'true') {
-      document.getElementById('welcome-div').style.display = 'none';
-    }
-
-    // Função para fechar a div e salvar no localStorage
-    document.getElementById('close-button').addEventListener('click', function () {
-      document.getElementById('welcome-div').style.display = 'none';
-      localStorage.setItem('welcomeDismissed', 'true');
-    });
-        const button = document.getElementById('scrollButton');
-    const inicioTab = document.getElementById('inicio');
-    const notepad = document.getElementById('notepad');
-
-    function toggleButtonVisibility() {
-      const notepadVisible = notepad.getBoundingClientRect().top < window.innerHeight &&
-                             notepad.getBoundingClientRect().bottom >= 0;
-      const inicioVisible = !inicioTab.classList.contains('hidden');
-      
-      // Exibe ou esconde o botão com base na visibilidade
-      if (inicioVisible && !notepadVisible) {
-        button.classList.remove('hidden');
-      } else {
-        button.classList.add('hidden');
-      }
-    }
-
-    // Monitorar a rolagem e alternar a visibilidade do botão
-    window.addEventListener('scroll', toggleButtonVisibility);
-
-    // Alternar a exibição do botão quando as abas mudarem (se necessário)
-    document.addEventListener('DOMContentLoaded', toggleButtonVisibility);
-    function isMobileDevice() {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-
-    // Verificar se é um dispositivo móvel ao carregar a página
-    document.addEventListener('DOMContentLoaded', () => {
-      if (!isMobileDevice()) {
-        button.style.display = 'none'; // Esconde o botão se não for móvel
-      } else {
-        toggleButtonVisibility(); // Exibe conforme a visibilidade da área
-        window.addEventListener('scroll', toggleButtonVisibility);
-      }
-    });
-    
-    
-    
-    // Função para salvar as informações de acesso
-function salvarAcesso() {
-    // Pega a data atual
-    const hoje = new Date().toISOString().split('T')[0]; // Apenas a data (YYYY-MM-DD)
-    
-    // Recupera os dados do localStorage ou inicia com valor padrão
-    let acessos = JSON.parse(localStorage.getItem('acessos')) || { datas: [], tempoTotal: 0, numAcessos: 0 };
-
-    // Adiciona a data se for um dia novo
-    if (!acessos.datas.includes(hoje)) {
-        acessos.datas.push(hoje);
-    }
-
-    // Incrementa o número de acessos
-    acessos.numAcessos++;
-
-    // Salva de volta no localStorage
-    localStorage.setItem('acessos', JSON.stringify(acessos));
 }
 
-// Função para iniciar o cálculo do tempo na plataforma
-let inicioSessao;
-function iniciarSessao() {
-    inicioSessao = Date.now();
-}
+updateTimes();
+setInterval(updateTimes, 1000);
 
-// Função para finalizar o cálculo do tempo e atualizar o tempo médio
-function finalizarSessao() {
-    const tempoSessao = Date.now() - inicioSessao; // Tempo em milissegundos
-    
-    // Recupera os dados do localStorage
-    let acessos = JSON.parse(localStorage.getItem('acessos')) || { datas: [], tempoTotal: 0, numAcessos: 0 };
-    
-    // Atualiza o tempo total e salva
-    acessos.tempoTotal += tempoSessao;
-    localStorage.setItem('acessos', JSON.stringify(acessos));
-}
 
-// Função para calcular e mostrar o tempo médio na plataforma
-function calcularTempoMedio() {
-    let acessos = JSON.parse(localStorage.getItem('acessos'));
-    
-    if (acessos && acessos.numAcessos > 0) {
-        let tempoMedio = acessos.tempoTotal / acessos.numAcessos; // em ms
-        let segundos = Math.floor(tempoMedio / 1000) % 60;
-        let minutos = Math.floor(tempoMedio / 1000 / 60);
+// --- 2. DARK MODE (Com salvamento automático) ---
+const themeBtn = document.getElementById('theme-toggle');
+const themeIcon = themeBtn.querySelector('i');
 
-        console.log(`Tempo médio na plataforma: ${minutos} minutos e ${segundos} segundos.`);
+// Função para aplicar o tema visualmente
+function setDarkMode(isDark) {
+    if (isDark) {
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.replace('ph-moon', 'ph-sun');
+        localStorage.setItem('theme', 'dark');
     } else {
-        console.log("Nenhum acesso registrado.");
+        document.body.classList.remove('dark-mode');
+        themeIcon.classList.replace('ph-sun', 'ph-moon');
+        localStorage.setItem('theme', 'light');
     }
 }
 
-// Executa o registro de acesso e inicia a sessão ao carregar a página
-window.addEventListener('load', () => {
-    salvarAcesso();
-    iniciarSessao();
+// Verifica se já existe uma preferência salva ao abrir o site
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+    setDarkMode(true);
+}
+
+// Evento de clique no botão de tema
+themeBtn.addEventListener('click', () => {
+    const isCurrentlyDark = document.body.classList.contains('dark-mode');
+    setDarkMode(!isCurrentlyDark); // Inverte o estado atual
 });
 
-// Finaliza a sessão ao sair da página
-window.addEventListener('beforeunload', () => {
-    finalizarSessao();
-    calcularTempoMedio();
-});
-const searchInput = document.getElementById("search-bar");
-        const searchPopup = document.getElementById("search-popup");
-        const suggestionsList = document.getElementById("suggestions-list");
+// --- 3. MENU MOBILE ---
+// --- 3. MENU MOBILE ---
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const hamburgerIcon = hamburger.querySelector('i');
 
-        function showPopup() {
-            searchPopup.classList.add("visible");
-        }
-
-        function hidePopup() {
-            setTimeout(() => {
-                searchPopup.classList.remove("visible");
-            }, 200);
-        }
-
-        function filterResults() {
-            const query = searchInput.value.toLowerCase().trim();
-            const allSuggestions = suggestionsList.querySelectorAll("li");
-            document.getElementById("initial-suggestions").style.display = query ? "none" : "flex";
-            
-            allSuggestions.forEach(suggestion => {
-                if (suggestion.textContent.toLowerCase().includes(query)) {
-                    suggestion.style.display = "block";
-                } else {
-                    suggestion.style.display = "none";
-                }
-            });
-        }
-
-        function goToLink(link) {
-            window.location.href = link;
-        }
-
-        suggestionsList.addEventListener("click", (event) => {
-            if (event.target.tagName === "LI") {
-                const link = event.target.getAttribute("data-link");
-                goToLink(link);
-            }
-        });
-
-           
-const overlay = document.getElementById('overlay');
-document.addEventListener('DOMContentLoaded', function() {
-    // Esconde a tela de carregamento e exibe o conteúdo principal após 2 segundos
-    setTimeout(() => {
-        document.querySelector('.splash-screen').style.display = 'block';
-        document.querySelector('.main-content').style.display = 'block';
-    }, 0000);
-
-    
-    
-             function updateTimer(timerElement) {
-            const lastUpdate = new Date(timerElement.getAttribute('data-update-time'));
-            const now = new Date();
-            const diff = now - lastUpdate;
-
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-            let timeString = '';
-            if (days > 0) {
-                timeString = `${days} dia${days > 1 ? 's' : ''}`;
-            } else if (hours > 0) {
-                timeString = `${hours} hora${hours > 1 ? 's' : ''}`;
-            } else {
-                timeString = `${minutes} minuto${minutes > 1 ? 's' : ''}`;
-            }
-
-            timerElement.innerText = timeString;
-        }
-
-        function initializeTimers() {
-            const timers = document.querySelectorAll('.timer');
-            timers.forEach(timerElement => {
-                updateTimer(timerElement);
-                setInterval(() => updateTimer(timerElement), 60000); // Atualiza o timer a cada minuto
-            });
-        }
-
-        initializeTimers(); // Inicializa os timers
-    // Alterna o menu de abas ao clicar no ícone de menu
-    hamburgerMenu.addEventListener('click', function() {
-        const isOpen = tabsContainer.style.transform === 'translateX(0%)';
-        
-        tabsContainer.style.transform = isOpen ? 'translateX(-100%)' : 'translateX(0%)';
-        hamburgerMenu.classList.toggle('open', !isOpen);
-    });
-
-    // Fecha o menu de abas ao clicar fora dele
-    document.addEventListener('click', function(event) {
-        if (!tabsContainer.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-            tabsContainer.style.transform = 'translateX(-100%)';
-            hamburgerMenu.classList.remove('open');
-            
-        }
-    });
-
-    const tabLinks = document.querySelectorAll('.tab-link');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            // Fecha o menu de abas ao clicar, tocar ou deslizar fora dele
-document.addEventListener('click', closeMenu);
-document.addEventListener('touchstart', closeMenu);
-document.addEventListener('touchmove', closeMenu);
-
-function closeMenu(event) {
-    if (!tabsContainer.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-        tabsContainer.style.transform = 'translateX(-100%)';
-        hamburgerMenu.classList.remove('open');
-    }
-}
-
-            
-            // Atualiza o estado das abas
-            tabLinks.forEach(link => link.classList.remove('active'));
-            this.classList.add('active');
-
-            // Transição para ocultar todas as abas
-            tabContents.forEach(content => {
-                content.classList.add('hidden');
-                setTimeout(() => content.classList.remove('active'), 300);
-            });
-
-            // Mostra a aba selecionada com transição
-            const tabContent = document.querySelector(this.getAttribute('href'));
-            setTimeout(() => {
-                tabContent.classList.add('active');
-                tabContent.classList.remove('hidden');
-            }, 300);
-
-            // Adiciona estado ao histórico
-            const tabId = this.getAttribute('href').substring(1);
-            history.pushState({ tabId: tabId }, null, `#${tabId}`);
-
-            // Fecha o menu de abas e redefine o ícone de menu
-            tabsContainer.style.transform = 'translateX(-100%)';
-            hamburgerMenu.classList.remove('open');
-        });
-    });
-
-    // Manipula o botão de voltar do navegador
-    window.addEventListener('popstate', function(event) {
-        if (event.state && event.state.tabId) {
-            const tabLink = document.querySelector(`a[href="#${event.state.tabId}"]`);
-            if (tabLink) {
-                tabLink.click();
-            }
-        }
-    });
-
-    // Seleciona automaticamente a primeira aba ou a aba do hash da URL
-    if (tabLinks.length > 0) {
-        const initialTab = window.location.hash ? window.location.hash.substring(1) : tabLinks[0].getAttribute('href').substring(1);
-        const initialTabLink = document.querySelector(`a[href="#${initialTab}"]`);
-        if (initialTabLink) {
-            initialTabLink.click();
-        } else {
-            tabLinks[0].click();
-        }
-    }
-});
-var acc = document.getElementsByClassName("accordion");
-for (var i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-            panel.classList.remove("show");
-        } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-            panel.classList.add("show");
-        }
-    });
-}
-
-
-
-
-function goToTab(tabId) {
-    const targetTab = document.querySelector(`#${tabId}`);
-    targetTab.scrollIntoView({ behavior: 'smooth' });
-}
-
-function toggleMenu() {
-    var menu = document.getElementById('menuItems');
-    menu.style.display = (menu.style.display === 'block' ? 'none' : 'block');
-}
-
-function toggleTransitions() {
-    var body = document.body;
-    if (body.classList.contains('no-transitions')) {
-        body.classList.remove('no-transitions');
-        localStorage.setItem('transitionsDisabled', 'false');
+// Função centralizada para abrir/fechar e travar o scroll
+function toggleMenu(isOpen) {
+    if (isOpen) {
+        navMenu.classList.add('active');
+        hamburgerIcon.classList.replace('ph-list', 'ph-x');
+        document.body.style.overflow = 'hidden'; // TRAVA O ARRASTE/SCROLL
     } else {
-        body.classList.add('no-transitions');
-        localStorage.setItem('transitionsDisabled', 'true');
-    }
-    updateToggleText();
-}
-
-function updateToggleText() {
-    var toggleText = document.querySelector('li[onclick="toggleTransitions()"]');
-    if (localStorage.getItem('transitionsDisabled') === 'true') {
-        toggleText.textContent = 'Ativar transições';
-    } else {
-        toggleText.textContent = 'Desativar transições';
+        navMenu.classList.remove('active');
+        hamburgerIcon.classList.replace('ph-x', 'ph-list');
+        document.body.style.overflow = 'auto';   // LIBERA O ARRASTE/SCROLL
     }
 }
 
-// Fechar o menu ao clicar em qualquer parte da tela
-document.addEventListener('click', function(event) {
-    var menu = document.getElementById('menuItems');
-    if (event.target.closest('.menu') === null && menu.style.display === 'block') {
-        menu.style.display = 'none';
+// Alternar menu ao clicar no botão
+hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navMenu.classList.contains('active');
+    toggleMenu(!isOpen);
+});
+
+// Fechar ao tocar fora
+document.addEventListener('click', (e) => {
+    if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        toggleMenu(false);
     }
 });
-// Função para carregar configurações salvas
-window.onload = function() {
-    var notasSalvas = localStorage.getItem('anotacoes');
-    if (notasSalvas) {
-        document.getElementById('notepad').value = notasSalvas;
+
+// Lógica de Swipe para fechar
+let touchStartX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+document.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].screenX;
+    const swipeDistance = touchEndX - touchStartX;
+
+    // Se o menu estiver ativo e o usuário deslizar para a esquerda (<-)
+    if (navMenu.classList.contains('active') && swipeDistance < -50) {
+        toggleMenu(false);
     }
-    
-    var corSalva = localStorage.getItem('corTexto');
-    if (corSalva) {
-        document.getElementById('notepad').style.color = corSalva;
-        document.getElementById('corTexto').value = corSalva;
-    }
-    
-    var fonteSalva = localStorage.getItem('fonteSelecionada');
-    if (fonteSalva) {
-        document.getElementById('notepad').style.fontFamily = fonteSalva;
-        document.getElementById('fonte').value = fonteSalva;
-    }
-    
-    var tamanhoFonteSalvo = localStorage.getItem('tamanhoFonte');
-    if (tamanhoFonteSalvo) {
-        document.getElementById('notepad').style.fontSize = tamanhoFonteSalvo + 'px';
-        document.getElementById('tamanhoFonte').value = tamanhoFonteSalvo;
-    }
+}, { passive: true });
+
+
+
+// --- 4. POP UP (MODAL) ---
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalBody = document.getElementById('modal-body');
+
+function openModal(title, content) {
+    modalTitle.innerText = title;
+    modalBody.innerText = content;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden'; 
 }
 
-// Função para salvar configurações
-function salvarAnotacoes() {
-    var anotacoes = document.getElementById('notepad').value;
-    localStorage.setItem('anotacoes', anotacoes);
-    
-    var cor = document.getElementById('corTexto').value;
-    localStorage.setItem('corTexto', cor);
-    
-    var fonteSelecionada = document.getElementById('fonte').value;
-    localStorage.setItem('fonteSelecionada', fonteSelecionada);
-    
-    var tamanhoFonte = document.getElementById('tamanhoFonte').value;
-    localStorage.setItem('tamanhoFonte', tamanhoFonte);
-    
-    exibirMensagem('saveMessage');
+function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = 'auto';
 }
 
-// Função para limpar configurações
-function limparAnotacoes() {
-    localStorage.removeItem('anotacoes');
-    localStorage.removeItem('corTexto');
-    localStorage.removeItem('fonteSelecionada');
-    localStorage.removeItem('tamanhoFonte'); // Remover o tamanho da fonte salvo também ao limpar
-    document.getElementById('notepad').value = '';
-    document.getElementById('notepad').style.color = ''; // Resetar a cor do texto
-    document.getElementById('notepad').style.fontFamily = ''; // Resetar a fonte
-    document.getElementById('notepad').style.fontSize = ''; // Resetar o tamanho da fonte
-    document.getElementById('corTexto').value = '#000000'; // Resetar o valor do seletor de cor
-    document.getElementById('fonte').value = 'Arial'; // Resetar o valor do seletor de fonte
-    document.getElementById('tamanhoFonte').value = '14'; // Resetar o valor do seletor de tamanho da fonte
-    exibirMensagem('clearMessage');
-}
-
-// Função para mudar a cor do texto
-function mudarCorTexto() {
-    var cor = document.getElementById('corTexto').value;
-    document.getElementById('notepad').style.color = cor;
-    localStorage.setItem('corTexto', cor); // Salvar a cor no localStorage
-}
-
-// Função para mudar a fonte
-function mudarFonte() {
-    var fonteSelecionada = document.getElementById('fonte').value;
-    document.getElementById('notepad').style.fontFamily = fonteSelecionada;
-    localStorage.setItem('fonteSelecionada', fonteSelecionada); // Salvar a fonte no localStorage
-}
-
-// Função para mudar o tamanho da fonte
-function mudarTamanhoFonte() {
-    var tamanhoFonte = document.getElementById('tamanhoFonte').value;
-    document.getElementById('notepad').style.fontSize = tamanhoFonte + 'px';
-    localStorage.setItem('tamanhoFonte', tamanhoFonte); // Salvar o tamanho da fonte no localStorage
-}
-// Função para exibir mensagens
-function exibirMensagem(id) {
-    var mensagem = document.getElementById(id);
-    mensagem.style.display = 'block';
-    setTimeout(function() {
-        mensagem.style.display = 'none';
-    }, 2000); // Oculta a mensagem após 2 segundos
-}
-function checkVersions() {
-    // Redirecionar para o link de verificar versões
-    window.location.href = 'https://www.mediafire.com/folder/qpuyyl1xwj56m/Revisao';
-}
-  function novoLink() {
-    // Redirecionar para o novo link desejado
-    window.location.href = 'https://wa.me/?text=Instale%20o%20aplicativo%20Revisão%20para%20não%20perder%20a%20matéria:%20https%3A%2F%2Fwww.mediafire.com%2Ffolder%2Fqpuyyl1xwj56m%2FRevisao';
-}
-
-function openPopup(popupId) {
-    const popup = document.getElementById(popupId);
-    const overlay = document.getElementById('overlay');
-    
-    document.body.classList.add('popup-active'); // Impede a rolagem do fundo
-    popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
-    setTimeout(() => {
-      popup.classList.add('active');
-      overlay.classList.add('active');
-    }, 50);
-}
-
-function closePopup(popupId) {
-    const popup = document.getElementById(popupId);
-    const overlay = document.getElementById('overlay');
-    
-    popup.classList.remove('active');
-    overlay.classList.remove('active');
-    document.body.classList.remove('popup-active'); // Permite que o fundo role novamente
-    setTimeout(() => {
-      popup.style.transform = 'translate(-50%, -50%) scale(0.7)';
-    }, 300);
-}
-      // Função para apagar todos os cookies
-        function deleteAllCookies() {
-            const cookies = document.cookie.split(";");
-
-            cookies.forEach(cookie => {
-                const eqPos = cookie.indexOf("=");
-                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-            });
-        }
-
-        // Função para limpar localStorage e sessionStorage
-        function clearStorage() {
-            localStorage.clear();  // Limpa o localStorage
-            sessionStorage.clear(); // Limpa o sessionStorage
-        }
-
-        // Função para redefinir todos os dados salvos no navegador
-        function resetAllData() {
-            deleteAllCookies(); // Apagar todos os cookies
-            clearStorage();     // Limpar localStorage e sessionStorage
-            alert("Os dados foram redefinidos!");
-        }
-        
-        function startTimer(element) {
-      const endTime = new Date(element.getAttribute("data-endtime")).getTime();
-
-      function updateTimer() {
-        const now = new Date().getTime();
-        const distance = endTime - now;
-
-        if (distance < 0) {
-          element.innerHTML = "Tempo esgotado";
-          clearInterval(timerInterval);
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        let timerText = "";
-        if (days > 0) timerText += days + "d ";
-        if (hours > 0) timerText += hours + "h ";
-        if (minutes > 0) timerText += minutes + "m ";
-        timerText += seconds + "s";
-
-        element.innerHTML = timerText;
-      }
-
-      updateTimer();
-      const timerInterval = setInterval(updateTimer, 1000);
-    }
-
-    // Iniciar todos os timers na página automaticamente
-    document.querySelectorAll(".timer").forEach(startTimer);
-    
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+  // Registra o Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log("PWA Ativo!"))
+      .catch((err) => console.log("Erro no PWA:", err));
+  }
